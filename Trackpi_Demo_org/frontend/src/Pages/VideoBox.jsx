@@ -103,10 +103,10 @@ const handleSeek = (e) => {
 // is wider logics  
 const wrapperClass = isWider
   ? "fixed top-0 left-0 w-[100vw] h-[100vh] z-50 bg-black"
-  : "absolute top-[17.73vh] left-[25.1vw]  w-[51.04vw] h-[68.61vh] ml-8 ";
+  : "absolute top-[17.73vh] left-[25.1vw]  w-[51.04vw] h-[68.61vh] ml-10 ";
   const containerClass = isWider
   ? "w-[100vw] h-[100vh]"
-  : "w-[68.04vw] h-[70.19vh]";
+  : "w-[68.04vw] h-[65.19vh]";
 
 const playButtonSize = isWider ? "w-[5vw] h-[5vw] top-[50vh] left[90vh]" : "w-[4.86vw] h-[4.86vw]";
 
@@ -129,7 +129,7 @@ const fullscreenBtnPosition = isWider
   return (
     <div className={`${wrapperClass} gap-[1.04vw] transition-all duration-300 ease-in-out`}>
       
-      <div className="w-[68.04vw] h-[70.19vh]  rounded-[1.04vw] bg-[#3A3A3A] relative">
+      <div className="w-[68.04vw] h-[65.19vh]  rounded-[1.04vw] bg-[#3A3A3A] relative">
         {/* Vimeo Player container */}
         <div
           ref={containerRef}
@@ -218,7 +218,7 @@ const fullscreenBtnPosition = isWider
         <div className="text-white font-['Roboto'] font-medium text-[1.56vw] ml-[0.5vw]">
   <h5>{title}</h5>
 </div>
-<div className="text-white font-['Roboto'] font-thin text-[1.15vw] ml-[0.5vw]">
+<div className="text-white font-['Roboto'] font-normal text-[1.15vw] ml-[0.5vw]">
   <p>{description}</p>
 </div>
       </div>
