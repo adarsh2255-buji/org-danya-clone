@@ -6,9 +6,9 @@ import playnextIcon  from "../assets/vector.png"
 const VideoEndPopUp =({ onReplay, onNext })=>{
 return(
       <div className="absolute -top-[0vh]  w-[51.04vw] h-[68.61vh] gap-[1.04vw] ">
-         <div className="w-[63.04vw] h-[66.19vh] px-[1.04vw] py-[1.39vh] rounded-[1.04vw] bg-[#3A3A3A] relative">
+         <div className="w-[68.04vw] h-[66.19vh] px-[1.04vw] py-[1.39vh] rounded-[1.04vw] bg-[#3A3A3A] relative">
            < div className="w-[10.42vw] h-[16.83vh]  rounded absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-           <div className="w-[29.8vw] h-[20vh] -ml-[18vh] gap-[2.1vw]  rounded-md">
+           <div className="w-[29.8vw] h-[20vh] -ml-[21vh] gap-[2.1vw]  rounded-md">
  <div className="w-[26.4vw] h-[7.8vh] ml-[3vh] font-roboto font-semibold text-[1.15vw] leading-[3.9vh] tracking-[0] text-center text-white">
   Would you like to continue to the next video<br />
   or watch this one once more?
