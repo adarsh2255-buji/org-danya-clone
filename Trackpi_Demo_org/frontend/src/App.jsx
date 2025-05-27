@@ -14,6 +14,7 @@ import AssessmentFirstPopup from './Pages/AssessmentFirstPopup';
 import AssessmentPassedPopup from './Pages/AssessmentPassedPopup';
 import AssessmentFailedPopup from './Pages/AssessmentFailedPopup';
 import AssesmentTimeUpPopup from './Pages/AssesmentTimeUpPopup';
+import Discoverus from './Pages/Discoverus';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Header />
       </div>
       <Routes>
+        <Route path="/" element={<Discoverus />} />
         <Route path="/Watchvideo/:id" element={<WatchvideoSection />} />
         <Route path="/addCourse" element={<AddCourseForm />} /> 
         <Route path="/viewCourse" element={<CourseList />} />
