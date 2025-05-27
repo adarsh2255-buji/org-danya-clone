@@ -10,6 +10,10 @@ import CourseDetailsPopUp from './Pages/CourseDetailsPopUp';
 import MainAssessment from './Pages/MainAssessment';
 import HelpCenter from './Pages/HelpCenter';
 import Faq from './Pages/Faq';
+import AssessmentFirstPopup from './Pages/AssessmentFirstPopup';
+import AssessmentPassedPopup from './Pages/AssessmentPassedPopup';
+import AssessmentFailedPopup from './Pages/AssessmentFailedPopup';
+import AssesmentTimeUpPopup from './Pages/AssesmentTimeUpPopup';
 
 function App() {
   return (
@@ -24,6 +28,11 @@ function App() {
         <Route path="/viewCourse" element={<CourseList />} />
         <Route path="/courseDetailsPopUp" element={<CourseDetailsPopUp />} />
         <Route path="/MainAssessment" element={<MainAssessment />} />
+        <Route path="/Assessmententer-popup" element={<AssessmentFirstPopup />} />
+        <Route path="/AssessmentPassedPopup" element={<AssessmentPassedPopup />} />
+        <Route path="/AssessmentFailedPopup" element={<AssessmentFailedPopup />} />
+        <Route path="/AssessmentTimupPopup" element={<AssesmentTimeUpPopup />} />
+
         <Route path="/HelpCenter" element={<HelpCenter />} />
         <Route path="/faq" element={<Faq />} />
         {/* Add more routes as needed */}
