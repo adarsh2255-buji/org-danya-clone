@@ -34,7 +34,6 @@ function App() {
         <Route path="/AssessmentPassedPopup" element={<AssessmentPassedPopup />} />
         <Route path="/AssessmentFailedPopup" element={<AssessmentFailedPopup />} />
         <Route path="/AssessmentTimupPopup" element={<AssesmentTimeUpPopup />} />
-
         <Route path="/HelpCenter" element={<HelpCenter />} />
         <Route path="/faq" element={<Faq />} />
         {/* Add more routes as needed */}

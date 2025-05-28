@@ -85,7 +85,7 @@ function Discoverus() {
               {[
                 { src: "/icon1.png", alt: "YouTube", width: "113px", height: "142px", link: "https://www.youtube.com" },
                 {
-                  src: "/icon3.png", alt: "Compnay website", width: "110px", height: "174px",
+                  src: "/icon3.png", alt: "Company website", width: "110px", height: "174px",
                   left: '599.5px'
                 },
                 {
