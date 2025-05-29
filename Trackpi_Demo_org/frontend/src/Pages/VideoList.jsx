@@ -76,7 +76,7 @@ const VideoList = ({ course, onVideoSelect, activeIndex, setActiveIndex }) => {
             font-semibold 
             text-white 
             font-['Roboto'] 
-             pr-2
+             pr-1
             text-[3vw] sm:text-[1.3vw] md:text-[1.04vw]
             text-center
             w-[15vw] sm:w-[10vw] md:w-[2.71vw]
