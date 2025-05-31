@@ -106,7 +106,7 @@ const wrapperClass = isWider
   : "absolute top-[19.73vh] left-[26.4vw]  w-[69.15vw] h-[68.04vh]  ";
   const containerClass = isWider
   ? "w-[100vw] h-[100vh]"
-  : "w-[70.39vw] h-[72.04vh]";
+  : "w-[69.15vw] h-[68.04vh]";
 
 const playButtonSize = isWider ? "w-[5vw] h-[5vw] top-[50vh] left[90vh]" : "w-[4.86vw] h-[4.86vw]";
 
@@ -131,10 +131,10 @@ const fullscreenBtnPosition = isWider
       
       <div className="  h-[68.04vh]  rounded-[1.04vw] bg-[#3A3A3A] relative">
         {/* Vimeo Player container */}
-        {/* <div
+        <div
           ref={containerRef}
           className={`${containerClass} rounded-[1.04vw] overflow-hidden transition-all duration-300`}
-        /> */}
+        />
 
         {/* Play button overlay */}
         {!isPlaying && (
