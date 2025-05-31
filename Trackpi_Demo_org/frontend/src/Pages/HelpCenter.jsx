@@ -1,5 +1,5 @@
 import React from "react";
-
+import SocialIcon from "../components/SocialIcon";
 const HelpCenter =()=>{
     return(
  <div className="w-screen h-auto  py-[2.2vh]">
@@ -26,7 +26,7 @@ const HelpCenter =()=>{
 
     {/* Second Element */}
     {/* parent element */}
-    <div className="w-[550px] h-[486px] gap-[14px] flex flex-col ">
+    <div className="w-[600px] h-[486px] gap-[14px] flex flex-col ">
     <div className="w-full h-auto sm:h-[102px] gap-2 sm:gap-[10px] border-b-[0.5px] border-white border-opacity-50 pb-5 mb-3.5 flex flex-col sm:flex-row flex-wrap">
   <div className="w-[134px] text-white h-[36px] font-roboto font-semibold text-[24px] leading-[36px] tracking-normal">
     Our Address
@@ -52,6 +52,7 @@ const HelpCenter =()=>{
   </div>
 </div>
 {/* Social media icons */}
+<SocialIcon/>
 </div>
 
 
