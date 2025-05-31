@@ -12,11 +12,11 @@ const CourseList = () => {
   }, []);
 
   return (
-    <div className="p-4 bg-amber-50 ">
-      <h2 className="text-2xl font-bold mb-4">Courses</h2>
+    <div className="p-4  ">
+      <h2 className="text-2xl font-bold text-white mb-4">Courses</h2>
       {courses.map((course) => (
         <div key={course._id} className="border mb-4 p-4 rounded">
-          <h3 className="text-xl font-semibold">{course.courseName}</h3>
+          <h3 className="text-xl font-semibold text-white">{course.courseName}</h3>
   <img
   src={`http://localhost:5000${course.bgImage}`}
   alt="bg"
@@ -28,7 +28,7 @@ const CourseList = () => {
           <ul className="list-disc ml-6">
             {course.videoDetails.map((vid, idx) => (
               <li key={idx} className="mb-2">
-                <strong>{vid.title}</strong>: {vid.description}
+                <strong className='text-white'>{vid.title}</strong>: {vid.description}
                 <br />
                 <iframe
   src={vid.videoUrl}
