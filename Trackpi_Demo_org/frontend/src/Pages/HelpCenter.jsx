@@ -1,8 +1,10 @@
 import React from "react";
 import SocialIcon from "../components/SocialIcon";
+import Footer from "../components/Footer";
+import InformationCircle from "../components/InformationCircle";
 const HelpCenter =()=>{
     return(
- <div className="w-screen h-auto  py-[2.2vh]">
+ <div className="w-[1512px] h-auto  py-[0.5vh]">
   <div className="w-full max-w-[1512px] h-[33px]  px-4 sm:px-10 lg:px-0 mx-auto flex justify-start mt-1 ml-8  ">
     <div className="  w-[51px] h-[33px] sm:w-[80px] sm:h-[40px] text-[28px] text-white sm:text-[32px] font-roboto font-bold leading-[100%] tracking-[0%] text-center">
       FAQ
@@ -60,7 +62,7 @@ const HelpCenter =()=>{
 </div>
 {/* right container */}
 <div className="w-full h-auto  border rounded-[20px] ml-30 border-white border-opacity-50">
-  <div className="w-[202px] h-[36px] font-roboto font-semibold text-[32px] leading-[36px] text-white text-center ml-55 mt-45 tracking-[0%] ">
+  <div className="w-[202px] h-[36px] font-roboto font-semibold text-[32px] leading-[36px] text-white text-center ml-45 mt-45 tracking-[0%] ">
   Coming Soon!
 </div>
 
@@ -68,7 +70,14 @@ const HelpCenter =()=>{
 
 
 </div>
-
+{/* Footer */}
+<div className="w-full flex items-center  "></div>
+<div className="-mt-13 ml-20 ">
+<Footer/>
+</div>
+<div className=" absolute top-[760px] right-21  ">
+<InformationCircle />
+</div>
 </div>
 
     )
