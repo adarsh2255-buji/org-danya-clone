@@ -233,10 +233,10 @@ const MainCourseList = () => {
                   }}
                 >
                   <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 flex justify-between items-center w-[80%]">
-                    <span className="text-white text-xs sm:text-sm md:text-base lg:text-[1vw] truncate">
+                    <span className="text-white  text-xs sm:text-sm md:text-base lg:text-20px truncate">
                       {course.courseName}
                     </span>
-                    <span className="text-white text-[0.65rem] sm:text-sm lg:text-[0.7vw]">
+                    <span className="text-white text-[0.65rem] sm:text-sm lg:text-[1vw]">
                       {getTotalDuration(course.videoDetails)}
                     </span>
                   </div>

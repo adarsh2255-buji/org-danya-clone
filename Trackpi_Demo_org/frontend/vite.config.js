@@ -15,6 +15,12 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       }
-    }
+    },
+    extend: {
+  fontFamily: {
+    roboto: ['Roboto', 'sans-serif'],
+  },
+}
+
   }
 })
