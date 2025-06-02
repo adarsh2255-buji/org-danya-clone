@@ -20,10 +20,10 @@ import StartCourse from './Pages/StartCourse';
 function App() {
   return (
     <Router>
-      <div className="flex justify-center">
-        <Background />
-        <Header />
-      </div>
+     <div className="relative min-h-full min-w-full">
+  <Background />
+  <Header />
+  <main className="relative z-10">
       <Routes>
         <Route path="/" element={<Discoverus />} />
         <Route path="/startCourse" element={<StartCourse />} />
@@ -40,6 +40,8 @@ function App() {
         <Route path="/faq" element={<Faq />} />
         {/* Add more routes as needed */}
       </Routes>
+      </main>
+      </div>
     </Router>
   );
 }
