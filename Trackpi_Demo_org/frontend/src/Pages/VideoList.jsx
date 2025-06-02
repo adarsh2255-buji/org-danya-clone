@@ -9,7 +9,7 @@ const VideoList = ({ course, onVideoSelect, activeIndex, setActiveIndex }) => {
     absolute 
     top-19 left-5
     w-[90%] max-w-[374px]
-    h-[85%] max-h-[858px]
+    h-auto
     gap-2 sm:gap-3
     flex flex-col
   "

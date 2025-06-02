@@ -24,7 +24,7 @@ function App() {
      <div className="relative min-h-full min-w-full">
   <Background />
   <Header />
-  <main className="relative z-10">
+  {/* <main className="relative z-10"> */}
       <Routes>
         <Route path="/" element={<Discoverus />} />
         <Route path="/startCourse" element={<StartCourse2 />} />
@@ -41,7 +41,7 @@ function App() {
         <Route path="/faq" element={<Faq />} />
         {/* Add more routes as needed */}
       </Routes>
-      </main>
+      {/* </main> */}
       </div>
     </Router>
   );
