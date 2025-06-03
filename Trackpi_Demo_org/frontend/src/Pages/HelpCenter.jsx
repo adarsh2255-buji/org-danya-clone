@@ -1,22 +1,27 @@
 import React from "react";
-
+import SocialIcon from "../components/SocialIcon";
+import Footer from "../components/Footer";
+import InformationCircle from "../components/InformationCircle";
 const HelpCenter =()=>{
     return(
-      <div className="w-screen h-auto px-[3.3vw] py-[6.2vh]">
-  
- <div className="w-full flex items-center gap-2 sm:gap-4 md:gap-6 mb-4 sm:mb-6 mt-[-20px] sm:mt-[-28px]">
- <div className="text-white font-roboto font-bold text-base sm:text-lg md:text-xl leading-tight text-center">
-    FAQ
+ <div className="w-full h-auto  py-[0.5vh]">
+   <main className="flex-grow">
+  <div className="w-full max-w-[1512px] h-[33px]  px-4 sm:px-10 lg:px-0 mx-auto flex justify-start mt-1 ml-8  ">
+    <div className="  w-[51px] h-[33px] sm:w-[80px] sm:h-[40px] text-[28px] text-white sm:text-[32px] font-roboto font-bold leading-[100%] tracking-[0%] text-center">
+      FAQ
+    </div>
   </div>
-</div>
+
+
 
  
  {/* Main Container */}
- <div className="w-full max-w-[93vw] min-h-[70vh] flex flex-col md:flex-row justify-between gap-2 px-4 md:px-0 mb-6 ">
+ <div className="w-full min-h-[70vh] flex flex-col md:flex-row justify-between gap-16 px-4 md:px-10 mb-6 mt-4">
+
   {/* Left Container */}
   <div className="w-full md:w-2/5 flex flex-col sm:gap-4">
     {/* First Element */}
-    <div className="w-full max-w-full md:max-w-[90%] mb-6 ">
+    <div className="w-full max-w-full md:max-w-[90%] mb-2  ">
       <div className="text-white font-roboto font-medium text-base sm:text-lg md:text-[17px] leading-relaxed">
         For inquiries about our services,<br />
         Please fill your details or email us directly.
@@ -24,57 +29,60 @@ const HelpCenter =()=>{
     </div>
 
     {/* Second Element */}
-    <div className="w-full max-w-md sm:max-w-lg md:max-w-[31vw] -mt-4 sm:-mt-4 flex flex-col sm:gap-6">
-
-  <div className="w-full max-w-[31.25vw] sm:max-w-lg md:max-w-xl gap-0.5 sm:gap-1 border-b border-white border-opacity-50 pb-2 flex flex-col">
-  <div className="w-full font-roboto font-normal text-xs sm:text-sm md:text-sm leading-snug tracking-normal text-left text-white">
+    {/* parent element */}
+    <div className=" gap-[14px] flex flex-col ">
+    <div className="w-full h-auto sm:h-[102px] gap-2 sm:gap-[10px] border-b-[0.5px] border-white border-opacity-50 pb-5 mb-3.5 flex flex-col sm:flex-row flex-wrap">
+  <div className="w-[134px] text-white h-[36px] font-roboto font-semibold text-[24px] leading-[36px] tracking-normal">
     Our Address
   </div>
-  <div className="w-full font-roboto font-medium text-sm sm:text-base md:text-base leading-snug text-left text-white">
+  <div className="w-full sm:w-full h-[36px]  font-roboto font-medium text-[30px] leading-[36px] tracking-normal text-white ">
     Kakkanad, Kochi, India
   </div>
 </div>
-
-
-
-
-{/* third */}
-
-  <div className="w-full max-w-[31.25vw] gap-0.5 border-b border-white border-opacity-50 pb-2 flex flex-col">
-  <div className="w-full  h-auto font-roboto font-normal text-xs sm:text-sm md:text-sm leading-snug   md:leading-[4.5vh] tracking-normal text-left text-white">
+  <div className="w-full h-auto sm:h-[102px] gap-2 sm:gap-[10px] border-b-[0.5px] border-white border-opacity-50 pb-5 mb-3.5 flex flex-col sm:flex-row flex-wrap">
+  <div className="w-[134px] text-white h-[36px]  font-roboto font-semibold text-[24px] leading-[36px] tracking-normal">
     Phone
   </div>
-  <div className="w-full h-auto font-roboto font-medium text-sm sm:text-base md:text-base leading-snug   md:leading-[4.5vh] text-left text-white">
+  <div className="w-full sm:w-full h-[36px]  font-roboto font-medium text-[30px] leading-[36px] tracking-normal text-white ">
     +91 8078179646
   </div>
 </div>
-
-
-{/* forth */}
-
- <div className="w-full max-w-[31.25vw] sm:w-[90vw] sm:max-w-full gap-0.5 border-b border-white border-opacity-50  pb-2 flex flex-col ">
-  <div className="font-roboto font-normal text-xs sm:text-sm md:text-sm leading-snug text-left text-white">
+  <div className="w-full h-auto sm:h-[102px] gap-2 sm:gap-[10px] border-b-[0.5px] border-white border-opacity-50 pb-5 mb-3.5 flex flex-col sm:flex-row flex-wrap">
+  <div className="w-[134px] text-white h-[36px]  font-roboto font-semibold text-[24px] leading-[36px] tracking-normal">
     E-mail
   </div>
-  <div className="font-roboto font-medium text-sm sm:text-base md:text-base leading-snug text-left text-white break-words">
-    operations@trackpi.in
+  <div className="w-full sm:w-full h-[36px]  font-roboto font-medium text-[30px] leading-[36px] tracking-normal text-white ">
+   operations@trackpi.in
+  </div>
+</div>
+{/* Social media icons */}
+<SocialIcon/>
+</div>
+
+
+
+</div>
+{/* right container */}
+
+<div className="w-full md:w-3/5 h-auto border rounded-[20px] border-white border-opacity-50 p-4 flex items-center justify-center">
+  <div className="w-full text-center font-roboto font-semibold text-[32px] leading-[36px] text-white">
+    Coming Soon!
   </div>
 </div>
 
 
-<div className="w-full max-w-[31.25vw] h-10 flex justify-between -mt-3 px-4">
-  {/* Content goes here */}
-</div>
-
-</div>
-</div>
-
-{/* right container */}
-<div className="w-full sm:w-[42.97vw] h-auto sm:h-[71.06vh] flex flex-col gap-[2.65vw] rounded-[1.32vw] border border-white/80">
-  {/* Content */}
-</div>
 
 
+</div>
+</main>
+{/* Footer */}
+<div className="w-full flex items-center "></div>
+<div className="-mt-13 ">
+<Footer/>
+</div>
+
+<div className="fixed bottom-4 right-12 z-50">
+  <InformationCircle />
 </div>
 
 </div>

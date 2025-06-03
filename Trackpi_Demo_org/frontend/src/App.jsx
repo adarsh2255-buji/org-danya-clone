@@ -15,18 +15,19 @@ import AssessmentPassedPopup from './Pages/AssessmentPassedPopup';
 import AssessmentFailedPopup from './Pages/AssessmentFailedPopup';
 import AssesmentTimeUpPopup from './Pages/AssesmentTimeUpPopup';
 import Discoverus from './Pages/Discoverus';
-import StartCourse from './Pages/StartCourse';
+
+import StartCourse2 from './Pages/StartCourse2';
 
 function App() {
   return (
     <Router>
-      <div className="flex justify-center">
-        <Background />
-        <Header />
-      </div>
+     <div className="relative min-h-full min-w-full">
+  <Background />
+  <Header />
+  {/* <main className="relative z-10"> */}
       <Routes>
         <Route path="/" element={<Discoverus />} />
-        <Route path="/startCourse" element={<StartCourse />} />
+        <Route path="/startCourse" element={<StartCourse2 />} />
         <Route path="/Watchvideo/:id" element={<WatchvideoSection />} />
         <Route path="/addCourse" element={<AddCourseForm />} /> 
         <Route path="/viewCourse" element={<CourseList />} />
@@ -40,6 +41,8 @@ function App() {
         <Route path="/faq" element={<Faq />} />
         {/* Add more routes as needed */}
       </Routes>
+      {/* </main> */}
+      </div>
     </Router>
   );
 }
