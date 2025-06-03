@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 
 const Assessment = () => {
   const [selectedOption, setSelectedOption] = useState('');
   const handleOptionChange = (e) => setSelectedOption(e.target.value);
   const [timeLeft, setTimeLeft] = useState(60 * 60); // 60 minutes in seconds
+  const navigate = useNavigate();
+
+
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(prev => {
         if (prev <= 1) {
           clearInterval(timer);
+          navigate("/AssessmentTimupPopup"); // Navigate to time-up page
           return 0;
         }
         return prev - 1;
       });
     }, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [navigate]);
 
   const formatTime = (seconds) => {
     const hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
