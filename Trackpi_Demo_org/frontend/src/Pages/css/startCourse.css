@@ -4,7 +4,7 @@
   height: 70px;
   border: 1px solid #E0E0E0;
   position: absolute;
-  top: 411px;
+  top: 435px;
   left: 365px;
   bottom: 1px;
   border-radius: 30px;
@@ -49,4 +49,97 @@
 
 .k2d{
   font-family: "K2D", sans-serif;
+}
+
+
+
+
+
+
+
+
+
+
+
+.custom-div {
+  width: 50%;
+  border-radius: 30px;
+  border: 2px solid white;
+  background-color: transparent;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px; /* add padding for spacing from edges */
+  box-sizing: border-box;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border: 2px solid orange;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.line {
+  flex: 1;
+  height: 5px;
+  /* background-color: orange; */
+  border-top: 1px solid orange;
+  border-bottom: 1px solid orange;
+  /* margin: 0 5px; */
+  z-index: 0;
+  position: relative;
+  top: 0;
+  
+}
+
+@media (min-width: 1024px) {
+  .custom-div {
+    width: 70%;
+    left: 15%;
+    top: 450px;
+  }
+
+  /* .outer-div {
+    left: 15%;
+    width: 70%;
+    top: 435px;
+  } */
+
+  .avatar-div {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+
+  .StartCourse2 .px-15 {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+
+  .StartCourse2 .ml-22 {
+    margin-left: 88px; /* adjust for desktop arrow alignment */
+  }
+
+  .StartCourse2 .left-63 {
+    left: 252px;
+  } 
+
+  .StartCourse2 .right-20 {
+    right: 80px;
+  }
+
+  .StartCourse2 .left-647 {
+    left: 647px;
+  }
+
+  .StartCourse2 .left-326 {
+    left: 1304px;
+  }
+
+  .StartCourse2 .top-147 {
+    top: 588px;
+  }
 }
