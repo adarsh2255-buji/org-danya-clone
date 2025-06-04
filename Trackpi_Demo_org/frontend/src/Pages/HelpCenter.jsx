@@ -4,7 +4,8 @@ import Footer from "../components/Footer";
 import InformationCircle from "../components/InformationCircle";
 const HelpCenter =()=>{
     return(
- <div className="w-[1512px] h-auto  py-[0.5vh]">
+ <div className="w-full h-auto  py-[0.5vh]">
+   <main className="flex-grow">
   <div className="w-full max-w-[1512px] h-[33px]  px-4 sm:px-10 lg:px-0 mx-auto flex justify-start mt-1 ml-8  ">
     <div className="  w-[51px] h-[33px] sm:w-[80px] sm:h-[40px] text-[28px] text-white sm:text-[32px] font-roboto font-bold leading-[100%] tracking-[0%] text-center">
       FAQ
@@ -15,7 +16,8 @@ const HelpCenter =()=>{
 
  
  {/* Main Container */}
- <div className="w-full max-w-[93.5vw] min-h-[70vh] flex flex-col md:flex-row justify-between gap-2 px-4 md:px-0 mb-6 ml-10 mt-4  ">
+ <div className="w-full min-h-[70vh] flex flex-col md:flex-row justify-between gap-16 px-4 md:px-10 mb-6 mt-4">
+
   {/* Left Container */}
   <div className="w-full md:w-2/5 flex flex-col sm:gap-4">
     {/* First Element */}
@@ -28,7 +30,7 @@ const HelpCenter =()=>{
 
     {/* Second Element */}
     {/* parent element */}
-    <div className="w-[600px] h-[486px] gap-[14px] flex flex-col ">
+    <div className=" gap-[14px] flex flex-col ">
     <div className="w-full h-auto sm:h-[102px] gap-2 sm:gap-[10px] border-b-[0.5px] border-white border-opacity-50 pb-5 mb-3.5 flex flex-col sm:flex-row flex-wrap">
   <div className="w-[134px] text-white h-[36px] font-roboto font-semibold text-[24px] leading-[36px] tracking-normal">
     Our Address
@@ -61,23 +63,28 @@ const HelpCenter =()=>{
 
 </div>
 {/* right container */}
-<div className="w-full h-auto  border rounded-[20px] ml-30 border-white border-opacity-50">
-  <div className="w-[202px] h-[36px] font-roboto font-semibold text-[32px] leading-[36px] text-white text-center ml-45 mt-45 tracking-[0%] ">
-  Coming Soon!
+
+<div className="w-full md:w-3/5 h-auto border rounded-[20px] border-white border-opacity-50 p-4 flex items-center justify-center">
+  <div className="w-full text-center font-roboto font-semibold text-[32px] leading-[36px] text-white">
+    Coming Soon!
+  </div>
 </div>
 
-</div>
 
 
+
 </div>
+</main>
 {/* Footer */}
-<div className="w-full flex items-center  "></div>
-<div className="-mt-13 ml-20 ">
+<div className="w-full flex items-center "></div>
+<div className="-mt-13 ">
 <Footer/>
 </div>
-<div className=" absolute top-[760px] right-21  ">
-<InformationCircle />
+
+<div className="fixed bottom-4 right-12 z-50">
+  <InformationCircle />
 </div>
+
 </div>
 
     )
