@@ -1,0 +1,77 @@
+.custom-div {
+  width: 1028px;
+  border-radius: 30px;
+  background-color: transparent;
+  border: transparent;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 435px;
+  left: 365px;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ff9d00;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.circle.completed {
+  background-color: #ff9d00;
+}
+
+.line {
+  flex: 1;
+  height: 10px;
+  border-image: linear-gradient(45deg, #ffffff, #ff9d00) 1;
+  z-index: 0;
+}
+
+.line.completed {
+  background-color: #ff9d00;
+}
+
+.circle-gradient-border {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffffff, #ff9d00);
+  -webkit-mask: 
+    radial-gradient(farthest-side, transparent calc(100% - 1px), white calc(100% - 1px));
+  mask: 
+    radial-gradient(farthest-side, transparent calc(100% - 1px), white calc(100% - 1px));
+  position: relative;
+  z-index: 1;
+}
+/* If the step is completed, fill the center */
+.circle-gradient-border.completed {
+  -webkit-mask: none;
+  mask: none;
+  background: #ff9d00;
+}
+
+.inner-circle{
+   width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffffff, #ff9d00);
+  -webkit-mask: 
+    radial-gradient(farthest-side, transparent calc(100% - 1px), white calc(100% - 1px));
+  mask: 
+    radial-gradient(farthest-side, transparent calc(100% - 1px), white calc(100% - 1px));
+  position: relative;
+  z-index: 1;
+}
+.line{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}

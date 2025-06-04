@@ -6,16 +6,18 @@ import arrow from '../assets/arrow.png'
 import curvedArrow from '../assets/curved arrow.png'
 import arrowLeft from '../assets/arrow left.png'
 import '../Pages/css/StartCourse.css'
+import CourseProgressBar from '../components/CourseProgressBar'
+
 
 const StartCourse2 = () => {
   return (
     <>
-    <div className='w-full min-h-screen'>
+    <div className='w-full min-h-screen StartCourse2'>
             {/* user avatar div */}
         <div className='flex'>  
             <div className='avatar-div mt-7.5 px-15 flex flex-col justify-between gap-4'>
                 <p className='text-white roboto font-bold text-2xl leading-[100%]'>Welcome,</p>
-                <div className='w-[1200px] flex justify-between items-center p-2.5 rounded-xl bg-[linear-gradient(90deg,_#373535_6.17%,_#0A0A0A_72.67%)]'>
+                <div className='w-[1052px] flex justify-between items-center p-2.5 rounded-xl bg-[linear-gradient(90deg,_#373535_6.17%,_#0A0A0A_72.67%)]'>
                     <div className='flex gap-4 items-center '>
                         <img src={userAvatar} alt="user-avatar" className='w-10 h-10 bg-black rounded-full' />
                         <div className='flex flex-col gap-2'>
@@ -67,11 +69,12 @@ const StartCourse2 = () => {
                         </div>
                     </div>
                 </div>
-                <img src={arrow} alt="arrow right" className='absolute left-63 top-109' />
+                {/* right arrow */}
+                <img src={arrow} alt="arrow right" className='absolute left-63 top-115' />
             </div>
 
 
-            <div className='absolute top-90 right-20 w-300 flex justify-between items-end '>
+            <div className='absolute top-95 left-100 w-240 flex justify-between items-end '>
                 <p className='text-white font-normal itim text-[16px]'>Course 1</p>
                 <div className='flex flex-col items-center'>
                     <p className='text-white/50 font- text-[16px] itim'>course</p>
@@ -81,10 +84,12 @@ const StartCourse2 = () => {
 
             
 
-            {/* progress bar */}
+            {/* progress bar outer div */}
             <div className=''>
                 <div className="outer-div"></div>
             </div>
+            {/* course progress bar */}
+             <CourseProgressBar totalSteps={8} completedSteps={0} />
 
             {/* earn money div */}
             <div className='h-[221px] flex'>
@@ -105,13 +110,11 @@ const StartCourse2 = () => {
                 {/* curved arrow */}
                 <img src={curvedArrow} alt="curved arrow" className='ml-auto mr-25 mt-0.5 h-[85px]'/>
                 {/* Start Onboarding Process button */}
-                
-                
             </div>
 
 
 
-            <div className='absolute left-326 top-140  '>
+            <div className='absolute left-286 top-147  '>
                 <div className="p-[1px] rounded-[30px] bg-gradient-to-r from-[#FFFFFF] via-[#FFC100] to-[#FF9D00] inline-block ml-auto  mr-17">
                     <div className="bg-[#0A0A0A] rounded-[30px] ">
                         <button className=" text-white/50 py-2.5 px-7.5 rounded-[30px] text-2xl font-normal itim cursor-pointer">
@@ -121,20 +124,14 @@ const StartCourse2 = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex -mt-8 mr-28'>
+            <div className='flex -mt-8 mr-26'>
                 <div className='ml-auto flex flex-col items-center '>
                     <p className='text-white roboto font-normal'>Fill in offer letter details </p>
                     <p className='text-white roboto font-normal'>and get Approved </p>          
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
-
-   
     </>
   )
 }
