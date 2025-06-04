@@ -334,7 +334,7 @@ const VideoBox = ({ videoUrl = "", title = "", description = "", onNextVideo, is
     playerRef.current?.setCurrentTime(newTime);
   };
 
-  // Wrapper: Adjusted for smaller height and tighter positioning
+    // Wrapper: Adjusted for smaller height and tighter positioning
   const videoWrapperClass = isWider
     ? "fixed top-0 left-0 w-screen h-auto z-50 bg-black items-center justify-center"
     : "relative top-7 left-32 w-full max-w-[90vw] mx-auto h-auto sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[69.15vw]";
@@ -352,25 +352,25 @@ const VideoBox = ({ videoUrl = "", title = "", description = "", onNextVideo, is
   // Progress bar: Adjusted positioning
   const trackerWidth = isWider
     ? "w-[98vw] top-[85vh]"
-    : "w-[calc(100%-1rem)] bottom-[0.5rem] sm:bottom-[1rem] md:bottom-[1.5rem]";
+    : "w-[calc(100%-1rem)] bottom-[1rem] sm:bottom-[1.5rem] md:bottom-[2rem]";
 
-  // Restart button: Adjusted size and position
+  // Restart button: Fixed responsive positioning
   const restartBtnClass = isWider
     ? "w-[3vw] h-[5vh]"
-    : "w-[1.5rem] h-[1.5rem] sm:w-[2rem] sm:h-[2rem] md:w-[2.5rem] md:h-[2.5rem]";
+    : "w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8";
 
   const restartBtnPosition = isWider
-    ? "left-3 top-[91vh]"
-    : "bottom-[0.5rem] top-[60vh] left-[0.1rem] sm:bottom-[1rem] sm:left-[0.5rem]";
+    ? "left-3 bottom-[8vh]"
+    : "bottom-0 left-2 sm:bottom-0.8 sm:left-3";
 
-  // Fullscreen button: Adjusted size and position
+  // Fullscreen button: Fixed responsive positioning
   const fullscreenBtnPosition = isWider
-    ? "left-[95vw] top-[93vh]"
-    : "bottom-[0.5rem] top-[63vh] right-[0.5rem] sm:bottom-[1rem] sm:right-[1rem]";
+    ? "right-3 bottom-[8vh]"
+    : "bottom-2 right-2 sm:bottom-3 sm:right-3";
 
   const fullscreenBtnSize = isWider
     ? "w-[1.5vw] h-[3vh]"
-    : "w-[1.3vw] h-[2vh] ";
+    : "w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4";
 
   return (
     <div className={`${videoWrapperClass} transition-all duration-300 ease-in-out`}>
