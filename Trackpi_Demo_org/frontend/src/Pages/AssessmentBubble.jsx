@@ -33,12 +33,12 @@ const AssessmentBubble = ({ currentPage, setCurrentPage }) => {
       </div>
 
       {/* Bubbles Container */}
-      <div className="absolute flex items-center justify-center w-[95.27vw] h-[7.5vh] top-[20.4vh] gap-[1vw] ml-5">
+      <div className="absolute flex items-center justify-center w-[95.27vw] h-[7.5vh] top-[20.4vh] gap-[1vw] ml-6">
         {/* Left Arrow */}
         <button
           onClick={handlePrev}
           disabled={currentPage === 1}
-          className="flex items-center justify-center rounded-full w-[2.8vw] h-[5.6vh] border border-white/40"
+          className="flex items-center justify-center rounded-full w-[2.8vw] h-[5.6vh] border border-white/60"
         >
           <FontAwesomeIcon icon={faChevronLeft} className="text-white text-[1.2vw]" />
         </button>
@@ -52,7 +52,7 @@ const AssessmentBubble = ({ currentPage, setCurrentPage }) => {
                 key={item}
                 onClick={() => setCurrentPage(item)}
                 aria-label={`Page ${item}`}
-                className={`flex items-center justify-center rounded-full w-[2.8vw] h-[5.6vh] text-[1.6vh] font-medium border transition-all duration-200
+                className={`flex items-center justify-center rounded-full w-[2.8vw] h-[5.9vh] text-[1.6vh] font-medium border transition-all duration-200
                   ${isActive ? 'border-yellow-500 text-yellow-500' : 'border-white/40 text-white'}`}
               >
                 {item}
