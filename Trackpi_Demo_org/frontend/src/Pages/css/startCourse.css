@@ -116,8 +116,38 @@
   cursor: pointer;
   z-index: 1;
 }
+.my-course-btn{
+  position: relative;
+  padding: 15px 30px;
+  font-family: "Itim", cursive;
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+  background: transparent;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 1;
+  white-space: nowrap;
+  text-align: center;
+}
+
 
 .signup-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  padding: 1px;
+  background: linear-gradient(90deg, #FF9D00 0%, #FFC100 50%, #FFFFFF 100%);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+.my-course-btn::before {
   content: '';
   position: absolute;
   inset: 0;
