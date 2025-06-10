@@ -35,9 +35,10 @@ const AssessmentBubble = ({ currentPage, setCurrentPage }) => {
     <div className="text-white font-inter w-screen h-auto">
       {/* Title */}
       <div className="flex ml-[3vw] mt-[3vh]">
-        <div className="w-[10vw] h-[4.58vh] font-roboto font-medium text-[1.95vw] leading-[1] tracking-normal text-center">
-          Assessment
+       <div className="w-[10vw] h-[4.58vh] font-roboto font-medium text-[1.95vw] leading-[1] tracking-normal text-center max-[768px]:text-[4vw]">
+           Assessment
         </div>
+
       </div>
 
       {/* Bubble Row */}
