@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-function AssesmentTimeUpPopup() {
+function AssessmentTimupCongrats() {
   return (
     <>
       <div
@@ -15,28 +15,29 @@ function AssesmentTimeUpPopup() {
             <span>Time’s Up!</span>
           </div>
           <p className="mt-2 text-base md:text-lg">
-            Your assessment time has ended.
+            Your assessment time has ended, but you've successfully passed the assessment.
             <br />
-            Your answers have been automatically submitted.
+            You’re one step closer to your goal!
           </p>
         </div>
 
         <p className="text-center text-xs md:text-sm">
-          You’ll need to take the next attempt or rewatch the video sections before trying again.
+          When you are ready to start the next course, just unlock the next course.
         </p>
 
-        <div className="flex flex-col md:flex-row justify-center items-center gap-4">
-          <button className="text-white font-bold px-6 md:px-10 py-3 md:py-3 border-2 border-orange-500 rounded-full hover:bg-orange-500 hover:text-black transition duration-300 w-full md:w-auto">
-            Go to Course
-          </button>
-
-          <button className="px-6 py-3 md:py-3 rounded-full bg-[#FFA726] text-white font-semibold w-full md:w-auto">
-            Retake Assessment
+        <div className="flex justify-center">
+          <button className="px-6 md:px-10 py-3 md:py-3 rounded-full bg-[#FFA726] text-white font-semibold hover:bg-orange-400 transition w-full md:w-auto">
+            Unlock Next Course
           </button>
         </div>
       </div>
+    
+    
+    
+    
+    
     </>
-  );
+  )
 }
 
-export default AssesmentTimeUpPopup;
+export default AssessmentTimupCongrats

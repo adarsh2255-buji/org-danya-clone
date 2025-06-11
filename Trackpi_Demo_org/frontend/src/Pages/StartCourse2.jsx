@@ -4,26 +4,28 @@ import followersAvatar from '../assets/followersAvatar.png'
 import arrowDown from '../assets/arrow down.png'
 import arrow from '../assets/arrow.png'
 import curvedArrow from '../assets/curved arrow.png'
-import arrowLeft from '../assets/arrow left.png'
+import arrowCurvedLeft from '../assets/arrow curved left.png'
 import '../Pages/css/StartCourse.css'
+import CourseProgressBar from '../components/CourseProgressBar'
+
 
 const StartCourse2 = () => {
   return (
     <>
-    <div className='w-full min-h-screen'>
+    <div className='w-full min-h-screen StartCourse2 hidden lg:block'>
             {/* user avatar div */}
-        <div className='flex'>  
+        <div className='flex '>  
             <div className='avatar-div mt-7.5 px-15 flex flex-col justify-between gap-4'>
                 <p className='text-white roboto font-bold text-2xl leading-[100%]'>Welcome,</p>
-                <div className='w-[1200px] flex justify-between items-center p-2.5 rounded-xl bg-[linear-gradient(90deg,_#373535_6.17%,_#0A0A0A_72.67%)]'>
+                <div className='w-[348px] sm:w-[1052px] flex justify-between items-center p-2.5  rounded-[8px] sm:rounded-2xl bg-[linear-gradient(90deg,_#373535_6.17%,_#0A0A0A_72.67%)]'>
                     <div className='flex gap-4 items-center '>
                         <img src={userAvatar} alt="user-avatar" className='w-10 h-10 bg-black rounded-full' />
                         <div className='flex flex-col gap-2'>
-                            <p className='text-white font-medium text-xl leading-[100%] roboto'>Edward John</p>
-                            <p className='text-white font-medium text-sm roboto'>Freelancer</p>
+                            <p className='text-white font-medium text-[18px] sm:text-xl leading-[100%] roboto'>Edward John</p>
+                            <p className='text-white font-medium text-[12px] sm:text-sm roboto'>Freelancer</p>
                         </div>
                     </div>
-                    <p className='text-white font-medium text-base roboto'>06 December 2024</p>
+                    <p className='text-white font-medium text-[12px] sm:text-base roboto'>06 December 2024</p>
                 </div>
             </div>
 
@@ -67,11 +69,12 @@ const StartCourse2 = () => {
                         </div>
                     </div>
                 </div>
-                <img src={arrow} alt="arrow right" className='absolute left-63 top-109' />
+                {/* right arrow */}
+                <img src={arrow} alt="arrow right" className='absolute left-63 top-115' />
             </div>
 
 
-            <div className='absolute top-90 right-20 w-300 flex justify-between items-end '>
+            <div className='absolute top-95 left-100 w-240 flex justify-between items-end '>
                 <p className='text-white font-normal itim text-[16px]'>Course 1</p>
                 <div className='flex flex-col items-center'>
                     <p className='text-white/50 font- text-[16px] itim'>course</p>
@@ -81,10 +84,12 @@ const StartCourse2 = () => {
 
             
 
-            {/* progress bar */}
+            {/* progress bar outer div */}
             <div className=''>
                 <div className="outer-div"></div>
             </div>
+            {/* course progress bar */}
+             <CourseProgressBar totalSteps={8} completedSteps={0} />
 
             {/* earn money div */}
             <div className='h-[221px] flex'>
@@ -105,13 +110,11 @@ const StartCourse2 = () => {
                 {/* curved arrow */}
                 <img src={curvedArrow} alt="curved arrow" className='ml-auto mr-25 mt-0.5 h-[85px]'/>
                 {/* Start Onboarding Process button */}
-                
-                
             </div>
 
 
 
-            <div className='absolute left-326 top-140  '>
+            <div className='absolute left-286 top-147  '>
                 <div className="p-[1px] rounded-[30px] bg-gradient-to-r from-[#FFFFFF] via-[#FFC100] to-[#FF9D00] inline-block ml-auto  mr-17">
                     <div className="bg-[#0A0A0A] rounded-[30px] ">
                         <button className=" text-white/50 py-2.5 px-7.5 rounded-[30px] text-2xl font-normal itim cursor-pointer">
@@ -121,20 +124,65 @@ const StartCourse2 = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex -mt-8 mr-28'>
+            <div className='flex -mt-8 mr-26'>
                 <div className='ml-auto flex flex-col items-center '>
                     <p className='text-white roboto font-normal'>Fill in offer letter details </p>
                     <p className='text-white roboto font-normal'>and get Approved </p>          
                 </div>
             </div>
         </div>
-
-
-
-
+    </div>
+<div className='block lg:hidden'>
+  {/* Wrapper for entire mobile view */}
+  <div className='flex flex-col gap-4 p-5'>
+    {/* Dashboard */}
+    <p className='text-white roboto font-bold text-2xl'>Welcome,</p>
+    
+    <div className='w-full flex justify-between items-center p-2.5 rounded-[8px] bg-[linear-gradient(90deg,_#373535_6.17%,_#0A0A0A_72.67%)]'>
+      <div className='flex gap-4 items-center'>
+        <img src={userAvatar} alt="user-avatar" className='w-10 h-10 bg-black rounded-full' />
+        <div className='flex flex-col gap-2'>
+          <p className='text-white font-medium text-[18px] leading-[100%] roboto'>Edward John</p>
+          <p className='text-white font-medium text-[12px] roboto'>Freelancer</p>
+        </div>
+      </div>
+      <p className='text-white font-medium text-[12px] roboto'>06 December 2024</p>
     </div>
 
-   
+    {/* Followers */}
+    <div className='flex items-center gap-3.5'>
+      <img src={followersAvatar} alt="followers-avatar" className='h-12 mt-2' />
+      <p className='font-bold text-white roboto'>1000+ Freelancers</p>
+    </div>
+
+    {/* 24 Hour Cycle Section */}
+    <div className='flex justify-between items-center mt-3'>
+      <p className='font-bold text-[18px] leading-[100%] text-white roboto'>24 Hours Cycle</p>
+      <button className='bg-[#FF9D00] border-[#FF9D00] py-3 px-5 rounded-[40px] font-medium text-[12px] cursor-pointer text-white mt-3 roboto'>
+        Company Brochure
+      </button>
+    </div>
+  </div>
+
+  <h2 className='itim font-normal text-white text-[18px] text-center'>Course Completion Level</h2>
+  
+  {/* signup and my course button */}
+  <div className='p-5 flex justify-between gap-2 items-center'>
+    <button className="signup-btn">Signup</button>
+    <img src={arrow} alt="arrow right" className='w-[70px]' />
+    <button className="my-course-btn">My Course</button>
+  </div>
+  {/* <img src={arrowCurvedLeft} alt="arrow curved left" className=' h-12.5 absolute left-70 top-116' /> */}
+    
+
+
+
+  
+</div>
+
+
+
+
     </>
   )
 }
