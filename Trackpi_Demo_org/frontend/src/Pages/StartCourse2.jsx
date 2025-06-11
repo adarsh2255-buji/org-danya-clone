@@ -167,12 +167,12 @@ const StartCourse2 = () => {
   <h2 className='itim font-normal text-white text-[18px] text-center'>Course Completion Level</h2>
   
   {/* signup and my course button */}
-  <div className='p-5 flex justify-center gap-3 items-center'>
+  <div className='p-5 flex justify-between gap-2 items-center'>
     <button className="signup-btn">Signup</button>
     <img src={arrow} alt="arrow right" className='w-[70px]' />
-    <button className="signup-btn">My Course</button>
+    <button className="my-course-btn">My Course</button>
   </div>
-  <img src={arrowCurvedLeft} alt="arrow curved left" className=' h-12.5 absolute left-70 top-116' />
+  {/* <img src={arrowCurvedLeft} alt="arrow curved left" className=' h-12.5 absolute left-70 top-116' /> */}
     
 
 
