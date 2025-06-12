@@ -32,7 +32,7 @@ function App() {
         <Route path="/startCourse" element={<StartCourse2 />} />
         <Route path="/Watchvideo/:id" element={<WatchvideoSection />} />
         <Route path="/addCourse" element={<AddCourseForm />} /> 
-        <Route path="/viewCourse" element={<CourseList />} />
+        {/* <Route path="/viewCourse" element={<CourseList />} />  */}
         <Route path="/courseDetailsPopUp" element={<CourseDetailsPopUp />} />
         <Route path="/MainAssessment" element={<MainAssessment />} />
         <Route path="/Assessmententer-popup" element={<AssessmentFirstPopup />} />

@@ -118,7 +118,7 @@
 }
 .my-course-btn{
   position: relative;
-  padding: 15px 30px;
+  padding: 15px 25px;
   font-family: "Itim", cursive;
   font-size: 18px;
   font-weight: 400;
@@ -153,6 +153,7 @@
   inset: 0;
   border-radius: 30px;
   padding: 1px;
+  
   background: linear-gradient(90deg, #FF9D00 0%, #FFC100 50%, #FFFFFF 100%);
   -webkit-mask: 
     linear-gradient(#fff 0 0) content-box, 
@@ -210,3 +211,27 @@
     top: 588px;
   }
 }
+
+/* progress bar in mobile view */
+.vertical-gradient-box {
+  height: 1028px;
+  width: 70px;
+  border: 1px solid #E0E0E0;
+  position: absolute;
+  top: 480px;
+  left: 50%;
+transform: translateX(-50%);
+  bottom: 1px;
+  border-radius: 30px;
+  /* transform: rotate(90deg); */
+  background: linear-gradient(90deg, #ffffff, #ff9d00);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude; 
+  padding: 1px;
+  box-sizing: border-box;
+ 
+}
+
