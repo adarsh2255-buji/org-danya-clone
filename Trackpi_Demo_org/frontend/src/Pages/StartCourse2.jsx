@@ -190,7 +190,7 @@ const StartCourse2 = () => {
     <img
       src={zigzagArrow}
       alt="zig zag arrow"
-      className='absolute top-[63px] left-42 w-[90px] h-auto'
+      className='absolute top-[63px] left-38 w-[90px] h-auto'
     />
   </div>
 </div>
@@ -209,9 +209,10 @@ const StartCourse2 = () => {
         <p className='text-white/50 font- text-[16px] itim'>completion</p>
         
     </div>
-    <img src={arrowDown} alt="down arrow mark"/>
+    {/* down arrow mark */}
+    <img src={arrowDown} alt="down arrow mark" className='relative top-260 left-49.5 w-[20px] h-auto'/>
 
-    <div className='relative top-[1040px] border flex flex-col items-center gap-5'>
+    <div className='relative top-[1040px] flex flex-col items-center gap-2 mt-2'>
         <div className='  '>
                 <div className="p-[1px] rounded-[30px] bg-gradient-to-r from-[#FFFFFF] via-[#FFC100] to-[#FF9D00] inline-block ">
                     <div className="bg-[#0A0A0A] rounded-[30px] ">
@@ -223,9 +224,10 @@ const StartCourse2 = () => {
                 </div>
             </div>
             <p className='text-white text-center font-normal text-[14px] roboto'>Fill in offer letter details and get <br /> Approved </p>
+            {/* down arrow mark */}
             <img src={arrowDown} alt="down arrow mark" className='w-[20px] h-auto' />
             <p className='k2d text-white font-extrabold text-[35px] tracking-wider uppercase'>Earn Money</p>
-            <div className='flex flex-col justify-center'>
+            <div className='flex flex-col justify-center mb-5'>
                 <div className=''>
                     <div className="p-[1px] rounded-[30px] bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FFFFFF] inline-block w-[268px]">
                         <div className="rounded-[30px]" style={{ background: "linear-gradient(103.71deg, #FF9D00 49.37%, #FFC100 49.39%)"}}>
