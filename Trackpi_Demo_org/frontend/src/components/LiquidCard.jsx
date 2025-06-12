@@ -8,24 +8,23 @@ const LiquidCard = ({ module }) => {
     const gradientStops = [
         {
             key: '0%',
-            stopColor: '#5b21b6', // deep purple (purple-800)
+            stopColor: '#000E4DFF', // purple-600
             stopOpacity: 1,
             offset: '0%',
         },
         {
             key: '50%',
-            stopColor: '#9333ea', // medium violet (purple-600)
+            stopColor: '#000E4D4D', // purple-500
             stopOpacity: 1,
             offset: '50%',
         },
         {
             key: '100%',
-            stopColor: '#f59e0b', // amber-500 / golden orange
+            stopColor: '#FF9D0066', // fuchsia-500
             stopOpacity: 1,
             offset: '100%',
         },
     ];
-
 
 
 
