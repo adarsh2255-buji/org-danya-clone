@@ -1,249 +1,339 @@
 import React from 'react'
-import  userAvatar  from '../assets/userAvatar.png'
+import userAvatar from '../assets/userAvatar.png';
 import followersAvatar from '../assets/followersAvatar.png'
 import arrowDown from '../assets/arrow down.png'
-import arrow from '../assets/arrow.png'
+import arrowRight from '../assets/arrow.png'
+import arrowLeft from '../assets/arrow left.png'
+import ProgressBubble from '../components/ProgressBubble';
 import curvedArrow from '../assets/curved arrow.png'
 import zigzagArrow from '../assets/zigzag arrow.png'
 import '../Pages/css/StartCourse.css'
-import CourseProgressBar from '../components/CourseProgressBar'
 
 
 const StartCourse2 = () => {
   return (
     <>
-    <div className='w-full min-h-screen StartCourse2 hidden lg:block'>
-            {/* user avatar div */}
-        <div className='flex '>  
-            <div className='avatar-div mt-7.5 px-15 flex flex-col justify-between gap-4'>
-                <p className='text-white roboto font-bold text-2xl leading-[100%]'>Welcome,</p>
-                <div className='w-[348px] sm:w-[1052px] flex justify-between items-center p-2.5  rounded-[8px] sm:rounded-2xl bg-[linear-gradient(90deg,_#373535_6.17%,_#0A0A0A_72.67%)]'>
-                    <div className='flex gap-4 items-center '>
-                        <img src={userAvatar} alt="user-avatar" className='w-10 h-10 bg-black rounded-full' />
-                        <div className='flex flex-col gap-2'>
-                            <p className='text-white font-medium text-[18px] sm:text-xl leading-[100%] roboto'>Edward John</p>
-                            <p className='text-white font-medium text-[12px] sm:text-sm roboto'>Freelancer</p>
-                        </div>
-                    </div>
-                    <p className='text-white font-medium text-[12px] sm:text-base roboto'>06 December 2024</p>
-                </div>
-            </div>
+    <div className="w-full min-h-screen px-4 sm:px-5 md:px-10 lg:px-[60px]">
 
-            {/* followers avatar */}
-            <div className='flex items-center gap-3.5 mt-15 '>
-                <img src={followersAvatar} alt="followers-avatar" className='h-12 mt-2' />
-                <p className='font-bold text-white roboto'>1000+ Freelancers</p>
-            </div>
-        </div>
+<section className="pt-5">
+  {/* Heading */}
+  <h1 className="text-white text-2xl font-semibold mb-4 roboto">Welcome,</h1>
 
+  {/* Avatar Section – Responsive Layout */}
+  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between sm:gap-[15px]">
 
-        <div className='flex justify-between mt-13 px-15'>
-            <p className='font-bold text-3xl leading-[100%] text-white roboto'>24 Hours Cycle</p>
-            <button className='bg-[#FF9D00]  border-[#FF9D00] py-3 px-7.5 rounded-[40px] font-medium text-base cursor-pointer text-white'>Company Brochure</button>
-        </div>
+    {/* 🔹 Avatar Box */}
+    <div
+      className="p-[10px] rounded-[8px] flex items-center justify-between flex-grow"
+      style={{
+        background: 'linear-gradient(90deg, #373535 6.17%, #0A0A0A 72.67%)',
+      }}
+    >
+      {/* Avatar + Name + Role */}
+      <div className="flex items-center gap-4 min-w-0">
+        {/* Avatar Image */}
+        <img
+          src={userAvatar}
+          alt="User avatar"
+          className="w-[49px] h-[49px] rounded-full object-cover shrink-0"
+        />
 
-        {/* course completion level div */}
-        <div className='px-15'>
-            <h2 className='text-white text-2xl itim font-normal absolute left-[647px]'>Course Completion Level</h2>
-            <div className='w-[305px]'>
-                <div className='ml-5'>
-                    {/* signup button */}
-                    <div className="p-[1px] rounded-[30px] bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FFFFFF] inline-block">
-                        <div className="bg-gray-900 rounded-[30px]">
-                            <button className="bg-transparent text-white py-4 px-[50px] rounded-[30px] text-xl font-medium itim cursor-pointer">
-                                Signup
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                {/* down arrow */}
-                <img src={arrowDown} alt="down arrow" className="ml-22" />
-
-                {/* my course button */}
-                <div>
-                    <div className="p-[1px] rounded-[30px] bg-gradient-to-r from-[#FFFFFF] via-[#FFC100] to-[#FF9D00] inline-block">
-                        <div className="bg-gray-900 rounded-[30px]">
-                            <button className=" text-white py-4 px-[50px] rounded-[30px] text-xl font-medium itim cursor-pointer">
-                            My Course
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                {/* right arrow */}
-                <img src={arrow} alt="arrow right" className='absolute left-63 top-115' />
-            </div>
-
-
-            <div className='absolute top-95 left-100 w-240 flex justify-between items-end '>
-                <p className='text-white font-normal itim text-[16px]'>Course 1</p>
-                <div className='flex flex-col items-center'>
-                    <p className='text-white/50 font- text-[16px] itim'>course</p>
-                    <p className='text-white/50 font- text-[16px] itim'>completion</p>
-                </div>     
-            </div>
-
-            
-
-            {/* progress bar outer div */}
-            <div className=''>
-                <div className="outer-div"></div>
-            </div>
-            {/* course progress bar */}
-             <CourseProgressBar totalSteps={8} completedSteps={0} />
-
-            {/* earn money div */}
-            <div className='h-[221px] flex'>
-                <div className='flex flex-col justify-center'>
-                    <div className=''>
-                        <div className="p-[1px] rounded-[30px] bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FFFFFF] inline-block w-[268px]">
-                            <div className="rounded-[30px]" style={{ background: "linear-gradient(103.71deg, #FF9D00 49.37%, #FFC100 49.39%)"}}>
-                                <button className="bg-transparent text-white py-5 px-7.5 rounded-[30px] text-xl font-medium itim cursor-pointer text-center w-full">
-                                    Start Course
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className='w-full flex justify-center items-center'>
-                    <p className='k2d text-white font-extrabold text-6xl tracking-wider uppercase'>Earn Money</p>
-                </div>
-                {/* curved arrow */}
-                <img src={curvedArrow} alt="curved arrow" className='ml-auto mr-25 mt-0.5 h-[85px]'/>
-                
-            </div>
-
-
-            {/* Start Onboarding Process button */}
-            <div className='absolute left-286 top-147  '>
-                <div className="p-[1px] rounded-[30px] bg-gradient-to-r from-[#FFFFFF] via-[#FFC100] to-[#FF9D00] inline-block ml-auto  mr-17">
-                    <div className="bg-[#0A0A0A] rounded-[30px] ">
-                        <button className=" text-white/50 py-2.5 px-7.5 rounded-[30px] text-2xl font-normal itim cursor-pointer">
-                            Start Onboarding <br />
-                            Process
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div className='flex -mt-8 mr-26'>
-                <div className='ml-auto flex flex-col items-center '>
-                    <p className='text-white roboto font-normal'>Fill in offer letter details </p>
-                    <p className='text-white roboto font-normal'>and get Approved </p>          
-                </div>
-            </div>
-        </div>
-    </div>
-
-{/* mobile view */}
-<div className='block lg:hidden overflow-x-hidden w-full relative'>
-  {/* Wrapper for entire mobile view */}
-  <div className='flex flex-col gap-4 p-5'>
-    {/* Dashboard */}
-    <p className='text-white roboto font-bold text-2xl'>Welcome,</p>
-    
-    <div className='w-full flex justify-between items-center p-2.5 rounded-[8px] bg-[linear-gradient(90deg,_#373535_6.17%,_#0A0A0A_72.67%)]'>
-      <div className='flex gap-4 items-center'>
-        <img src={userAvatar} alt="user-avatar" className='w-10 h-10 bg-black rounded-full' />
-        <div className='flex flex-col gap-2'>
-          <p className='text-white font-medium text-[18px] leading-[100%] roboto'>Edward John</p>
-          <p className='text-white font-medium text-[12px] roboto'>Freelancer</p>
+        {/* Name + Role */}
+        <div className="text-white truncate">
+          <p className="font-medium roboto text-[20px] sm:text-[24px] leading-none truncate">
+            Edward John
+          </p>
+          <p className="text-white mt-1 roboto text-[14px] leading-none">Freelancer</p>
         </div>
       </div>
-      <p className='text-white font-medium text-[12px] roboto'>06 December 2024</p>
+
+      {/* Date */}
+      <p className="text-white roboto text-[14px] sm:text-[16px] font-medium text-right whitespace-nowrap ml-2 sm:ml-0">
+        06 December 2024
+      </p>
     </div>
 
-    {/* Followers */}
-    <div className='flex items-center gap-3.5'>
-      <img src={followersAvatar} alt="followers-avatar" className='h-12 mt-2' />
-      <p className='font-bold text-white roboto'>1000+ Freelancers</p>
-    </div>
-
-    {/* 24 Hour Cycle Section */}
-    <div className='flex justify-between items-center mt-3'>
-      <p className='font-bold text-[18px] leading-[100%] text-white roboto'>24 Hours Cycle</p>
-      <button className='bg-[#FF9D00] border-[#FF9D00] py-3 px-5 rounded-[40px] font-medium text-[12px] cursor-pointer text-white mt-3 roboto'>
-        Company Brochure
-      </button>
+    {/* 🔹 Followers */}
+    <div className="flex items-center gap-[10px] mt-3 sm:mt-0">
+      <img
+        src={followersAvatar}
+        alt="Followers"
+        className="w-[130px] h-[40px] object-contain"
+      />
+      <p className="text-white font-medium text-[15px] roboto">1000+ Freelancers</p>
     </div>
   </div>
-  
-  {/* signup and my course button */}
- <div className=' flex flex-col items-center gap-'>
-  {/* Label */}
-  <h2 className='itim font-normal text-white text-[18px] text-center mb-4'>
-    Course Completion Level
-  </h2>
+</section>
 
-  {/* Signup → Arrow → My Course */}
-  <div className='flex items-center justify-center gap-2 relative'>
-    <button className="signup-btn px-6 py-3 border-2 border-[#FF9D00] rounded-full text-white font-bold text-lg">
+
+  {/* avatar section ends */}
+
+  <div className='flex justify-between items-center mt-[50px] mb-[50px]'>
+    <p className='font-bold text-[18px] sm:text-3xl leading-[100%] text-white roboto'>24 Hours Cycle</p>
+    <button className='bg-[#FF9D00]  border-[#FF9D00]  py-3 px-5 sm:px-7.5 rounded-[40px] font-medium text-[12px] sm:text-base cursor-pointer text-white roboto'>Company Brochure</button>
+  </div>
+
+{/* progress section  */}
+  <section className="flex flex-col sm:flex-row items-start pt-[1px] sm:pt-0 ">
+  {/* Title */}
+  <h1
+    className="absolute left-1/2 -translate-x-1/2 text-white text-center itim"
+    style={{
+      fontWeight: 400,
+      fontSize: '18px',
+      lineHeight: '100%',
+      letterSpacing: '0%',
+    }}
+  >
+    <span className="sm:text-[26px]">Course Completion Level</span>
+  </h1>
+
+  {/* Button + Arrow Section */}
+
+<div className="flex flex-col items-start gap-2 max-sm:mt-[40px] max-sm:hidden sm:mt-0">
+  {/* Signup Button Wrapper */}
+  <div
+    className="rounded-[30px] mx-auto"
+    style={{
+      padding: '1px',
+      background: 'linear-gradient(90deg, #FF9D00 0%, #FFC100 50%, #FFFFFF 100%)',
+    }}
+  >
+    <button
+      className="rounded-[30px] text-white font-medium text-base bg-transparent cursor-pointer itim"
+      style={{
+        padding: '15px 50px',
+        backgroundColor: '#0A0A0A',
+        border: 'none',
+      }}
+    >
       Signup
     </button>
+  </div>
 
-    {/* Right Arrow */}
-    <img src={arrow} alt="arrow right" className='w-[50px] h-auto' />
+  {/* Arrow Down Image */}
+  <img src={arrowDown} alt="Arrow Down" className="mx-auto" />
 
-    <button className="my-course-btn px-6 py-3 border-2 border-[#FF9D00] rounded-full text-white font-bold text-lg">
+  {/* My Course Button Wrapper */}
+  <div
+    className="rounded-[30px] mx-auto"
+    style={{
+      padding: '1px',
+      background: 'linear-gradient(90deg, #FF9D00 0%, #FFC100 50%, #FFFFFF 100%)',
+    }}
+  >
+    <button
+      className="rounded-[30px] text-white font-medium text-base bg-transparent itim cursor-pointer"
+      style={{
+        padding: '15px 50px',
+        backgroundColor: '#0A0A0A',
+        border: 'none',
+      }}
+    >
       My Course
     </button>
+  </div>
 
-    {/* Zigzag arrow going down from My Course button */}
-    <img
-      src={zigzagArrow}
-      alt="zig zag arrow"
-      className='absolute top-[63px] left-38 w-[90px] h-auto'
-    />
+{/* arrow right */}
+  <img
+    src={arrowRight}
+    alt="Arrow Right"
+    className="relative left-46 bottom-11.5"
+  />
+</div>
+
+{/* ✅ MOBILE ONLY LAYOUT */}
+<div className="hidden max-sm:flex justify-between items-center w-full px-4 mt-[40px]">
+  {/* Signup */}
+  <div
+    className="rounded-[30px]"
+    style={{
+      padding: '1px',
+      background: 'linear-gradient(90deg, #FF9D00 0%, #FFC100 50%, #FFFFFF 100%)',
+    }}
+  >
+    <button
+      className="rounded-[30px] text-white font-medium text-sm bg-transparent cursor-pointer itim"
+      style={{
+        padding: '10px 20px',
+        backgroundColor: '#0A0A0A',
+        border: 'none',
+        width: "123px"
+      }}
+    >
+      Signup
+    </button>
+  </div>
+
+  {/* Arrow → */}
+  <img
+    src={arrowRight}
+    alt="Arrow Right"
+    className="w-[70px] "
+  />
+
+  {/* My Course */}
+  <div
+    className="rounded-[30px]"
+    style={{
+      padding: '1px',
+      background: 'linear-gradient(90deg, #FF9D00 0%, #FFC100 50%, #FFFFFF 100%)',
+    }}
+  >
+    <button
+      className="rounded-[30px] text-white font-medium text-sm bg-transparent cursor-pointer itim"
+      style={{
+        padding: '10px 20px',
+        backgroundColor: '#0A0A0A',
+        border: 'none',
+        width:"140px"
+      }}
+    >
+      My Course
+    </button>
   </div>
 </div>
 
-  {/* mobile progress bar */}
-  <div>
-    <div className='vertical-gradient-box'></div>
+{/* ✅ Mobile-only: Zigzag container + Vertically Centered Progress Bar */}
+{/* ✅ Mobile-only: Zigzag container + Vertically Centered Progress Bar */}
+<div className="relative w-full h-[300px] mt-4 max-sm:block sm:hidden">
+  {/* Zigzag Arrow at top right */}
+  <img
+    src={zigzagArrow}
+    alt="Zigzag Arrow"
+    className="absolute top-0 right-22"
+  />
+
+  {/* Vertically rotated Progress Bar */}
+  <div className="absolute top-68 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-90 origin-center">
+    <div className="progress-bar-div w-[250px] max-sm:w-[90vw] relative">
+      <div
+        className="w-[1028px] h-[70px] rounded-[30px] box-border"
+        style={{
+          background: 'linear-gradient(90deg, #ffffff, #ff9d00)',
+          border: '1px solid #E0E0E0',
+          padding: '1px',
+          WebkitMask:
+            'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+          WebkitMaskComposite: 'destination-out',
+          maskComposite: 'exclude',
+        }}
+      ></div>
+
+      {/* Absolutely positioned ProgressBubble (on top of bar) */}
+      <div className=" w-[1028px]">
+        <ProgressBubble totalSections={9} completedSections={4} />
+      </div>
+    </div>
   </div>
+</div>
+
+
+
+
+
+
+
+
+
+  {/* Keep your existing Progress section unchanged for now */}
+  <div className="flex flex-col ml-[120px] gap-4 mt-[80px] hidden sm:block">
+    <div className="w-[1090px] px-5 flex justify-between items-center">
+      <p className="text-white font-normal itim text-[16px]">Course 1</p>
+      <p className="text-white font-normal itim text-[16px] text-center">
+        Course <br /> Completion
+      </p>
+    </div>
+
+    <div className="progress-bar-div w-[1090px]">
+      <div
+        className="w-full h-[70px] rounded-[30px] box-border"
+        style={{
+          background: 'linear-gradient(90deg, #ffffff, #ff9d00)',
+          border: '1px solid #E0E0E0',
+          padding: '1px',
+          WebkitMask:
+            'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+          WebkitMaskComposite: 'destination-out',
+          maskComposite: 'exclude',
+        }}
+      ></div>
+      <ProgressBubble totalSections={9} completedSections={4} />
+    </div>
+  </div>
+</section>
+
+
+
+{/* earn money section */}
+<section className='h-[221px] -mt-6 hidden sm:block'>
+  <div className='h-full flex items-center' >
+     <button
+      className="text-white font-semibold text-2xl border border-transparent  rounded-[30px] px-[30px] py-[20px] w-[268px] h-[77px] cursor-pointer k2d"
+      style={{
+        background: 'linear-gradient(103.71deg, #FF9D00 49.37%, #FFC100 49.39%)',
+        borderWidth: '1px',
+      }}
+    >
+      Start Course
+    </button>
+
+    <div className='flex items-center ml-auto h-full'>
+    <p className='k2d text-white font-extrabold text-6xl tracking-wider uppercase mt-5'>Earn Money</p>
+    <img src={arrowLeft} alt="arrow head towards left" className='mt-5 mr-2' />
+<div
+  className="relative group mt-6"
+  style={{
+    width: 'fit-content',
+    borderRadius: '30px',
+    padding: '1px',
+    background: 'linear-gradient(90deg, #FFFFFF 0%, #FFC100 50%, #FF9D00 100%)',
+    overflow: 'visible',
+  }}
+>
+  {/* Button */}
+  <button
+    className="text-white text-lg font-normal cursor-pointer itim"
+    style={{
+      width: '240px',
+      height: '78px',
+      padding: '10px 30px',
+      backgroundColor: '#0A0A0A',
+      borderRadius: '30px',
+      border: 'none',
+    }}
+  >
+    Start Onboarding Process
+  </button>
+
+  {/* Tooltip with long content */}
+  <div
+    className="absolute left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#0A0A0A] text-white text-sm rounded px-4 py-3 z-10 text-left shadow-lg"
+    style={{
+      top: '90px',
+      width: '320px',
+      border: '1px solid #FF9D00',
+    }}
+  >
+    Begin with pre-boarding activities like sending a welcome email, gathering paperwork, and setting up the workspace, followed by a structured orientation, training, and integration into the team and company culture.
+  </div>
+</div>
+
+
+
+
+<img src={curvedArrow} alt="" className='absolute mb-35 ml-[630px]'/>
+
+  </div>
+  </div>
+
+  <p className='relative ml-auto -mt-12 text-white roboto font-normal text-[20px]  w-[217px] h-[46px] text-center'>Fill in offer letter details and get Approved </p>
+
   
-  {/* progressbar component */}
-  <CourseProgressBar  totalSteps={8} completedSteps={4} />
+</section>
 
-   <p className='text-white font-normal itim text-[12px] relative left-20 top-[100px]'>Course 1</p>
-   <div className='flex flex-col items-center relative right-28 top-[1000px]'>
-        <p className='text-white/50 font- text-[16px] itim'>course</p>
-        <p className='text-white/50 font- text-[16px] itim'>completion</p>
-        
-    </div>
-    {/* down arrow mark */}
-    <img src={arrowDown} alt="down arrow mark" className='relative top-260 left-49.5 w-[20px] h-auto'/>
 
-    <div className='relative top-[1040px] flex flex-col items-center gap-2 mt-2'>
-        <div className='  '>
-                <div className="p-[1px] rounded-[30px] bg-gradient-to-r from-[#FFFFFF] via-[#FFC100] to-[#FF9D00] inline-block ">
-                    <div className="bg-[#0A0A0A] rounded-[30px] ">
-                        <button className=" text-white/50 py-2.5 px-7.5 rounded-[30px] text-[18px] font-normal itim cursor-pointer">
-                            Start Onboarding <br />
-                            Process
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <p className='text-white text-center font-normal text-[14px] roboto'>Fill in offer letter details and get <br /> Approved </p>
-            {/* down arrow mark */}
-            <img src={arrowDown} alt="down arrow mark" className='w-[20px] h-auto' />
-            <p className='k2d text-white font-extrabold text-[35px] tracking-wider uppercase'>Earn Money</p>
-            <div className='flex flex-col justify-center mb-5'>
-                <div className=''>
-                    <div className="p-[1px] rounded-[30px] bg-gradient-to-r from-[#FF9D00] via-[#FFC100] to-[#FFFFFF] inline-block w-[268px]">
-                        <div className="rounded-[30px]" style={{ background: "linear-gradient(103.71deg, #FF9D00 49.37%, #FFC100 49.39%)"}}>
-                            <button className="bg-transparent text-white py-5 px-7.5 rounded-[30px] text-xl font-medium k2d cursor-pointer text-center w-full">
-                                Start Course
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>      
-    </div>
 </div>
-
-
-
-
     </>
   )
 }

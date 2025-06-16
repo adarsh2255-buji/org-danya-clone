@@ -19,6 +19,7 @@ import Discoverus from './Pages/Discoverus';
 
 import StartCourse2 from './Pages/StartCourse2';
 import AssessmentTimupCongrats from './Pages/AssessmentTimupCongrats';
+import StartCourseDemo from './Pages/startCourseDemo';
 
 function App() {
   return (
