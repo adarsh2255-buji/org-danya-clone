@@ -15,10 +15,9 @@ import AssessmentPassedPopup from './Pages/AssessmentPassedPopup';
 import AssessmentFailedPopup from './Pages/AssessmentFailedPopup';
 import AssesmentTimeUpPopup from './Pages/AssesmentTimeUpPopup';
 import Discoverus from './Pages/Discoverus';
-
-
 import StartCourse2 from './Pages/StartCourse2';
 import AssessmentTimupCongrats from './Pages/AssessmentTimupCongrats';
+
 
 function App() {
   return (
