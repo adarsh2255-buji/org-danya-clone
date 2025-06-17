@@ -7,7 +7,7 @@ const Searchbox = () => {
       <div
         className="
           relative lg:absolute 
-          lg:right-13 
+          lg:right-10 
 
           w-[330px] 
           h-[39px] 

@@ -337,12 +337,12 @@ const VideoBox = ({ videoUrl = "", title = "", description = "", onNextVideo, is
     // Wrapper: Adjusted for smaller height and tighter positioning
   const videoWrapperClass = isWider
     ? "fixed top-0 left-0 w-screen h-auto z-50 bg-black items-center justify-center"
-    : "relative top-7 left-32 w-full max-w-[90vw] mx-auto h-auto sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[69.15vw]";
+    : "relative top-7 left-40 w-full max-w-[90vw] mx-auto h-auto sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[69.15vw]";
 
   // Container: Custom aspect ratio for reduced height
   const videoContainerClass = isWider
     ? "w-screen h-auto"
-    : "w-full h-auto aspect-[16/7.3]"; // Changed from aspect-video (16:9) to 16:7 for shorter height
+    : "w-full h-auto aspect-[16/7.7]"; // Changed from aspect-video (16:9) to 16:7 for shorter height
 
   // Play button: Adjusted for responsiveness
   const playButtonSize = isWider
@@ -356,21 +356,29 @@ const VideoBox = ({ videoUrl = "", title = "", description = "", onNextVideo, is
 
   // Restart button: Fixed responsive positioning
   const restartBtnClass = isWider
-    ? "w-[3vw] h-[5vh]"
+    ? "w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10"
     : "w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8";
 
+  // const restartBtnPosition = isWider
+    // ? "left-3 bottom-[8vh]"
+  //   : "bottom-0 left-2 sm:bottom-0.8 sm:left-3";
   const restartBtnPosition = isWider
-    ? "left-3 bottom-[8vh]"
-    : "bottom-0 left-2 sm:bottom-0.8 sm:left-3";
+  ? "left-4 bottom-4 sm:bottom-6"
+  : "bottom-0.5 left-2 sm:bottom-1 sm:left-3";
+
 
   // Fullscreen button: Fixed responsive positioning
+  // const fullscreenBtnPosition = isWider
+  //   ? "right-3 bottom-[8vh]"
+  //   : "bottom-2 right-2 sm:bottom-3 sm:right-3";
   const fullscreenBtnPosition = isWider
-    ? "right-3 bottom-[8vh]"
-    : "bottom-2 right-2 sm:bottom-3 sm:right-3";
+  ? "right-4 bottom-4 sm:bottom-6"
+  : "bottom-2 right-2 sm:bottom-3 sm:right-3";
+
 
   const fullscreenBtnSize = isWider
-    ? "w-[1.5vw] h-[3vh]"
-    : "w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4";
+    ? "w-[1.5vw] h-[1.5vh] sm:w-2 sm:h-2 md:w-3 md:h-3 "
+    : "w-1 h-1 sm:w-2 sm:h-2 md:w-3 md:h-3";
 
   return (
     <div className={`${videoWrapperClass} transition-all duration-300 ease-in-out`}>
@@ -450,8 +458,8 @@ const VideoBox = ({ videoUrl = "", title = "", description = "", onNextVideo, is
       </div>
 
       {/* Description */}
-      <div className="w-full px-4 sm:px-6 mt-2">
-        <div className="text-white font-['Roboto'] font-medium text-base sm:text-lg md:text-xl lg:text-2xl">
+      <div className="w-full  mt-2">
+        <div className="text-white font-['Roboto'] font-medium text-xs sm:text-sm md:text-base lg:text-lg">
           <h5>{title}</h5>
         </div>
         <div className="text-white font-['Roboto'] font-normal text-xs sm:text-sm md:text-base lg:text-lg">
