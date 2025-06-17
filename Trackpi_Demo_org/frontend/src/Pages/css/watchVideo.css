@@ -56,7 +56,7 @@
     overflow-x: hidden;
   }
 
-  .searchbox-container {
+  /* .searchbox-container {
     width: 330px;
     height: 39px;
     gap: 13.3px;
@@ -64,7 +64,7 @@
     padding: 5.32px 13.3px;
     border: 0.89px solid #e5e7eb;
     margin-top: 0;
-  }
+  } */
 
   .videobox-container {
     width: 330px;

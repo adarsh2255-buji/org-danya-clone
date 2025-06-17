@@ -367,10 +367,6 @@ const VideoBox = ({ videoUrl = "", title = "", description = "", onNextVideo, is
   : "bottom-0.5 left-2 sm:bottom-1 sm:left-3";
 
 
-  // Fullscreen button: Fixed responsive positioning
-  // const fullscreenBtnPosition = isWider
-  //   ? "right-3 bottom-[8vh]"
-  //   : "bottom-2 right-2 sm:bottom-3 sm:right-3";
   const fullscreenBtnPosition = isWider
   ? "right-4 bottom-4 sm:bottom-6"
   : "bottom-2 right-2 sm:bottom-3 sm:right-3";

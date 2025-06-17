@@ -47,12 +47,12 @@ const WatchvideoSection = () => {
         </div>
 
         {/* Search Box - Second component */}
-        <div className="searchbox-container">
+         <div className="searchbox-container">
           <Searchbox /> 
         </div>
 
         {/* Video Box - Third component */}
-        {selectedVideo && ( 
+         {selectedVideo && ( 
           <div className="videobox-container">
             <VideoBox 
               videoUrl={selectedVideo.videoUrl} 
@@ -63,7 +63,7 @@ const WatchvideoSection = () => {
               isLastVideo={activeIndex === course.videoDetails.length - 1} 
             /> 
           </div>
-        )} 
+        )}  
       </div>
     </div> 
   ); 
