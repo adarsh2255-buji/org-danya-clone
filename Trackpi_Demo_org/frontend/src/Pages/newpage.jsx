@@ -1,4 +1,3 @@
-
 import React from 'react';
 import thumbnail from '../assets/thumbnailBackground.png';
 import SearchBox from '../components/SearchBox';
@@ -33,11 +32,6 @@ export default function NewPage() {
     WebkitBackdropFilter: 'blur(80px)',
     backdropFilter: 'blur(80px)',
     background: 'linear-gradient(225.01deg, #FF9D0066 0%, #000E4D4D 55%, #000E4DFF 100%)',
-    
-  };
-
-  const sharedGradientStyle = {
-    background: 'linear-gradient(225.01deg, #FF9D0066 0%, #000E4D4D 55%, #000E4DFF 100%)',
   };
 
   return (
@@ -46,13 +40,16 @@ export default function NewPage() {
         <div style={ellipseStyle}></div>
       </div>
 
-      <div className="flex flex-col md:flex-row min-h-screen text-white p-4 md:p-10">
-        <div className="w-full md:flex-1 mb-6 md:mb-0 md:order-2">
-          <SearchBox  />
-          <VideoBox />
-        </div>
-        <VideoList videos={videos} />
-      </div>
+  <div className="flex flex-col md:flex-row min-h-screen text-white p-4 md:p-10">
+
+  <VideoList videos={videos} />
+
+ 
+  <div className="w-full md:w-[980px] flex flex-col items-end gap-6 ml-auto md:order-2">
+    <SearchBox />
+    <VideoBox />
+  </div>
+</div>
     </>
   );
 }

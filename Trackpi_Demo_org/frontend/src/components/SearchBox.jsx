@@ -4,14 +4,14 @@ import { FaSearch } from 'react-icons/fa';
 const SearchBox = ({ style }) => {
   return (
     <div
-      className="flex items-center mb-6 text-white rounded-[15px] px-4 py-2 w-full max-w-[369px] md:ml-auto border border-[#4a3827]"
+      className="relative mb-6 w-full max-w-[369px] md:ml-auto"
       style={style}
     >
-      <FaSearch className="mr-2 text-[#c2b59b]" />
+      <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#c2b59b]" />
       <input
         type="text"
         placeholder="Search..."
-        className="w-full outline-none bg-transparent text-[#c2b59b] placeholder-[#c2b59b]"
+        className="w-full pl-10 pr-4 py-2 rounded-2xl bg-transparent outline-none text-white placeholder-[#c2b59b] border border-[#4a3827]"
       />
     </div>
   );
