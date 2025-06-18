@@ -157,3 +157,16 @@
     margin-top: 20px;
   }
 }
+@media (max-width: 768px) {
+  .watchvideo-main {
+    flex-direction: column;
+  }
+
+  .videobox-container {
+    order: -1; /* Moves video box to top */
+  }
+
+  .searchbox-container {
+    margin-bottom: 1rem;
+  }
+}
