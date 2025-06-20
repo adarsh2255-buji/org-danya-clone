@@ -1,9 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import passport from './config/passportConfig.js';
 import connectToMongoDb from './db/connectToMongoDb.js';
 import adminRoute from "./routes/admin.router.js";
-// import userRoute from "./routes/user.router.js";
+import userRoute from "./routes/user.router.js";
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -34,7 +35,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/assets', express.static('public/assets'));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+
+//google and fb signup
+app.use(passport.initialize());
+
+
 // Routes
+app.use('/user', userRoute);
 app.use('/admin', adminRoute);
 // app.use('/user', userRoute);
 
