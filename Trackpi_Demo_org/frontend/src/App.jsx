@@ -17,6 +17,7 @@ import AssesmentTimeUpPopup from './Pages/AssesmentTimeUpPopup';
 import Discoverus from './Pages/Discoverus';
 import StartCourse2 from './Pages/StartCourse2';
 import AssessmentTimupCongrats from './Pages/AssessmentTimupCongrats';
+import NewPage from './Pages/newpage'
 
 
 function App() {
@@ -40,8 +41,10 @@ function App() {
         <Route path="/AssessmentTimupPopup" element={<AssesmentTimeUpPopup />} />
         <Route path="/AssessmentTimupCongrats" element={<AssessmentTimupCongrats />} />
 
+
         <Route path="/HelpCenter" element={<HelpCenter />} />
         <Route path="/faq" element={<Faq />} />
+        <Route path="/new" element={<NewPage />} />
         {/* Add more routes as needed */}
       </Routes>
       {/* </main> */}
