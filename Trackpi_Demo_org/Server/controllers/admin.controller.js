@@ -1,35 +1,21 @@
 import Course from '../models/adminmodel/course.js';
+import { getVimeoDuration } from '../utils/vimeo.js';
 // import ffmpeg from 'fluent-ffmpeg';
 
 
+//getting vimeoDuration api
 
-//getting video duration 
-export const getVimeoDuration = async (videoId) => {
-  const vimeoUrl = `https://vimeo.com/${videoId}`;
-  const oembedUrl = `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(vimeoUrl)}`;
-  try {
-    const response = await fetch(oembedUrl);
-    if (!response.ok) throw new Error('Failed to fetch Vimeo oEmbed');
-    const data = await response.json();
-    return data.duration || 0; // duration in seconds
-  } catch (error) {
-    console.error(`Error fetching duration for Vimeo video ${videoId}:`, error.message);
-    return 0; // fallback to zero if error
-  }
-};
-// GET /api/get-duration/:videoId
-export const getDuration = async (req, res) => {
+
+export const getVideoDuration = async (req, res) => {
   const { videoId } = req.params;
-
-  if (!videoId) {
-    return res.status(400).json({ success: false, message: 'Video ID is required' });
-  }
+  if (!videoId) 
+    return res.status(400).json({ message: "Video ID required" });
 
   try {
     const duration = await getVimeoDuration(videoId);
-    res.status(200).json({ success: true, videoId, duration });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Failed to fetch duration', error: error.message });
+    res.status(200).json({ videoId, duration });
+  } catch (err) {
+    res.status(500).json({ message: "Failed to fetch video duration", error: err.message });
   }
 };
 
