@@ -16,15 +16,15 @@ export const accordionData = [
   },
   {
     id: 4,
-    question: "Do i need to submit any govt proofs?"
+    question: "Will i have an official id card?"
   },
   {
     id: 5,
-    question: "Do i need to pay any enrollment fees for this job?"
+    question: "Do i need to submit any govt proofs??"
   },
   {
     id: 6,
-    question: "Is it a govt approved company?"
+    question: "Do i need to pay any enrollment fees for this job?"
   },
   {
     id: 7,

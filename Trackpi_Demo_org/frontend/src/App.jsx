@@ -9,7 +9,6 @@ import CourseList from './Pages/CourseList';
 import CourseDetailsPopUp from './Pages/CourseDetailsPopUp';
 import MainAssessment from './Pages/MainAssessment';
 import HelpCenter from './Pages/HelpCenter';
-import Faq from './Pages/Faq';
 import AssessmentFirstPopup from './Pages/AssessmentFirstPopup';
 import AssessmentPassedPopup from './Pages/AssessmentPassedPopup';
 import AssessmentFailedPopup from './Pages/AssessmentFailedPopup';
@@ -18,6 +17,7 @@ import Discoverus from './Pages/Discoverus';
 import StartCourse2 from './Pages/StartCourse2';
 import AssessmentTimupCongrats from './Pages/AssessmentTimupCongrats';
 import NewPage from './Pages/newpage'
+import Faq2 from './Pages/Faq2';
 
 
 function App() {
@@ -43,7 +43,7 @@ function App() {
 
 
         <Route path="/HelpCenter" element={<HelpCenter />} />
-        <Route path="/faq" element={<Faq />} />
+        <Route path="/faq" element={<Faq2 />} />
         <Route path="/new" element={<NewPage />} />
         {/* Add more routes as needed */}
       </Routes>
