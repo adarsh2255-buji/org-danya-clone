@@ -22,7 +22,7 @@ import Home from './Pages/Homepage';
 import Faq2 from './Pages/Faq2';
 function Layout() {
   const location = useLocation();
-  const isHome = location.pathname === '/home';
+  const isHome = location.pathname === '/';
 
   return (
     <div className="relative min-h-screen min-w-full">
@@ -33,7 +33,7 @@ function Layout() {
       {!isHome && <Header />}
 
       <Routes>
-        <Route path="/" element={<Discoverus />} />
+        <Route path="/discoverUs" element={<Discoverus />} />
         <Route path="/startCourse" element={<StartCourse2 />} />
         <Route path="/Watchvideo/:id" element={<WatchvideoSection />} />
         <Route path="/addCourse" element={<AddCourseForm />} />
@@ -47,7 +47,7 @@ function Layout() {
         <Route path="/HelpCenter" element={<HelpCenter />} />
         <Route path="/faq" element={<Faq2 />} />
         <Route path="/new" element={<NewPage />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </div>
   );

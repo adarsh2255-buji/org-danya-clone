@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRef } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/HeroOfHome';
 import sectionImage from '../assets/sectionImage.png';
@@ -6,9 +7,14 @@ import sectionImage2 from '../assets/bro.png';
 import FreelancerLoginPage from '../components/LoginPage';
 
 function Homepage() {
+  const loginRef = useRef(null);
+
+  const scrollToLogin = () => {
+    loginRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }
   return (
     <>
-      <Navbar />
+      <Navbar onLoginClick = {scrollToLogin}/>
       <Hero />
 
       <div className="bg-black text-white px-6 md:px-[78px] py-16 flex flex-col gap-20">
@@ -48,7 +54,10 @@ function Homepage() {
           </div>
         </div>
       </div>
-      <FreelancerLoginPage />
+      <div ref={ loginRef }>
+        <FreelancerLoginPage />
+      </div>
+      
     </>
   );
 }

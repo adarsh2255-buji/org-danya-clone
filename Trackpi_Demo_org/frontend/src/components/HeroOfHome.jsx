@@ -8,7 +8,7 @@ const HeroSection = () => {
   const toggleMute = () => setIsMuted(!isMuted);
 
   return (
-    <div className="relative w-full h-[500px] sm:h-[600px] md:h-[800px] lg:h-[982px]">
+    <div className="relative w-full h-[500px] sm:h-[600px] md:h-[800px] lg:h-[982px] ">
       <div
         className="absolute inset-0 bg-cover bg-center z-0"
         style={{ backgroundImage: `url(${heroImage})` }}

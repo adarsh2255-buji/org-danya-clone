@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 import logo from '../assets/logo2.png'; 
 
-const Navbar = () => {
+const Navbar = ({ onLoginClick }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="w-full h-[80px] px-6 md:px-[60px] py-3 bg-black text-white flex items-center justify-between">
+    <nav className="w-full h-[80px] px-6 md:px-[60px] py-3 bg-black text-white flex items-center justify-between fixed top-0 left-0 z-50">
       <div>
          {/* <img src={logo} alt="TrackPi Logo" className="h-10 w-auto object-contain" /> */}
          <img src={logo} alt="TrackPi Logo" className="h-16 w-auto object-contain" />
@@ -24,7 +24,7 @@ const Navbar = () => {
       </ul>
 
       {/* Login/Signup Button */}
-      <button className="hidden md:block bg-[#FFC100] px-6 py-2 border-2 rounded-full text-sm font-semibold text-black">
+      <button onClick={onLoginClick} className="hidden md:block bg-[#FFC100] px-6 py-2 border-2 rounded-full text-sm font-semibold text-black cursor-pointer">
         Login / Signup
       </button>
 
@@ -41,7 +41,7 @@ const Navbar = () => {
           <a href="#" className="hover:text-[#FF9D00]">Home</a>
           <a href="#" className="hover:text-[#FF9D00]">About</a>
           <a href="#" className="hover:text-[#FF9D00]">Connect Us</a>
-          <button className="bg-[#FFC100] text-black px-6 py-2 rounded-full font-semibold">
+          <button onClick={onLoginClick} className="bg-[#FFC100] text-black px-6 py-2 rounded-full font-semibold cursor-pointer">
             Login / Signup
           </button>
         </div>

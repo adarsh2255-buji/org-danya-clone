@@ -52,7 +52,7 @@ export default function FreelancerLoginPage() {
 
           {/* Google Login Button */}
           <a href="">
-          <button className="flex items-center justify-center gap-2 border border-white px-6 py-3 rounded-full text-white font-semibold text-sm hover:bg-white hover:text-black transition">
+          <button className="flex items-center justify-center gap-2 border border-white px-6 py-3 rounded-full text-white font-semibold text-sm hover:bg-white hover:text-black transition cursor-pointer">
             <img src={googleLogo} alt="Google" className="w-5 h-5 object-contain" />
             Login with Google
           </button>
