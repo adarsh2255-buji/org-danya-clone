@@ -6,8 +6,8 @@ import { authCallback, addPhoneNumber } from '../controllers/user.controller.js'
 const router = express.Router();
 
 // Google login
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-router.get('/google/callback', passport.authenticate('google', { session: false }), authCallback);
+router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.get('/auth/google/callback', passport.authenticate('google', { session: false }), authCallback);
 
 
 // Add phone number

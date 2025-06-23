@@ -20,6 +20,7 @@ import AssessmentTimupCongrats from './Pages/AssessmentTimupCongrats';
 import NewPage from './Pages/newpage';
 import Home from './Pages/Homepage';
 import Faq2 from './Pages/Faq2';
+import PrivateRoute from './routes/PrivateRoutes';
 function Layout() {
   const location = useLocation();
   const isHome = location.pathname === '/';
@@ -33,21 +34,29 @@ function Layout() {
       {!isHome && <Header />}
 
       <Routes>
-        <Route path="/discoverUs" element={<Discoverus />} />
-        <Route path="/startCourse" element={<StartCourse2 />} />
-        <Route path="/Watchvideo/:id" element={<WatchvideoSection />} />
-        <Route path="/addCourse" element={<AddCourseForm />} />
-        <Route path="/courseDetailsPopUp" element={<CourseDetailsPopUp />} />
-        <Route path="/MainAssessment" element={<MainAssessment />} />
-        <Route path="/Assessmententer-popup" element={<AssessmentFirstPopup />} />
-        <Route path="/AssessmentPassedPopup" element={<AssessmentPassedPopup />} />
-        <Route path="/AssessmentFailedPopup" element={<AssessmentFailedPopup />} />
-        <Route path="/AssessmentTimupPopup" element={<AssesmentTimeUpPopup />} />
-        <Route path="/AssessmentTimupCongrats" element={<AssessmentTimupCongrats />} />
-        <Route path="/HelpCenter" element={<HelpCenter />} />
-        <Route path="/faq" element={<Faq2 />} />
-        <Route path="/new" element={<NewPage />} />
+        {/* public route */}
         <Route path="/" element={<Home />} />
+
+        {/* protected route */}
+        <Route element={<PrivateRoute />}>
+            <Route path="/discoverUs" element={<Discoverus />} />
+            <Route path="/startCourse" element={<StartCourse2 />} />
+            <Route path="/Watchvideo/:id" element={<WatchvideoSection />} />
+            <Route path="/addCourse" element={<AddCourseForm />} />
+            <Route path="/courseDetailsPopUp" element={<CourseDetailsPopUp />} />
+            <Route path="/MainAssessment" element={<MainAssessment />} />
+            <Route path="/Assessmententer-popup" element={<AssessmentFirstPopup />} />
+            <Route path="/AssessmentPassedPopup" element={<AssessmentPassedPopup />} />
+            <Route path="/AssessmentFailedPopup" element={<AssessmentFailedPopup />} />
+            <Route path="/AssessmentTimupPopup" element={<AssesmentTimeUpPopup />} />
+            <Route path="/AssessmentTimupCongrats" element={<AssessmentTimupCongrats />} />
+            <Route path="/HelpCenter" element={<HelpCenter />} />
+            <Route path="/faq" element={<Faq2 />} />
+            <Route path="/new" element={<NewPage />} />
+        </Route>
+
+
+        
       </Routes>
     </div>
   );

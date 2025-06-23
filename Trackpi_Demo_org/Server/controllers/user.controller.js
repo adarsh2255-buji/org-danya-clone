@@ -6,7 +6,11 @@ import Signup from "../models/usermodel/signup.js"
 // to generate a token
 export const generateToken = (user) => {
   return jwt.sign(
-    { userId: user._id },
+    { userId: user._id,
+      name: user.name,
+      email: user.email,
+      avatar: user.profilePic,
+     },
     process.env.JWT_SECRET,
     { expiresIn: '7d' }
   );
@@ -17,8 +21,10 @@ export const generateToken = (user) => {
 // generateToken() creates a JWT for that user.
 
 export const authCallback = (req, res) => {
+
   const token = generateToken(req.user);
-  res.redirect(`${process.env.CLIENT_URL}/auth-success?token=${token}`);
+  res.redirect(`${process.env.CLIENT_URL}/startCourse?token=${token}`);
+
 };
 
 

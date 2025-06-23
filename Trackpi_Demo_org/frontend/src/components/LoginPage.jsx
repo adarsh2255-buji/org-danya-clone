@@ -4,6 +4,10 @@ import socialLogo from '../assets/group.png';
 import sectionImage from '../assets/sectionImage.png'; // Make sure the path is correct
 
 export default function FreelancerLoginPage() {
+  const handleGoogleLogin = () => {
+    // Handle Google login logic here
+    window.location.href = 'http://localhost:5000/auth/google'; // Redirect to Google auth endpoint 
+  }
   return (
     <div
       className="relative min-h-screen w-full flex items-center justify-center px-4 py-10 overflow-hidden bg-cover bg-center"
@@ -51,12 +55,14 @@ export default function FreelancerLoginPage() {
           <h2 className="text-2xl font-semibold mb-6">Welcome Back</h2>
 
           {/* Google Login Button */}
-          <a href="">
-          <button className="flex items-center justify-center gap-2 border border-white px-6 py-3 rounded-full text-white font-semibold text-sm hover:bg-white hover:text-black transition cursor-pointer">
+          
+          <button 
+          onClick={handleGoogleLogin}
+          className="flex items-center justify-center gap-2 border border-white px-6 py-3 rounded-full text-white font-semibold text-sm hover:bg-white hover:text-black transition cursor-pointer">
             <img src={googleLogo} alt="Google" className="w-5 h-5 object-contain" />
             Login with Google
           </button>
-          </a>
+          
 
           <p className="text-xs text-gray-300 mt-4">
             Don’t have an Account? <span className="underline cursor-pointer text-blue-400">Sign up</span>
