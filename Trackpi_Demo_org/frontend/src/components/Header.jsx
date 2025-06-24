@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './styles/header.css';
 import logo from "../assets/trackpiLogo.png";
+import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const { setUser } = useContext(AuthContext)
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+    navigate('/')
+  }
   return (
     <header className="header-container">
       {/* Logo */}
@@ -15,9 +25,9 @@ const Header = () => {
       </div>
 
       {/* Logout */}
-      <div className="logout-container">
+      <button onClick={handleLogout} className="logout-container">
         <span className="logout-text">Logout</span>
-      </div>
+      </button>
     </header>
   );
 };
