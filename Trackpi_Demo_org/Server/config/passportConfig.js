@@ -8,16 +8,17 @@ passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: '/auth/google/callback',
-}, async (accessToken, refreshToken, profile, done) => {
+}, async (accessToken, refreshToken, profile, done) => { 
   let user = await Signup.findOne({ providerId: profile.id });
+
   if (!user) {
     user = await Signup.create({
       provider: 'google',
       providerId: profile.id,
       name: profile.displayName,
       email: profile.emails[0].value,
-      profilePic: profile.photos[0].value,
-    });
+      avatar: profile.photos[0].value,
+    }); 
   }
   return done(null, user);
 }));

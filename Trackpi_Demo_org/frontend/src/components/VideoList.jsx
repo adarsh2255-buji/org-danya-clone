@@ -1,9 +1,9 @@
 import React from 'react';
 import { FaPlay } from 'react-icons/fa';
 
-const VideoList = ({ videos, style }) => {
+const VideoList = ({ videos, onVideoSelect, className }) => {
   return (
-    <div className="w-full md:w-[374px] md:mr-8 space-y-4 md:order-1">
+    <div className={`w-full md:w-[374px] md:mr-8 space-y-4 ${className}`}>
       <div className="flex justify-between items-center">
         <h2 className="text-[28px] font-bold text-center">Section Name</h2>
         <span className="text-[20px] font-semibold">2 / 10</span>
@@ -13,8 +13,8 @@ const VideoList = ({ videos, style }) => {
         {videos.map((video, index) => (
           <div
             key={index}
-            className="flex gap-4 border border-[#4a3827] rounded-[15px] p-3"
-            style={style}
+            className="flex gap-4 border border-[#4a3827] rounded-[15px] p-3 cursor-pointer"
+            onClick={() => onVideoSelect(video)}
           >
             <div className="relative w-[150px] h-[90px] overflow-hidden rounded-md">
               <img

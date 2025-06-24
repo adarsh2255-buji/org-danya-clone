@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { jwtDecode } from 'jwt-decode';
 import userAvatar from '../assets/userAvatar.png';
 import followersAvatar from '../assets/followersAvatar.png'
 import arrowDown from '../assets/arrow down.png'
@@ -8,9 +9,15 @@ import ProgressBubble from '../components/ProgressBubble';
 import curvedArrow from '../assets/curved arrow.png'
 import zigzagArrow from '../assets/zigzag arrow.png'
 import '../Pages/css/StartCourse.css'
+import { useLocation } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 
 const StartCourse2 = () => {
+ const {user } = useContext(AuthContext)
+  
+
   return (
     <>
     <div className="w-full min-h-screen px-4 sm:px-5 md:px-10 lg:px-[60px]">
@@ -32,24 +39,37 @@ const StartCourse2 = () => {
       {/* Avatar + Name + Role */}
       <div className="flex items-center gap-4 min-w-0">
         {/* Avatar Image */}
-        <img
-          src={userAvatar}
-          alt="User avatar"
-          className="w-[49px] h-[49px] rounded-full object-cover shrink-0"
+        {
+          user && (
+            <>
+            <img
+              src={user.avatar}
+              alt="User avatar"
+              className="w-[49px] h-[49px] rounded-full object-cover shrink-0"
         />
-
         {/* Name + Role */}
         <div className="text-white truncate">
           <p className="font-medium roboto text-[20px] sm:text-[24px] leading-none truncate">
-            Edward John
+            {user.name}
           </p>
           <p className="text-white mt-1 roboto text-[14px] leading-none">Freelancer</p>
         </div>
+            </>
+          )
+        }
+        
+
+        
       </div>
 
       {/* Date */}
       <p className="text-white roboto text-[14px] sm:text-[16px] font-medium text-right whitespace-nowrap ml-2 sm:ml-0">
-        06 December 2024
+        {new Date().toLocaleDateString('en-GB', {
+    // weekday: 'long',
+          day: '2-digit',
+          month: 'long',
+          year: 'numeric',
+        })}
       </p>
     </div>
 

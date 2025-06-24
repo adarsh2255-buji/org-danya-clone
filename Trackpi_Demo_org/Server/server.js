@@ -41,7 +41,7 @@ app.use(passport.initialize());
 
 
 // Routes
-app.use('/user', userRoute);
+app.use('/', userRoute);
 app.use('/admin', adminRoute);
 // app.use('/user', userRoute);
 
