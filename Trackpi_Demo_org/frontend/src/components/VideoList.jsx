@@ -1,24 +1,36 @@
 import React from 'react';
 import { FaPlay } from 'react-icons/fa';
+import backgroundImage from "../assets/thumbnailBackground.png";
 
-const VideoList = ({ videos, onVideoSelect, className }) => {
+const VideoList = ({ course, onVideoSelect, activeIndex, setActiveIndex }) => {
   return (
-    <div className={`w-full md:w-[374px] md:mr-8 space-y-4 ${className}`}>
+    <div className={`w-full md:w-[374px] md:mr-8 space-y-4 `}>
       <div className="flex justify-between items-center">
-        <h2 className="text-[28px] font-bold text-center">Section Name</h2>
-        <span className="text-[20px] font-semibold">2 / 10</span>
+        <h2 className="text-[28px] font-bold text-center"
+        title={course.courseName}
+        >{course.courseName}</h2>
+        <span className="text-[20px] font-semibold"> 
+          {activeIndex + 1} / {course.videoDetails.length}
+        </span>
       </div>
 
       <div className="space-y-4">
-        {videos.map((video, index) => (
-          <div
-            key={index}
-            className="flex gap-4 border border-[#4a3827] rounded-[15px] p-3 cursor-pointer"
-            onClick={() => onVideoSelect(video)}
-          >
-            <div className="relative w-[150px] h-[90px] overflow-hidden rounded-md">
+        {course.videoDetails.map((video, index) => (
+         <div
+  key={index}
+  className={`flex gap-4 border border-[#4a3827] rounded-[15px] p-3 cursor-pointer video-list-item ${
+    activeIndex === index ? "active" : ""
+  }`}
+  onClick={() => {
+    setActiveIndex(index);
+    onVideoSelect(course.videoDetails[index]);
+  }}
+>
+
+            <div className="relative w-[150px] h-[90px] overflow-hidden rounded-md"
+            >
               <img
-                src={video.thumbnail}
+                src={backgroundImage}
                 alt="video thumbnail"
                 className="w-full h-full object-top object-cover"
               />

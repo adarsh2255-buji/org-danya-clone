@@ -1,19 +1,34 @@
-import React, { useState } from 'react';
-import thumbnail from '../assets/thumbnailBackground.png';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import SearchBox from '../components/SearchBox';
 import VideoBox from '../components/VideoBox';
 import VideoList from '../components/VideoList';
 
-const videos = Array(6).fill({
-  title: 'Introduction Video',
-  description: 'Introduction Video for the section of course',
-  thumbnail,
-  duration: '02:00',
-  currentTime: '00:40',
-});
-
 export default function NewPage() {
-  const [selectedVideo, setSelectedVideo] = useState(videos[0]);
+  const location = useLocation();
+  const course = location.state?.course;
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+
+  useEffect(() => {
+    if (course?.videoDetails?.length > 0) {
+      setSelectedVideo(course.videoDetails[0]);
+      setActiveIndex(0);
+    }
+  }, [course]);
+
+  const handleNextVideo = () => {
+    const nextIndex = activeIndex + 1;
+    if (nextIndex < course.videoDetails.length) {
+      setActiveIndex(nextIndex);
+      setSelectedVideo(course.videoDetails[nextIndex]);
+    }
+  };
+
+  if (!course) {
+    return <div className="text-white p-10">No course data available.</div>;
+  }
 
   return (
     <>
@@ -48,16 +63,30 @@ export default function NewPage() {
 
       {/* Main Content */}
       <div className="flex flex-col md:flex-row min-h-screen text-white p-4 md:p-10">
-        {/* VideoBox: First on mobile, second on desktop */}
+        {/* Video + Search */}
         <div className="w-full md:w-[980px] flex flex-col items-end gap-6 ml-auto order-1 md:order-2">
           <SearchBox />
-          <VideoBox video={selectedVideo} />
+          {selectedVideo && (
+            <VideoBox
+              videoUrl={selectedVideo.videoUrl}
+              title={selectedVideo.title}
+              description={selectedVideo.description}
+              activeIndex={activeIndex}
+              onNextVideo={handleNextVideo}
+              isLastVideo={activeIndex === course.videoDetails.length - 1}
+            />
+          )}
         </div>
 
-        {/* VideoList: Second on mobile, first on desktop */}
+        {/* Video List */}
         <VideoList
-          videos={videos}
-          onVideoSelect={setSelectedVideo}
+          course={course}
+          activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
+          onVideoSelect={(video) => {
+            setSelectedVideo(video);
+            setActiveIndex(index);
+          }}
           className="order-2 md:order-1"
         />
       </div>

@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Searchbox from './Searchbox';
+import SearchBox from '../components/SearchBox';
 import axios from 'axios';
 import lockIcon from "../assets/square-lock-02.png"
 const SERVER_URL = 'http://localhost:5000';
@@ -71,7 +71,7 @@ const MainCourseList = () => {
   return (
     
     <div className="w-full h-auto px-4 sm:px-6 lg:px-[3.3vw] pt-4 relative">
-      <Searchbox />
+      <SearchBox/>
       <div className="flex flex-col items-start">
         <h3 className="text-white font-['Roboto'] text-lg sm:text-xl md:text-2xl lg:text-[1.85vw]  mb-4">Courses</h3>
         
@@ -99,7 +99,7 @@ const MainCourseList = () => {
               return (
                 <div
                   key={course._id || i}
-                  onClick={() => navigate(`/Watchvideo/${course._id}`, { state: { course } })}
+                  onClick={() => navigate(`/new/${course._id}`, { state: { course } })}
                   className="cursor-pointer min-w-[11rem] sm:min-w-[13rem] md:min-w-[15rem] lg:min-w-[17.2vw] h-40 sm:h-44 md:h-52 lg:h-[20.3vh] rounded-lg md:rounded-[0.79vw] border-2 border-[#D9D9D9] hover:border-[#FF9D00] bg-cover bg-center relative transition-all duration-300"
                   style={{
                     backgroundImage: `linear-gradient(180deg, rgba(10, 10, 10, 0) 60%, rgba(10, 10, 10, 0.94) 85%), url(${bg})`
