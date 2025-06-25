@@ -21,6 +21,7 @@ import NewPage from './Pages/newpage';
 import Home from './Pages/Homepage';
 import Faq2 from './Pages/Faq2';
 import PrivateRoute from './routes/PrivateRoutes';
+import CourseSection from './Pages/CourseSection';
 function Layout() {
   const location = useLocation();
   const isHome = location.pathname === '/';
@@ -41,7 +42,7 @@ function Layout() {
         <Route element={<PrivateRoute />}>
             <Route path="/discoverUs" element={<Discoverus />} />
             <Route path="/startCourse" element={<StartCourse2 />} />
-            {/* <Route path="/Watchvideo/:id" element={<WatchvideoSection />} /> */}
+            
             <Route path="/addCourse" element={<AddCourseForm />} />
             <Route path="/courseDetailsPopUp" element={<CourseDetailsPopUp />} />
             <Route path="/MainAssessment" element={<MainAssessment />} />

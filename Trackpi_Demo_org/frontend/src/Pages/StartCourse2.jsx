@@ -9,7 +9,7 @@ import ProgressBubble from '../components/ProgressBubble';
 import curvedArrow from '../assets/curved arrow.png'
 import zigzagArrow from '../assets/zigzag arrow.png'
 import '../Pages/css/StartCourse.css'
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
@@ -288,7 +288,7 @@ const StartCourse2 = () => {
 {/* earn money section */}
 <section className='h-[221px] -mt-6 hidden sm:block'>
   <div className='h-full flex items-center' >
-     <button
+     <Link to='/courseSection'
       className="text-white font-semibold text-2xl border border-transparent  rounded-[30px] px-[30px] py-[20px] w-[268px] h-[77px] cursor-pointer k2d"
       style={{
         background: 'linear-gradient(103.71deg, #FF9D00 49.37%, #FFC100 49.39%)',
@@ -296,7 +296,7 @@ const StartCourse2 = () => {
       }}
     >
       Start Course
-    </button>
+    </Link>
 
     <div className='flex items-center ml-auto h-full'>
     <p className='k2d text-white font-extrabold text-6xl tracking-wider uppercase mt-5'>Earn Money</p>
