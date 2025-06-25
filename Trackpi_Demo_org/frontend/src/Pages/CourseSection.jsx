@@ -49,7 +49,7 @@ const CourseSection = () => {
     <>
     <section className='container-search px-5 '>
         <div className='flex justify-between mt-5'>
-        <h1 className='text-white font-bold text-2xl'>Courses</h1>
+        <h1 className='text-white font-bold text-2xl roboto'>Courses</h1>
         <div className='relative  '>
             <i className='fa fa-search text-[#B3B6B6] text-[18px] absolute left-3 top-1/2 transform -translate-y-1/2'></i>
             <input 
@@ -57,7 +57,7 @@ const CourseSection = () => {
                 name="search" 
                 id="search" 
                 placeholder='Search...'
-                className='rounded-[15px] w-50 px-13.5 py-1.5 text-3 font-medium bg-transparent text-white' />
+                className='rounded-[15px] w-50 px-13.5 py-1.5 text-3 font-medium bg-transparent text-white roboto' />
         </div>
     </div>
     </section>
@@ -96,7 +96,7 @@ const CourseSection = () => {
                         {/* Content */}
                 <div className="flex justify-between items-end h-full px-3 pb-1 z-20">
                     <p className="text-white text-base font-semibold roboto">{course.name}</p>
-                    <p className="text-white roboto text-[10px] font-medium">{course.duration}</p>
+                    <p className="text-white roboto text-[10px] font-medium roboto">{course.duration}</p>
                 </div>
         </div>
 
@@ -120,8 +120,8 @@ const CourseSection = () => {
     {/* course list section ends here */}
 
     <div className='my-5 px-5 flex justify-between gap-5 lg:justify-end '>
-        <button className='rounded-[40px] px-12.5 py-3 bg-[#FF9D00] text-white text-[12px] sm:text-base font-medium cursor-pointer'>Courses</button>
-        <button className='rounded-[40px] px-12.5 py-3 border border-[#FF9D00]  text-[#FF9D00] font-medium bg-transparent sm:text-base cursor-pointer'>Assessment</button>
+        <button className='rounded-[40px] px-12.5 py-3 bg-[#FF9D00] text-white text-[12px] sm:text-base font-medium cursor-pointer roboto'>Courses</button>
+        <button className='rounded-[40px] px-12.5 py-3 border border-[#FF9D00]  text-[#FF9D00] font-medium bg-transparent sm:text-base cursor-pointer roboto'>Assessment</button>
     </div>
 
     {/* course progress section */}
@@ -163,17 +163,17 @@ const CourseSection = () => {
               </svg>
 
               {/* Large background number */}
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[60px] text-white/20 font-bold z-0">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[60px] text-white/20 font-bold z-0 itim">
                 {i + 1}
               </span>
 
               {/* Center content */}
               <div className="relative z-10 text-center flex flex-col  justify-center">
-                <p className="text-sm font-semibold sm:text-[20px]">welcome to trackpi</p>
+                <p className="text-sm font-semibold sm:text-[20px] montserrat">welcome to trackpi</p>
                 <div className="flex justify-center items-center gap-3 text-[10px] font-normal opacity-70">
-                  <span className='sm:text-sm sm:font-medium'>10 Videos</span>
-                  <span className="text-white sm:text-sm sm:font-medium">|</span>
-                  <span className='sm:text-sm sm:font-medium'>30 Min</span>
+                  <span className='sm:text-sm sm:font-medium montserrat'>10 Videos</span>
+                  <span className="text-white sm:text-sm sm:font-medium ">|</span>
+                  <span className='sm:text-sm sm:font-medium montserrat'>30 Min</span>
                 </div>
               </div>
             </div>
