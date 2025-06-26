@@ -1,7 +1,9 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import squreLock from '../assets/square-lock-02.png'
 import CourseDetailsPopUp from './CourseDetailsPopUp';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import axios from 'axios';
+
 
 
 const CourseSection = () => {
@@ -9,6 +11,30 @@ const CourseSection = () => {
   const [touchStartX, setTouchStartX] = useState(null)
   const [selectedCourse, setSelectedCourse] = useState(null)
   const [isOpen, setIsOpen] = useState(false);
+  const [courseList, setCourseList] = useState([])
+
+
+ const videoList =  [
+                    { _id: "1", courseName: "HTML", completed: true },
+                    { _id: "2", courseName: "CSS", completed: true },
+                    { _id: "3", courseName: "JS", completed: true },
+                  ]
+
+
+
+  // get course list details
+  useEffect(() => {
+    const getCourseLIst = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/admin/view-course")
+        setCourseList(res.data)
+
+      } catch (error) {
+        console.error(error)
+      }
+    };
+    getCourseLIst()
+  }, []);
 
 
 
@@ -40,11 +66,7 @@ const CourseSection = () => {
     setTouchStartX(null)
   }
 
-    const courses = Array.from({ length: 24}, (_,i) => ({
-        id: i +1,
-        name : `Course ${i + 1}`,
-        duration: `${Math.floor(Math.random() * 10) + 1} hours` 
-    }))
+  
   return (
     <>
     <section className='container-search px-5 '>
@@ -76,46 +98,60 @@ const CourseSection = () => {
             ref={scrollRef}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            className="courseList  h-[122px] mt-8 flex gap-5 overflow-x-auto no-scrollbar scroll-smooth">
-            {courses.map((course) => (
-            <div
-            key={course.id}
-            onClick={() => setSelectedCourse(course)}
-            className="relative rounded-[10px] border border-[#FF9D00] h-full w-50 min-w-[200px] cursor-pointer"
-            style={{
-                    background: 'linear-gradient(180deg, rgba(10, 10, 10, 0) 60%, rgba(10,10,10, 0.94) 85%)',
-                    }}
-                    >
-                {/* Lock Icon - Centered */}
-                <img
-                    src={squreLock}
-                    alt="lock"
-                    className="absolute inset-0 m-auto w-6 h-6 z-10"
-                        />
+            className="courseList  h-[122px] mt-8 flex gap-5 overflow-x-auto no-scrollbar scroll-smooth"
+            >
+            {courseList.map((course, index) => {
+              //determine of the course should be locked
+              const isFirst = index === 0;
+              const PrevCompleted = index > 0 && courseList[index -1]?.completed;
+              const isLocked = !isFirst && !PrevCompleted;
 
-                        {/* Content */}
-                <div className="flex justify-between items-end h-full px-3 pb-1 z-20">
-                    <p className="text-white text-base font-semibold roboto">{course.name}</p>
-                    <p className="text-white roboto text-[10px] font-medium roboto">{course.duration}</p>
-                </div>
-        </div>
+              return(
+                <div
+                  key={course._id}
+                  onClick={() => {
+                    if(!isLocked) setSelectedCourse(course);
+                  }}
+                  className="relative rounded-[10px] border border-[#FF9D00] h-full  min-w-[250px] cursor-pointer"
+                  style={{
+                          background: 'linear-gradient(180deg, rgba(10, 10, 10, 0) 60%, rgba(10,10,10, 0.94) 85%)',
+                          }}
+                          >
+                      {/* Lock Icon */}
+                      {isLocked && (
+                        <img
+                          src={squreLock}
+                          alt="lock"
+                          className="absolute inset-0 m-auto w-6 h-6 z-10"
+                              />
+                      )}
+                      
 
-        ))}
-    </section>
-    {/* Right Button */}
-      <button
-        onClick={() => scroll('right')}
-        className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-70 text-white p-2 rounded-full"
-      >
-        <ChevronRight size={18} />
-      </button>
-      {/* course detail popup */}
-      {selectedCourse && (
-        <CourseDetailsPopUp 
-        course={selectedCourse}
-        onClose={() => setSelectedCourse(null)}/>
-      )}
-    </div>
+                              {/* Content */}
+                      <div className="flex justify-between items-end h-full px-3 pb-1 z-20">
+                          <p className="text-white text-base font-semibold roboto" >{course.courseName}</p>
+                          <p className="text-white roboto text-[10px] font-medium roboto">2 hours</p>
+                      </div>
+              </div>
+              )
+            
+
+})}
+          </section>
+          {/* Right Button */}
+            <button
+              onClick={() => scroll('right')}
+              className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-70 text-white p-2 rounded-full"
+            >
+              <ChevronRight size={18} />
+            </button>
+            {/* course detail popup */}
+            {selectedCourse && (
+              <CourseDetailsPopUp 
+              course={selectedCourse}
+              onClose={() => setSelectedCourse(null)}/>
+            )}
+          </div>
 
     {/* course list section ends here */}
 
@@ -128,9 +164,9 @@ const CourseSection = () => {
     <section className="course-progress my-5 px-5">
         
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 px-4 py-6">
-          {Array.from({ length: 24 }).map((_, i) => (
+          {courseList.map((course, i) => (
             <div
-              key={i}
+             key={course._id}
               className="relative w-full h-[90px] bg-black rounded-[50px] sm:h-[150px] sm:mb-5 sm:w-[260px] sm:rounded-[100px] overflow-hidden text-white font-roboto flex items-center justify-center cursor-pointer"
             >
               {/* Animated Wave SVG */}
@@ -150,7 +186,7 @@ const CourseSection = () => {
                 <path fill={`url(#waveGradient-${i})`}>
                   <animate
                     attributeName="d"
-                    dur="6s"
+                    dur="4s"
                     repeatCount="indefinite"
                     values="
                       M0,50 C60,80 200,20 260,50 L260,90 L0,90 Z;
@@ -169,9 +205,9 @@ const CourseSection = () => {
 
               {/* Center content */}
               <div className="relative z-10 text-center flex flex-col  justify-center">
-                <p className="text-sm font-semibold sm:text-[20px] montserrat">welcome to trackpi</p>
+                <p className="text-sm font-semibold sm:text-[20px] montserrat">{course.courseName}</p>
                 <div className="flex justify-center items-center gap-3 text-[10px] font-normal opacity-70">
-                  <span className='sm:text-sm sm:font-medium montserrat'>10 Videos</span>
+                  <span className='sm:text-sm sm:font-medium montserrat'>{course.videoDetails.length} Videos</span>
                   <span className="text-white sm:text-sm sm:font-medium ">|</span>
                   <span className='sm:text-sm sm:font-medium montserrat'>30 Min</span>
                 </div>
