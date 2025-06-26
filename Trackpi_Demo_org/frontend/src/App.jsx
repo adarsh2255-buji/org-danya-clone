@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Background from './components/Background';
 import Background2 from './components/Background2';
 
-import WatchvideoSection from './Pages/Watchvideo';
+// import WatchvideoSection from './Pages/Watchvideo';
 import AddCourseForm from './Pages/AddCourseForm';
 import CourseDetailsPopUp from './Pages/CourseDetailsPopUp';
 import MainAssessment from './Pages/MainAssessment';
@@ -42,8 +42,7 @@ function Layout() {
         <Route element={<PrivateRoute />}>
             <Route path="/discoverUs" element={<Discoverus />} />
             <Route path="/startCourse" element={<StartCourse2 />} />
-            <Route path="/courseSection" element={<CourseSection />} />
-            <Route path="/Watchvideo/:id" element={<WatchvideoSection />} />
+            
             <Route path="/addCourse" element={<AddCourseForm />} />
             <Route path="/courseDetailsPopUp" element={<CourseDetailsPopUp />} />
             <Route path="/MainAssessment" element={<MainAssessment />} />
@@ -54,7 +53,7 @@ function Layout() {
             <Route path="/AssessmentTimupCongrats" element={<AssessmentTimupCongrats />} />
             <Route path="/HelpCenter" element={<HelpCenter />} />
             <Route path="/faq" element={<Faq2 />} />
-            <Route path="/new" element={<NewPage />} />
+            <Route path="/new/:id" element={<NewPage />} />
         </Route>
 
 
