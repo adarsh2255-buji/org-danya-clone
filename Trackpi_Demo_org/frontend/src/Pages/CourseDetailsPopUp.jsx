@@ -2,6 +2,7 @@ import React from "react";
 
 
 const CourseDetailsPopUp = ({course, onClose}) => {
+
   return (
     <>
     <div
@@ -17,12 +18,11 @@ const CourseDetailsPopUp = ({course, onClose}) => {
     }}>
       <h1 className="text-white text-center font-bold text-base sm:text-3xl roboto ">Course Details</h1>
       <div className="flex flex-col gap-6 mt-3">
-        <span className="text-white font-semibold text-sm sm:text-[18px] roboto">Course Name : </span>
-        <span className="text-white font-semibold text-sm sm:text-[18px] roboto">Course Sections : </span>
+        <span className="text-white font-semibold text-sm sm:text-[18px] roboto">Course Name : {course.courseName} </span>
+        <span className="text-white font-semibold text-sm sm:text-[18px] roboto">Course Sections : {course.videoDetails.length} </span>
         <span className="text-white font-semibold text-sm sm:text-[18px] roboto">Course Duration : </span>
 
-        <p className="text-white font-semibold text-sm sm:text-[18px] text-[18px] text-justify roboto">A course description provides prospective students with an overview of a course, including its content, objectives, learning methods, and requirements, 
-          helping them decide if it aligns with their interests and goals. </p>
+        <p className="text-white font-semibold text-sm sm:text-[18px] text-[18px] text-justify roboto">{course.videoDetails.description}</p>
       </div>
               <button 
              onClick={onClose}

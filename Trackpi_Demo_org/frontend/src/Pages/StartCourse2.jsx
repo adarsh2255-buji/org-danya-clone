@@ -16,6 +16,7 @@ import { AuthContext } from '../context/AuthContext';
 
 const StartCourse2 = () => {
  const {user } = useContext(AuthContext)
+ console.log(user)
   
 
   return (
