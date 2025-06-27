@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+
 const userVideoSchema = new mongoose.Schema({
   videoId: String,
   watchedDuration: Number, // seconds
@@ -7,7 +8,7 @@ const userVideoSchema = new mongoose.Schema({
 });
 
 const userCourseProgressSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'Signup', required: true },
   courseId: { type: mongoose.Schema.Types.ObjectId, ref: 'Course', required: true },
   videos: [userVideoSchema],
   totalWatched: { type: Number, default: 0 },
