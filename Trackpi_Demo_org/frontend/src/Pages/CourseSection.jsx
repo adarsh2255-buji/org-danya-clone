@@ -29,7 +29,7 @@ const CourseSection = () => {
   useEffect(() => {
     const getCourseLIst = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/admin/view-course")
+        const res = await axios.get("http://localhost:5000/getCourse")
         setCourseList(res.data)
 
       } catch (error) {
