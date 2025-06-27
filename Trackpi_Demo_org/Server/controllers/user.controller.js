@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 import Signup from "../models/usermodel/signup.js"
 import UserCourseProgress from '../models/usermodel/userCourseProgress.js';
-
-
+import Course from "../models/adminmodel/course.js"
+import UserAssessment from '../models/usermodel/userAssessment.js';
 
 // to generate a token
 export const generateToken = (user) => {
@@ -52,9 +52,18 @@ export const addPhoneNumber = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+//---------------------------------course detail getting api--------------------------//
+export const userGetCourses = async (req, res) => {
+  try {
+    const courses = await Course.find();
+    res.status(200).json(courses);
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error fetching courses', error });
+  }
+};
 
 
-//-------------------------------------------------------//
+//--------------------------------------------------------------------------------------//
 //Update Progress API
 // POST /api/progress/update
 export const updateUserCourseProgress = async (req, res) => {
@@ -95,7 +104,7 @@ export const updateUserCourseProgress = async (req, res) => {
     res.status(500).json({ success: false, message: 'Failed to update progress', error: err.message });
   }
 };
-//-----------------------------------------------------------------------------------------------------------------------------
+
 //Get All Progress + Unlock Status
 // GET /api/progress/:userId
 export const getUserCourseProgress = async (req, res) => {
@@ -103,6 +112,62 @@ export const getUserCourseProgress = async (req, res) => {
     const { userId } = req.params;
     const progress = await UserCourseProgress.find({ userId }).populate('courseId');
     res.status(200).json({ success: true, progress });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+};
+
+
+
+//-----------------------------------------------------------------------------------------------
+//get video assessment
+
+export const getVideoAssessment = async (req, res) => {
+  try {
+    const { courseId, videoId } = req.params;
+
+    const course = await Course.findById(courseId);
+    const video = course.videoDetails.find(v => v._id.toString() === videoId);
+
+    if (!video) return res.status(404).json({ message: 'Video not found' });
+
+    res.status(200).json({ assessments: video.assessments });
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching assessments', error: err.message });
+  }
+};
+
+//submit or save user assessment to the userAssessment db
+
+export const submitAssessment = async (req, res) => {
+  try {
+    const { userId, courseId, videoId, answers } = req.body;
+
+    const course = await Course.findById(courseId);
+    const video = course.videoDetails.find(v => v._id.toString() === videoId);
+
+    let correctCount = 0;
+
+    answers.forEach(({ questionIndex, selectedAnswerId }) => {
+      const question = video.assessments[questionIndex];
+      const selected = question.answers.find(a => a._id.toString() === selectedAnswerId);
+      if (selected?.isCorrect) correctCount++;
+    });
+
+    const passed = correctCount >= 25;
+
+    const assessment = new UserAssessment({
+      userId,
+      courseId,
+      videoId,
+      correctCount,
+      totalQuestions: video.assessments.length,
+      passed,
+    });
+
+    await assessment.save();
+
+    res.status(200).json({ success: true, passed, correctCount });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
