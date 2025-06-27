@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import squreLock from '../assets/square-lock-02.png'
 import CourseDetailsPopUp from './CourseDetailsPopUp';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -12,6 +13,8 @@ const CourseSection = () => {
   const [selectedCourse, setSelectedCourse] = useState(null)
   const [isOpen, setIsOpen] = useState(false);
   const [courseList, setCourseList] = useState([])
+
+  const navigate = useNavigate()
 
 
  const videoList =  [
@@ -166,6 +169,7 @@ const CourseSection = () => {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 px-4 py-6">
           {courseList.map((course, i) => (
             <div
+            onClick={() => navigate(`/new/${course._id}`)}
              key={course._id}
               className="relative w-full h-[90px] bg-black rounded-[50px] sm:h-[150px] sm:mb-5 sm:w-[260px] sm:rounded-[100px] overflow-hidden text-white font-roboto flex items-center justify-center cursor-pointer"
             >
