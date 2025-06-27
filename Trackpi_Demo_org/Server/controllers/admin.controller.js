@@ -24,12 +24,13 @@ export const getVideoDuration = async (req, res) => {
 
 export const addCourse = async (req, res) => {
   try {
-    const { courseName, videoDetails, assessments } = req.body;
+    const { courseName, videoDetails, assessments, CourseDescription } = req.body;
     const bgImage = req.file ? `/assets/bgImages/${req.file.filename}` : null;
 
     if (!bgImage) {
       return res.status(400).json({ success: false, message: 'Background image is required' });
     }
+
     let videoMetadata = [];
     try {
       videoMetadata = JSON.parse(videoDetails);
@@ -37,41 +38,46 @@ export const addCourse = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Invalid video metadata format', error: err.message });
     }
 
+    // Fetch durations from Vimeo and build video list
+    let totalDuration = 0;
+
     const finalVideoList = await Promise.all(
       videoMetadata.map(async (meta) => {
         const duration = await getVimeoDuration(meta.videoId);
+        totalDuration += duration;
+
         return {
           title: meta.title,
           description: meta.description,
           videoUrl: `https://player.vimeo.com/video/${meta.videoId}`,
           duration,
         };
-      }) 
-    ); 
+      })
+    );
 
-    // Parse and validate assessments
-   const rawAssessments = JSON.parse(assessments);
+    // Parse and format assessments
+    const rawAssessments = JSON.parse(assessments);
+    const parsedAssessments = rawAssessments.map((item) => {
+      const wrongs = typeof item.wrongAnswers === 'string'
+        ? item.wrongAnswers.split(',').map(w => w.trim())
+        : item.wrongAnswers;
 
-const parsedAssessments = rawAssessments.map((item) => {
-  const wrongs = typeof item.wrongAnswers === 'string'
-    ? item.wrongAnswers.split(',').map(w => w.trim())
-    : item.wrongAnswers;
+      const answers = [
+        { text: item.correctAnswer, isCorrect: true },
+        ...wrongs.map(w => ({ text: w, isCorrect: false })),
+      ];
 
-  const answers = [
-    { text: item.correctAnswer, isCorrect: true },
-    ...wrongs.map(w => ({ text: w, isCorrect: false })),
-  ];
-
-  return {
-    question: item.question,
-    answers,
-  };
-});
-
+      return {
+        question: item.question,
+        answers,
+      };
+    });
 
     const newCourse = new Course({
       courseName,
       bgImage,
+      CourseDescription,
+      CourseDuration: totalDuration,
       videoDetails: finalVideoList,
       assessments: parsedAssessments,
     });
