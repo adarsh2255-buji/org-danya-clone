@@ -9,10 +9,12 @@ function AssessmentFailedPopup() {
           background: "linear-gradient(262.57deg, #3F280D 0.01%, #070B20 100.01%)",
         }}
       >
-        <div className="text-center">
-          <h2 className="text-xl md:text-2xl font-bold flex items-center justify-center gap-2">
-            <span>⚠</span> Assessment Not Passed
-          </h2>
+        <div className="text-center ml-1">
+         <h2 className="text-xl  md:text-2xl font-bold flex items-center justify-center gap-2">
+  <span className="not-italic  font-sans">⚠️</span>
+  Assessment Not Passed
+</h2>
+
           <p className="mt-2 text-sm md:text-base">
             Thanks for taking the assessment.
             <br />
