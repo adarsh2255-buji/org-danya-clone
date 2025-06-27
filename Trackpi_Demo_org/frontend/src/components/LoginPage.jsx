@@ -1,16 +1,17 @@
 import React from 'react';
 import googleLogo from '../assets/google.png';
 import socialLogo from '../assets/group.png';
-import sectionImage from '../assets/sectionImage.png'; // Make sure the path is correct
+import sectionImage from '../assets/sectionImage.png'; 
 
 export default function FreelancerLoginPage() {
   const handleGoogleLogin = () => {
     // Handle Google login logic here
-    window.location.href = 'http://localhost:5000/auth/google'; // Redirect to Google auth endpoint 
+    window.location.href = 'http://localhost:5000/auth/google';  
   }
   return (
     <div
-      className="relative min-h-screen w-full flex items-center justify-center px-4 py-10 overflow-hidden bg-cover bg-center"
+    
+      className="relative min-h-screen w-full flex items-center justify-center px-4 py-10 overflow-hidden bg-cover bg-center  "
       style={{ backgroundImage: `url(${sectionImage})` }}
     >
       {/* NO MORE <Background /> */}
@@ -52,13 +53,16 @@ export default function FreelancerLoginPage() {
             background: 'linear-gradient(117.87deg, #171717 -19.96%, rgba(23, 23, 23, 0.8) 96.5%)',
           }}
         >
-          <h2 className="text-2xl font-semibold mb-6">Welcome Back</h2>
+          <h2 className="text-2xl font-semibold mb-6">
+            Welcome To <span className="text-[#FF9D00]">TrackPi</span>
+          </h2>
+
 
           {/* Google Login Button */}
           
           <button 
           onClick={handleGoogleLogin}
-          className="flex items-center justify-center gap-2 border border-white px-6 py-3 rounded-full text-white font-semibold text-sm hover:bg-white hover:text-black transition cursor-pointer">
+          className="flex items-center justify-center gap-2 border border-gray-400 px-12 py-3 rounded-full text-white font-semibold text-sm hover:bg-white hover:text-black transition cursor-pointer">
             <img src={googleLogo} alt="Google" className="w-5 h-5 object-contain" />
             Login with Google
           </button>

@@ -15,11 +15,15 @@ import AssesmentTimeUpPopup from './Pages/AssesmentTimeUpPopup';
 import Discoverus from './Pages/Discoverus';
 import StartCourse2 from './Pages/StartCourse2';
 import AssessmentTimupCongrats from './Pages/AssessmentTimupCongrats';
+<<<<<<< Updated upstream
 
 import AssessmentFeedback from './Pages/AssessmentFeedback';
 import AssessmentFeedbackEnter from './Pages/AssessmentFeedbackEnter';
 
 import NewPage from './Pages/newpage';
+=======
+import NewPage from './Pages/VideoMain';
+>>>>>>> Stashed changes
 import Home from './Pages/Homepage';
 import Faq2 from './Pages/Faq2';
 import PrivateRoute from './routes/PrivateRoutes';
@@ -58,7 +62,12 @@ function Layout() {
             <Route path="/AssessmentfeedbackEnter" element={<AssessmentFeedbackEnter />} />
              <Route path="/Assessmentfeedbackpopup" element={<AssessmentFeedback />} />
             <Route path="/faq" element={<Faq2 />} />
+<<<<<<< Updated upstream
             <Route path="/new/:id" element={<NewPage />} />
+=======
+            <Route path="/video" element={<NewPage />} />
+            
+>>>>>>> Stashed changes
         </Route>
 
 
