@@ -15,6 +15,10 @@ import AssesmentTimeUpPopup from './Pages/AssesmentTimeUpPopup';
 import Discoverus from './Pages/Discoverus';
 import StartCourse2 from './Pages/StartCourse2';
 import AssessmentTimupCongrats from './Pages/AssessmentTimupCongrats';
+
+import AssessmentFeedback from './Pages/AssessmentFeedback';
+import AssessmentFeedbackEnter from './Pages/AssessmentFeedbackEnter';
+
 import NewPage from './Pages/newpage';
 import Home from './Pages/Homepage';
 import Faq2 from './Pages/Faq2';
@@ -51,6 +55,8 @@ function Layout() {
             <Route path="/AssessmentTimupPopup" element={<AssesmentTimeUpPopup />} />
             <Route path="/AssessmentTimupCongrats" element={<AssessmentTimupCongrats />} />
             <Route path="/HelpCenter" element={<HelpCenter />} />
+            <Route path="/AssessmentfeedbackEnter" element={<AssessmentFeedbackEnter />} />
+             <Route path="/Assessmentfeedbackpopup" element={<AssessmentFeedback />} />
             <Route path="/faq" element={<Faq2 />} />
             <Route path="/new/:id" element={<NewPage />} />
         </Route>
@@ -62,12 +68,6 @@ function Layout() {
   );
 }
 
-function App() {
-  return (
-    <Router>
-      <Layout />
-    </Router>
-  );
-}
+
 
 export default App;

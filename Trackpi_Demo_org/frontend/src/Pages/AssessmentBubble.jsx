@@ -35,14 +35,13 @@ const AssessmentBubble = ({ currentPage, setCurrentPage }) => {
     <div className="text-white font-inter w-screen h-auto">
       {/* Title */}
       <div className="flex ml-[3vw] mt-[3vh]">
-       <div className="w-[10vw] h-[4.58vh] font-roboto font-medium text-[1.95vw] leading-[1] tracking-normal text-center max-[768px]:text-[4vw]">
-           Assessment
+        <div className="w-[10vw] h-[4.58vh] font-roboto font-medium text-[1.95vw] leading-[1] tracking-normal text-center max-[768px]:text-[4vw]">
+          Assessment
         </div>
-
       </div>
 
       {/* Bubble Row */}
-      <div className="absolute top-[20.6vh] ml-6 w-[95.27vw] h-[7.5vh] flex items-center justify-center">
+      <div className="absolute top-[20.6vh] ml-7 w-[95.27vw] h-[7.5vh] flex items-center justify-center">
         <div
           className={`flex items-center ${
             isMobile ? 'justify-between w-full px-[2vw]' : 'gap-[1vw]'
@@ -53,13 +52,17 @@ const AssessmentBubble = ({ currentPage, setCurrentPage }) => {
             onClick={handlePrev}
             disabled={currentPage === 1}
             className={`flex items-center justify-center rounded-full 
-              ${isMobile ? 'w-[12vw] h-[6vh]' : 'w-[2.8vw] h-[5.6vh]'} border border-white/60`}
+              ${isMobile ? 'w-[12vw] h-[6vh]' : 'w-[3.0vw] h-[6.3vh]'} border border-white/80
+              ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
-            <FontAwesomeIcon icon={faChevronLeft} className={`${isMobile ? 'text-[4vw]' : 'text-[1.2vw]'} text-white`} />
+            <FontAwesomeIcon
+              icon={faChevronLeft}
+              className={`${isMobile ? 'text-[4vw]' : 'text-[1.3vw]'} text-white`}
+            />
           </button>
 
           {/* Bubbles */}
-          <nav className={`flex ${isMobile ? 'gap-[2vw] flex-1 justify-between' : 'gap-x-[2.5vw]'}`}>
+          <nav className={`flex ${isMobile ? 'gap-[2vw] flex-1 justify-between' : 'gap-x-[2.4vw]'}`}>
             {visiblePages.map((item) => {
               const isActive = item === currentPage;
               return (
@@ -67,8 +70,8 @@ const AssessmentBubble = ({ currentPage, setCurrentPage }) => {
                   key={item}
                   onClick={() => setCurrentPage(item)}
                   className={`rounded-full border font-medium text-center 
-                    ${isMobile ? 'w-[12vw] h-[6vh] text-[4vw]' : 'w-[2.8vw] h-[5.9vh] text-[1.6vh]'}
-                    ${isActive ? 'border-yellow-500 text-yellow-500' : 'border-white/40 text-white'}`}
+                    ${isMobile ? 'w-[12vw] h-[6vh] text-[4vw]' : 'w-[3.0vw] h-[6.2vh] text-[1.9vh]'}
+                    ${isActive ? 'border-yellow-500 text-yellow-500' : 'border-white/90 text-white'}`}
                 >
                   {item}
                 </button>
@@ -81,9 +84,13 @@ const AssessmentBubble = ({ currentPage, setCurrentPage }) => {
             onClick={handleNext}
             disabled={currentPage === totalPages}
             className={`flex items-center justify-center rounded-full 
-              ${isMobile ? 'w-[12vw] h-[6vh]' : 'w-[2.8vw] h-[5.6vh]'} border border-white/40`}
+              ${isMobile ? 'w-[12vw] h-[6vh]' : 'w-[3.0vw] h-[6.3vh]'} border border-white/90
+              ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
-            <FontAwesomeIcon icon={faChevronRight} className={`${isMobile ? 'text-[4vw]' : 'text-[1.2vw]'} text-white`} />
+            <FontAwesomeIcon
+              icon={faChevronRight}
+              className={`${isMobile ? 'text-[4vw]' : 'text-[1.2vw]'} text-white`}
+            />
           </button>
         </div>
       </div>
