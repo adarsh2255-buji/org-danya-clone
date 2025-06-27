@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import Signup from "../models/usermodel/signup.js"
+import UserCourseProgress from '../models/usermodel/userCourseProgress.js';
 
 
 
@@ -53,3 +54,56 @@ export const addPhoneNumber = async (req, res) => {
 };
 
 
+//-------------------------------------------------------//
+//Update Progress API
+// POST /api/progress/update
+export const updateUserCourseProgress = async (req, res) => {
+  try {
+    const { userId, courseId, videoId, watchedDuration } = req.body;
+
+    let progress = await UserCourseProgress.findOne({ userId, courseId });
+
+    if (!progress) {
+      progress = new UserCourseProgress({
+        userId,
+        courseId,
+        videos: [{ videoId, watchedDuration }],
+        unlocked: true,
+      });
+    } else {
+      const video = progress.videos.find(v => v.videoId === videoId);
+      if (video) {
+        video.watchedDuration = watchedDuration;
+        video.isCompleted = true;
+      } else {
+        progress.videos.push({ videoId, watchedDuration, isCompleted: true });
+      }
+    }
+
+    // Recalculate total watched
+    progress.totalWatched = progress.videos.reduce((sum, v) => sum + v.watchedDuration, 0);
+
+    // Check if course is completed
+    const course = await Course.findById(courseId);
+    if (progress.totalWatched >= course.CourseDuration) {
+      progress.isCompleted = true;
+    }
+
+    await progress.save();
+    res.status(200).json({ success: true, progress });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Failed to update progress', error: err.message });
+  }
+};
+//-----------------------------------------------------------------------------------------------------------------------------
+//Get All Progress + Unlock Status
+// GET /api/progress/:userId
+export const getUserCourseProgress = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const progress = await UserCourseProgress.find({ userId }).populate('courseId');
+    res.status(200).json({ success: true, progress });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+};

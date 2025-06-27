@@ -1,7 +1,7 @@
 import express from 'express';
 import passport from '../config/passportConfig.js';
 import { verifyToken } from '../config/verifyToken.js';
-import { authCallback, addPhoneNumber } from '../controllers/user.controller.js';
+import { authCallback, addPhoneNumber,updateUserCourseProgress,getUserCourseProgress } from '../controllers/user.controller.js';
 
 const router = express.Router();
 
@@ -13,5 +13,10 @@ router.get('/auth/google/callback', passport.authenticate('google', { session: f
 // Add phone number
 router.post('/add-phone',verifyToken,addPhoneNumber);
 
+// Update progress (called when video is watched)
+router.post('/progress/update', updateUserCourseProgress);
+
+// Get progress for a specific user
+router.get('/progress/:userId', getUserCourseProgress);
 
 export default router;
