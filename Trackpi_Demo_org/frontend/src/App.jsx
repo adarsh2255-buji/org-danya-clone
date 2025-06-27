@@ -43,7 +43,6 @@ function Layout() {
             <Route path="/discoverUs" element={<Discoverus />} />
             <Route path="/startCourse" element={<StartCourse2 />} />
             <Route path="/courseSection" element={<CourseSection />} />
-            
             <Route path="/addCourse" element={<AddCourseForm />} />
             <Route path="/courseDetailsPopUp" element={<CourseDetailsPopUp />} />
             <Route path="/MainAssessment" element={<MainAssessment />} />
