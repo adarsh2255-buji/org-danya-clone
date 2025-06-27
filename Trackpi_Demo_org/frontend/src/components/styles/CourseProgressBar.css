@@ -75,3 +75,22 @@
   align-items: center;
 
 }
+
+.custom-div-mobile{
+  width: 1028px;
+  height: 70px;
+  transform: rotate(90deg);
+  border-radius: 30px;
+  background-color: transparent;
+  border: transparent;  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 960px;
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg);
+}

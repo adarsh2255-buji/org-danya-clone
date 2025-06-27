@@ -1,15 +1,37 @@
 import React from "react";
-import MainCourseList from "./MainCourseList";
-import NavigationTabs from "../components/NavigationTabs";
-import Footer from "../components/Footer";
 
-const CourseDetailsPopUp = () => {
+
+const CourseDetailsPopUp = ({course, onClose}) => {
+
   return (
-    <div className="w-screen h-screen ">
-      < MainCourseList />
-      <NavigationTabs />
-      <Footer/>
+    <>
+    <div
+     className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm flex justify-center items-center"
+      onClick={onClose}
+    >
+    <section 
+     onClick={(e) => e.stopPropagation()}
+    className="course-details-popup flex flex-col mx-auto w-[329px] h-[500px] p-[30px] rounded-[30px] gap-7.5 sm:gap-0 sm:w-[1152px] sm:h-[436px] sm:p-[40px] sm:rounded-[40px]"
+    style={{
+      background : 'linear-gradient(262.57deg, #3F280D 0.01%, #070B20 100.01%)',
+      
+    }}>
+      <h1 className="text-white text-center font-bold text-base sm:text-3xl roboto ">Course Details</h1>
+      <div className="flex flex-col gap-6 mt-3">
+        <span className="text-white font-semibold text-sm sm:text-[18px] roboto">Course Name : {course.courseName} </span>
+        <span className="text-white font-semibold text-sm sm:text-[18px] roboto">Course Sections : {course.videoDetails.length} </span>
+        <span className="text-white font-semibold text-sm sm:text-[18px] roboto">Course Duration : </span>
+
+        <p className="text-white font-semibold text-sm sm:text-[18px] text-[18px] text-justify roboto">{course.videoDetails.description}</p>
+      </div>
+              <button 
+             onClick={onClose}
+              className='mx-auto rounded-[40px] sm:mt-5  px-10 py-3  sm:px-12.5 sm:py-3 bg-[#FF9D00] text-white text-[12px] sm:text-base font-medium cursor-pointer'>
+                Ok, Got it</button>
+    </section>
     </div>
+
+    </>
   )
 }
 

@@ -26,6 +26,15 @@ const courseSchema = new mongoose.Schema({
     type: String, // Cloudinary URL
     required: true,
   },
+   CourseDuration: {
+    type:Number,
+    required: true
+   },
+   CourseDescription:{
+    type:String,
+    required:true
+   },
+
   
   videoDetails:[videoSchema],
   assessments: [assessmentSchema], 
