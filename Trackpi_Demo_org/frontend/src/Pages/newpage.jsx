@@ -1,30 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
 import SearchBox from '../components/SearchBox';
 import VideoBox from '../components/VideoBox';
 import VideoList from '../components/VideoList';
 
 export default function NewPage() {
-  const location = useLocation();
-  const course = location.state?.course;
-
+  const { courseId } = useParams();
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedVideo, setSelectedVideo] = useState(null);
+const [course, setCourse] = useState(null);
 
-  useEffect(() => {
-    if (course?.videoDetails?.length > 0) {
-      setSelectedVideo(course.videoDetails[0]);
-      setActiveIndex(0);
-    }
-  }, [course]);
 
-  const handleNextVideo = () => {
-    const nextIndex = activeIndex + 1;
-    if (nextIndex < course.videoDetails.length) {
-      setActiveIndex(nextIndex);
-      setSelectedVideo(course.videoDetails[nextIndex]);
+useEffect(() => {
+  const fetchCourse = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/courses/${courseId}`);
+      const data = await res.json();
+      setCourse(data);
+    } catch (err) {
+      console.error("Error fetching course:", err);
     }
   };
+
+  if (courseId) fetchCourse();
+}, [courseId]);
+useEffect(() => {
+  if (course?.videoDetails?.length > 0) {
+    setSelectedVideo(course.videoDetails[0]);
+    setActiveIndex(0);
+  }
+}, [course]);
+const handleNextVideo = () => {
+  const nextIndex = activeIndex + 1;
+  if (course && nextIndex < course.videoDetails.length) {
+    setActiveIndex(nextIndex);
+    setSelectedVideo(course.videoDetails[nextIndex]);
+  }
+};
+
 
   if (!course) {
     return <div className="text-white p-10">No course data available.</div>;
@@ -80,15 +94,13 @@ export default function NewPage() {
 
         {/* Video List */}
         <VideoList
-          course={course}
-          activeIndex={activeIndex}
-          setActiveIndex={setActiveIndex}
-          onVideoSelect={(video) => {
-            setSelectedVideo(video);
-            setActiveIndex(index);
-          }}
-          className="order-2 md:order-1"
-        />
+  course={course}
+  activeIndex={activeIndex}
+  setActiveIndex={setActiveIndex}
+  onVideoSelect={(video) => setSelectedVideo(video)}
+  className="order-2 md:order-1"
+/>
+
       </div>
     </>
   );
