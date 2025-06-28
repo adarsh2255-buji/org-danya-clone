@@ -27,8 +27,12 @@ export const addCourse = async (req, res) => {
     const { courseName, videoDetails, CourseDescription } = req.body;
     const bgImage = req.file ? `/assets/bgImages/${req.file.filename}` : null;
 
-    const parsedVideos = JSON.parse(videoDetails);
+   console.log("Raw videoDetails body:", req.body.videoDetails);
+const parsedVideos = JSON.parse(req.body.videoDetails || '[]');
+console.log("Parsed videoDetails:", parsedVideos);
+
     let totalDuration = 0;
+
 
     const finalVideoList = await Promise.all(
       parsedVideos.map(async (meta) => {
@@ -67,6 +71,8 @@ export const addCourse = async (req, res) => {
     });
 
     await newCourse.save();
+   
+
     res.status(201).json({ success: true, course: newCourse });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Failed to add course', error: error.message });
