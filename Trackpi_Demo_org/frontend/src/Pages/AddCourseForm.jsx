@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
 
 const AddCourseForm = () => {
   const [courseName, setCourseName] = useState('');
+  const [courseDescription, setCourseDescription] = useState('');
   const [bgImage, setBgImage] = useState(null);
-
   const [videoDetails, setVideoDetails] = useState([]);
+
   const [videoTitle, setVideoTitle] = useState('');
   const [videoDesc, setVideoDesc] = useState('');
   const [videoId, setVideoId] = useState('');
@@ -15,60 +16,94 @@ const AddCourseForm = () => {
   const [correctAnswer, setCorrectAnswer] = useState('');
   const [wrongAnswers, setWrongAnswers] = useState(['', '', '']);
 
-  // Add video detail
-  const handleAddVideo = () => {
-    if (videoTitle && videoDesc && videoId) {
-      setVideoDetails([
-        ...videoDetails,
-        { title: videoTitle, description: videoDesc, videoId },
+  const [showVideoForm, setShowVideoForm] = useState(false);
+  const fileInputRef = useRef(null);
+
+  const handleAddAssessment = () => {
+    if (
+      question.trim() &&
+      correctAnswer.trim() &&
+      wrongAnswers.every((ans) => ans.trim())
+    ) {
+      setAssessments([
+        ...assessments,
+        {
+          question,
+          correctAnswer,
+          wrongAnswers,
+        },
       ]);
-      setVideoTitle('');
-      setVideoDesc('');
-      setVideoId('');
+      setQuestion('');
+      setCorrectAnswer('');
+      setWrongAnswers(['', '', '']);
     } else {
-      alert('Please fill in all video fields.');
+      alert('Please fill in all assessment fields.');
     }
   };
 
-  // Add assessment
-const handleAddAssessment = () => {
-  if (question && correctAnswer && wrongAnswers.every(ans => ans.trim() !== '')) {
-    setAssessments([
-      ...assessments,
-      {
-        question,
-        correctAnswer,
-        wrongAnswers,
-      },
-    ]);
-    setQuestion('');
-    setCorrectAnswer('');
-    setWrongAnswers(['', '', '']);
-  } else {
-    alert('Please fill in all assessment fields.');
-  }
-};
+  const handleSaveVideo = () => {
+    if (videoTitle && videoDesc && videoId && assessments.length === 30) {
+      setVideoDetails([
+        ...videoDetails,
+        {
+          title: videoTitle,
+          description: videoDesc,
+          videoId,
+          assessments,
+        },
+      ]);
 
+      // Reset current video form
+      setVideoTitle('');
+      setVideoDesc('');
+      setVideoId('');
+      setAssessments([]);
+      setQuestion('');
+      setCorrectAnswer('');
+      setWrongAnswers(['', '', '']);
+      setShowVideoForm(false);
+    } else {
+      alert('All video fields must be filled and have 30 assessments.');
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (showVideoForm) {
+      return alert('Please save the current video before submitting the course.');
+    }
+
+    if (videoDetails.length === 0) {
+      return alert('Please add at least one video to the course.');
+    }
+
     const formData = new FormData();
     formData.append('courseName', courseName);
+    formData.append('CourseDescription', courseDescription);
     formData.append('bgImage', bgImage);
     formData.append('videoDetails', JSON.stringify(videoDetails));
-    formData.append('assessments', JSON.stringify(assessments));
 
     try {
-      const res = await axios.post('http://localhost:5000/admin/add-course', formData, {
+      await axios.post('http://localhost:5000/admin/add-course', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      alert('Course added!');
-      // Reset form
+
+      alert('Course added successfully!');
+      // Reset all fields
       setCourseName('');
+      setCourseDescription('');
       setBgImage(null);
       setVideoDetails([]);
+      setVideoTitle('');
+      setVideoDesc('');
+      setVideoId('');
       setAssessments([]);
+      setQuestion('');
+      setCorrectAnswer('');
+      setWrongAnswers(['', '', '']);
+      setShowVideoForm(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
     } catch (err) {
       console.error(err);
       alert('Error adding course.');
@@ -76,7 +111,7 @@ const handleAddAssessment = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 bg-amber-100 p-6 rounded-lg max-w-2xl mx-auto shadow">
+    <form onSubmit={handleSubmit} className="space-y-4 bg-amber-100 p-6 rounded-lg max-w-3xl mx-auto shadow">
       <h2 className="text-2xl font-bold mb-4">Add New Course</h2>
 
       <input
@@ -88,104 +123,118 @@ const handleAddAssessment = () => {
         className="w-full p-2 rounded border"
       />
 
+      <textarea
+        placeholder="Course Description"
+        value={courseDescription}
+        onChange={(e) => setCourseDescription(e.target.value)}
+        required
+        className="w-full p-2 rounded border"
+      />
+
       <input
         type="file"
         accept="image/*"
         onChange={(e) => setBgImage(e.target.files[0])}
+        ref={fileInputRef}
         required
         className="w-full p-2"
       />
 
       <hr className="my-4" />
-      <h3 className="text-xl font-semibold">Add Vimeo Video</h3>
 
-      <input
-        type="text"
-        placeholder="Video Title"
-        value={videoTitle}
-        onChange={(e) => setVideoTitle(e.target.value)}
-        className="w-full p-2 rounded border"
-      />
+      {!showVideoForm && (
+        <button
+          type="button"
+          onClick={() => setShowVideoForm(true)}
+          className="bg-blue-600 text-white px-4 py-2 rounded"
+        >
+          + Add Video
+        </button>
+      )}
 
-      <input
-        type="text"
-        placeholder="Video Description"
-        value={videoDesc}
-        onChange={(e) => setVideoDesc(e.target.value)}
-        className="w-full p-2 rounded border"
-      />
+      {showVideoForm && (
+        <div className="space-y-4 border rounded bg-white p-4 mt-4">
+          <input
+            type="text"
+            placeholder="Video Title"
+            value={videoTitle}
+            onChange={(e) => setVideoTitle(e.target.value)}
+            className="w-full p-2 rounded border"
+          />
+          <input
+            type="text"
+            placeholder="Video Description"
+            value={videoDesc}
+            onChange={(e) => setVideoDesc(e.target.value)}
+            className="w-full p-2 rounded border"
+          />
+          <input
+            type="text"
+            placeholder="Vimeo Video ID"
+            value={videoId}
+            onChange={(e) => setVideoId(e.target.value)}
+            className="w-full p-2 rounded border"
+          />
 
-      <input
-        type="text"
-        placeholder="Vimeo Video ID (e.g., 1014697717)"
-        value={videoId}
-        onChange={(e) => setVideoId(e.target.value)}
-        className="w-full p-2 rounded border"
-      />
+          <h4 className="text-lg font-medium mt-2">Add Assessment (30 total)</h4>
+          <input
+            type="text"
+            placeholder="Question"
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            className="w-full p-2 rounded border"
+          />
+          <input
+            type="text"
+            placeholder="Correct Answer"
+            value={correctAnswer}
+            onChange={(e) => setCorrectAnswer(e.target.value)}
+            className="w-full p-2 rounded border"
+          />
+          {wrongAnswers.map((wrong, i) => (
+            <input
+              key={i}
+              type="text"
+              placeholder={`Wrong Answer ${i + 1}`}
+              value={wrong}
+              onChange={(e) => {
+                const updated = [...wrongAnswers];
+                updated[i] = e.target.value;
+                setWrongAnswers(updated);
+              }}
+              className="w-full p-2 rounded border"
+            />
+          ))}
 
-      <button
-        type="button"
-        onClick={handleAddVideo}
-        className="bg-blue-500 text-white px-4 py-2 rounded"
-      >
-        Add Video
-      </button>
+          <button
+            type="button"
+            onClick={handleAddAssessment}
+            className="bg-purple-500 text-white px-4 py-2 rounded"
+          >
+            + Add Assessment ({assessments.length}/30)
+          </button>
 
-      <ul className="list-disc pl-5 mt-2">
+          <ul className="pl-5 list-disc mt-2">
+            {assessments.map((a, i) => (
+              <li key={i}>{i + 1}. {a.question}</li>
+            ))}
+          </ul>
+
+          <button
+            type="button"
+            onClick={handleSaveVideo}
+            className="bg-green-600 text-white px-4 py-2 rounded mt-4"
+          >
+            Save Video
+          </button>
+        </div>
+      )}
+
+      {/* Display added videos summary */}
+      <ul className="mt-4 list-disc pl-5">
         {videoDetails.map((v, i) => (
           <li key={i}>
-            {v.title} - Vimeo ID: {v.videoId}
-          </li>
-        ))}
-      </ul>
-
-      <hr className="my-4" />
-      <h3 className="text-xl font-semibold">Add Assessment</h3>
-
-<input
-  type="text"
-  placeholder="Question"
-  value={question}
-  onChange={(e) => setQuestion(e.target.value)}
-  className="w-full p-2 rounded border mb-2"
-/>
-
-<input
-  type="text"
-  placeholder="Correct Answer"
-  value={correctAnswer}
-  onChange={(e) => setCorrectAnswer(e.target.value)}
-  className="w-full p-2 rounded border mb-2"
-/>
-
-{wrongAnswers.map((answer, idx) => (
-  <input
-    key={idx}
-    type="text"
-    placeholder={`Wrong Answer ${idx + 1}`}
-    value={answer}
-    onChange={(e) => {
-      const updated = [...wrongAnswers];
-      updated[idx] = e.target.value;
-      setWrongAnswers(updated);
-    }}
-    className="w-full p-2 rounded border mb-2"
-  />
-))}
-
-<button
-  type="button"
-  onClick={handleAddAssessment}
-  className="bg-purple-500 text-white px-4 py-2 rounded"
->
-  Add Assessment
-</button>
-
-
-      <ul className="list-disc pl-5 mt-2">
-        {assessments.map((a, i) => (
-          <li key={i}>
-            {a.question} - Correct: {a.correctAnswer}
+            <strong>{v.title}</strong> ({v.videoId}) - {v.assessments.length} questions
           </li>
         ))}
       </ul>
@@ -193,7 +242,7 @@ const handleAddAssessment = () => {
       <hr className="my-4" />
       <button
         type="submit"
-        className="bg-green-600 text-white px-6 py-2 rounded text-lg"
+        className="bg-green-700 text-white px-6 py-2 rounded text-lg"
       >
         Save Course
       </button>
