@@ -61,7 +61,7 @@ function Layout() {
             <Route path="/AssessmentfeedbackEnter" element={<AssessmentFeedbackEnter />} />
              <Route path="/Assessmentfeedbackpopup" element={<AssessmentFeedback />} />
             <Route path="/faq" element={<Faq2 />} />
-            <Route path="/video" element={<NewPage />} />
+            <Route path="/video/:courseId" element={<NewPage />} />
         </Route>
 
 
