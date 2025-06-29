@@ -13,7 +13,7 @@ import AssessmentPassedPopup from './Pages/AssessmentPassedPopup';
 import AssessmentFailedPopup from './Pages/AssessmentFailedPopup';
 import AssesmentTimeUpPopup from './Pages/AssesmentTimeUpPopup';
 import Discoverus from './Pages/Discoverus';
-import StartCourse2 from './Pages/StartCourse2';
+
 import AssessmentTimupCongrats from './Pages/AssessmentTimupCongrats';
 
 import AssessmentFeedback from './Pages/AssessmentFeedback';
@@ -26,6 +26,7 @@ import Home from './Pages/Homepage';
 import Faq2 from './Pages/Faq2';
 import PrivateRoute from './routes/PrivateRoutes';
 import CourseSection from './Pages/CourseSection';
+import StartCourse from './Pages/StartCourse';
 
 function Layout() {
   const location = useLocation();
@@ -46,7 +47,7 @@ function Layout() {
         {/* protected route */}
         <Route element={<PrivateRoute />}>
             <Route path="/discoverUs" element={<Discoverus />} />
-            <Route path="/startCourse" element={<StartCourse2 />} />
+            <Route path="/startCourse" element={<StartCourse />} />
             <Route path="/courseSection" element={<CourseSection />} />
             <Route path="/viewCourse" element ={<ViewCourses/>}/> {/** admin course view route for temporary use*/}
             <Route path="/addCourse" element={<AddCourseForm />} />  {/** admin course adding route for temporary use*/}
@@ -61,7 +62,7 @@ function Layout() {
             <Route path="/AssessmentfeedbackEnter" element={<AssessmentFeedbackEnter />} />
              <Route path="/Assessmentfeedbackpopup" element={<AssessmentFeedback />} />
             <Route path="/faq" element={<Faq2 />} />
-            <Route path="/video" element={<NewPage />} />
+            <Route path="/video/:id" element={<NewPage />} />
         </Route>
 
 
