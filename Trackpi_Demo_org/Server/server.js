@@ -5,6 +5,8 @@ import passport from './config/passportConfig.js';
 import connectToMongoDb from './db/connectToMongoDb.js';
 import adminRoute from "./routes/admin.router.js";
 import userRoute from "./routes/user.router.js";
+import contactRoute from "./routes/contact.router.js";
+
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -43,6 +45,7 @@ app.use(passport.initialize());
 // Routes
 app.use('/', userRoute);
 app.use('/admin', adminRoute);
+app.use('/api', contactRoute);
 // app.use('/user', userRoute);
 
 // Server
