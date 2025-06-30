@@ -4,14 +4,15 @@
 @source "../node_modules/flowbite";
 @import "tailwindcss";
 
-
-.scroll-hide::-webkit-scrollbar {
+/* Hide scrollbar for modern browsers */
+.no-scrollbar::-webkit-scrollbar {
   display: none;
 }
-.scroll-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
 }
+<<<<<<< Updated upstream
 /* hide scrollbar in all modern browsers */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
@@ -20,3 +21,20 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;     /* Firefox */
 }
+=======
+
+
+
+.font-urbanist {
+  font-family: 'Urbanist', sans-serif;
+}
+
+.font-libre {
+  font-family: 'Libre Franklin', sans-serif;
+}
+
+
+
+
+
+>>>>>>> Stashed changes

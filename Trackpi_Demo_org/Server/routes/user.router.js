@@ -1,7 +1,7 @@
 import express from 'express';
 import passport from '../config/passportConfig.js';
 import { verifyToken } from '../config/verifyToken.js';
-import { authCallback, addPhoneNumber,updateUserCourseProgress,getUserCourseProgress,getVideoAssessment,submitAssessment, userGetCourses } from '../controllers/user.controller.js';
+import { authCallback, addPhoneNumber,updateUserCourseProgress,getUserCourseProgress,getVideoAssessment,submitAssessment, userGetCourses, getCourseById } from '../controllers/user.controller.js';
 
 const router = express.Router();
 
@@ -20,6 +20,10 @@ router.post('/progress/update', updateUserCourseProgress);
 router.get('/progress/:userId', getUserCourseProgress);
 //Get course details route--------------------------//
 router.get('/getCourse', userGetCourses);
+//get course by id--------------------------------//
+router.get('/courses/:id', getCourseById);
+
+
 //Assesment----------------------------------------------//
 //getting assesment video base
 router.get('/assessment/:courseId/:videoId', getVideoAssessment);

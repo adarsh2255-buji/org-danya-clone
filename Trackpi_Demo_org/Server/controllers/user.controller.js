@@ -61,7 +61,20 @@ export const userGetCourses = async (req, res) => {
     res.status(500).json({ success: false, message: 'Error fetching courses', error });
   }
 };
-
+//get course by id-----------------------------------------------------//
+// GET /api/courses/:id
+export const getCourseById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const course = await Course.findById(id);
+    if (!course) {
+      return res.status(404).json({ success: false, message: 'Course not found' });
+    }
+    res.status(200).json(course); // includes videoDetails
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Error fetching course', error: err.message });
+  }
+};
 
 //--------------------------------------------------------------------------------------//
 //Update Progress API

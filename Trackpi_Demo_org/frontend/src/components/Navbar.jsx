@@ -9,7 +9,7 @@ const Navbar = ({ onLoginClick }) => {
   return (
     <nav className="w-full h-[80px] px-6 md:px-[60px] py-3 bg-black text-white flex items-center justify-between fixed top-0 left-0 z-50">
       <div>
-         {/* <img src={logo} alt="TrackPi Logo" className="h-10 w-auto object-contain" /> */}
+        
          <img src={logo} alt="TrackPi Logo" className="h-16 w-auto object-contain" />
 
          
@@ -17,10 +17,10 @@ const Navbar = ({ onLoginClick }) => {
       </div>
 
       {/* Desktop Nav */}
-      <ul className="hidden md:flex gap-16 text-base font-medium">
-        <li className="cursor-pointer hover:text-[#FF9D00] transition-colors">Home</li>
-        <li className="cursor-pointer hover:text-[#FF9D00] transition-colors">About</li>
-        <li className="cursor-pointer hover:text-[#FF9D00] transition-colors">Connect Us</li>
+      <ul className="hidden md:flex gap-16 text-base font-medium text-white font-['Libre_Franklin']">
+        <li className="cursor-pointer hover:text-[#FF9D00] transition-colors">HOME</li>
+        <li className="cursor-pointer hover:text-[#FF9D00] transition-colors">ABOUT</li>
+        <li className="cursor-pointer hover:text-[#FF9D00] transition-colors">CONNECT US</li>
       </ul>
 
       {/* Login/Signup Button */}
