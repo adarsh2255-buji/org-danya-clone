@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 
 const userVideoSchema = new mongoose.Schema({
-  videoId: String,
+  videoId: { type: mongoose.Schema.Types.ObjectId, required: true },
   watchedDuration: Number, // seconds
   isCompleted: { type: Boolean, default: false },
 });

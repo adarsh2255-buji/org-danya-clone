@@ -1,7 +1,7 @@
 import express from 'express';
 import passport from '../config/passportConfig.js';
 import { verifyToken } from '../config/verifyToken.js';
-import { authCallback, addPhoneNumber,updateUserCourseProgress,getUserCourseProgress,getVideoAssessment,submitAssessment, userGetCourses, getCourseById } from '../controllers/user.controller.js';
+import { authCallback, addPhoneNumber,updateUserCourseProgress,getUserCourseProgress,getVideoAssessment,submitAssessment, userGetCourses, getCourseById,getUserCourseSpecificProgress } from '../controllers/user.controller.js';
 
 const router = express.Router();
 
@@ -18,6 +18,8 @@ router.post('/progress/update', updateUserCourseProgress);
 
 // Get progress for a specific user
 router.get('/progress/:userId', getUserCourseProgress);
+//get progress for specific course
+router.get('progress/:userId/:courseId',getUserCourseSpecificProgress)
 //Get course details route--------------------------//
 router.get('/getCourse', userGetCourses);
 //get course by id--------------------------------//
