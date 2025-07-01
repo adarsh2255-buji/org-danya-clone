@@ -20,7 +20,7 @@ const ContactUsForm = () => {
 
   return (
     <div className="w-full overflow-hidden min-h-screen bg-gradient-to-r from-[#141021] to-[#5e3d1f] text-white py-10 px-4">
-      <div className="w-full max-w-[1700px] mx-auto flex flex-col md:flex-row md:gap-[60px]">
+      <div className="w-full max-w-[1728px] mx-auto flex flex-col md:flex-row md:gap-[60px]">
         {/* LEFT COLUMN */}
         <div className="w-full md:w-[50%] flex flex-col justify-between gap-10 px-4 md:pl-[100px]">
           {/* Description */}
@@ -54,7 +54,7 @@ const ContactUsForm = () => {
           </div>
 
           {/* Social Icons */}
-          <div className="flex flex-wrap gap-[15px] md:gap-[17.5px]">
+          <div className="flex gap-[15px] md:gap-[17.5px]">
             {socialIcons.map((icon, i) => (
               <div
                 key={i}
@@ -74,7 +74,7 @@ const ContactUsForm = () => {
         <div className="w-full md:w-[50%] flex flex-col justify-center items-center gap-[30px] md:gap-[40px] px-4 md:pr-[100px]">
           {/* Heading + Description */}
           <div className="w-full max-w-[802px] text-center flex flex-col gap-[10px] md:gap-[20px]">
-            <h2 className="hidden md:block font-libre font-bold text-[50px] text-[#FFC100]">
+            <h2 className=" font-libre font-bold text-[#FFC100] text-[18px] md:text-[50px] leading-[100%] tracking-[0.02em] text-center w-full md:w-auto whitespace-nowrap">
               You’re ready to take the next step
             </h2>
             <p className="font-urbanist font-semibold text-[12px] md:text-[24px] leading-[16px] md:leading-[32px] pb-10">
