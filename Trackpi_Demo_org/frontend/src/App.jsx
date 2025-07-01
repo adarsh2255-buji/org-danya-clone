@@ -26,7 +26,9 @@ import Home from './Pages/Homepage';
 import Faq2 from './Pages/Faq2';
 import PrivateRoute from './routes/PrivateRoutes';
 import CourseSection from './Pages/CourseSection';
+
 import StartCourse from './Pages/StartCourse';
+import ContactUsPage from './Pages/ContactUsPage';
 
 function Layout() {
   const location = useLocation();
@@ -43,6 +45,7 @@ function Layout() {
       <Routes>
         {/* public route */}
         <Route path="/" element={<Home />} />
+        <Route path="/contactUs" element={<ContactUsPage />} />
 
         {/* protected route */}
         <Route element={<PrivateRoute />}>
