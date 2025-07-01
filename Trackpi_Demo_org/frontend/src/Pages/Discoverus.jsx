@@ -545,29 +545,34 @@ function Discoverus() {
 
     //// Responsive code
 
-    <div className="main-wrapper">
+   
+
+
+    
+<div className="main-wrapper">
       {/* Hero Section */}
-      <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-[url('/bg.png')] bg-cover bg-center px-4">
+      <div className="min-h-screen flex flex-col md:flex-row items-center justify-center bg-[url('/bg.png')] bg-cover bg-center px-4 md:relative md:-left-6 md:-top-8">
+
         {/* Left Side */}
         <div className="leftside mt-12 md:mt-48 ml-0 md:ml-24 w-full md:w-[768px] h-auto md:h-[611px]">
           <div className="header w-full md:w-[768px] h-auto md:h-[147px] flex flex-col justify-between p-0.5 box-border">
             <div className="h1div w-full md:w-[628px] h-auto">
-              <h1 className="text-4xl md:text-6xl font-bold text-white">
+              <h1 className="text-[26px] md:text-[60px] font-bold text-white font-[Montserrat]">
                 Welcome to <span className="text-yellow-600">TrackPi</span>
               </h1>
             </div>
             <div className="h2div w-full md:w-[700px] h-auto">
-              <h2 className="text-2xl md:text-[42px] mt-2 font-raleway font-semibold whitespace-nowrap text-white">
+              <h2 className="text-[18px] md:text-[42px] mt-2 font-raleway font-semibold whitespace-nowrap text-white">
                 Your strategic Growing partner
               </h2>
             </div>
           </div>
 
-          <p className="text-lg md:text-[22px] mt-5 leading-relaxed font-roboto font-medium text-white">
+          <p className="text-[18px] md:text-[22px] mt-5 leading-relaxed font-roboto font-medium text-white">
             Trackpi is one of the best business consulting firms in Kerala. We have a highly experienced team that develops strategies to promote growth and development. With our expert consulting services, we help businesses thrive in a competitive environment.
           </p>
 
-          <p className="text-lg md:text-[22px] mt-5 font-roboto font-medium text-white">
+          <p className="text-[18px] md:text-[22px] mt-5 font-roboto font-medium text-white">
             Trackpi is building Kerala’s largest freelance community, where anyone can join instantly upon completing their freelance course. Focused on innovation and client-centric excellence, Trackpi empowers businesses and individuals for sustainable success.
           </p>
           <div className="button-group mt-7 flex flex-wrap sm:flex-nowrap justify-center sm:justify-start gap-5 w-full sm:w-auto">
@@ -625,10 +630,10 @@ function Discoverus() {
       </div>
 
       {/* Spacer */}
-      <div className="w-full max-w-[1512px] h-[50px] mx-auto my-8"></div>
+
 
       {/* Social Section */}
-      <div className="w-full max-w-[1512px] h-auto relative px-4">
+      <div className="w-full max-w-[1512px] h-auto relative px-4 ">
         <h2 className="text-3xl md:text-4xl font-bold text-orange-400 mb-4 text-center pt-6">
           Our Social Networks
         </h2>
@@ -771,7 +776,7 @@ function Discoverus() {
 
           {/* Mobile View */}
           <div className="flex md:hidden relative w-full justify-center mt-10">
-           <div className="relative mx-auto" style={{ width: "313px", height: "auto" }}>
+            <div className="relative mx-auto" style={{ width: "313px", height: "auto" }}>
 
               {/* Row Template */}
               <div className="flex flex-col gap-5">
@@ -932,66 +937,66 @@ function Discoverus() {
         />
 
         {/* Main Content */}
-        <div className="relative z-10 pt-[125px] px-4 lg:px-[70px] w-full">
-          <div className="w-full flex flex-col gap-[100px]">
+        <div className="relative z-10 pt-10 md:pt-[125px] w-full">
+          <div className="w-full max-w-[1512px] px-4 sm:px-6 md:px-8 lg:px-[70px] mx-auto">
+            <div className="w-full flex flex-col gap-[40px] md:gap-[80px] lg:gap-[100px]">
+              {/* Our Commitment Section */}
+              <div className="w-full flex flex-col lg:flex-row justify-between gap-[28px]">
+                <div className="w-full lg:w-[762px] flex flex-col gap-[28px]">
+                  <h2 className="w-full flex justify-center lg:justify-start items-center text-[24px] sm:text-[28px] md:text-[38px] lg:text-[46px] font-bold font-roboto text-white leading-none text-center lg:text-left whitespace-nowrap overflow-hidden text-ellipsis">
+                    <span>Our Commitment</span>
+                    <span className="ml-1 sm:ml-2 font-raleway font-semibold text-orange-400">– Our Mission</span>
+                  </h2>
 
-            {/* Our Commitment Section */}
-            <div className="w-full flex flex-col lg:flex-row justify-between gap-[28px]">
-              <div className="w-full lg:w-[762px] flex flex-col gap-[28px]">
-                <h2 className="w-full flex justify-center lg:justify-start items-center text-[24px] sm:text-[28px] md:text-[38px] lg:text-[46px] font-bold font-roboto text-white leading-none text-center lg:text-left whitespace-nowrap overflow-hidden text-ellipsis">
-  <span>Our Commitment</span>
-  <span className="ml-1 sm:ml-2 font-raleway font-semibold text-orange-400">– Our Mission</span>
-</h2>
-
-                <p className="text-white text-[18px] md:text-[24px] font-roboto font-medium leading-[32px] md:leading-[40px] text-justify capitalize">
-                  Trackpi Private Limited Is Dedicated To Empowering Businesses By Providing Strategic Insights, Innovative Solutions, And Hands-On Support To Drive Sustainable Growth And Operational Excellence. Through Services Such As Market Research, Digital Strategy, And Sales Outsourcing, Trackpi Aims To Enhance Business Performance, Optimize Processes, And Build Long-Term Partnerships. The Company Is Committed To Delivering Tailored Strategies That Help Businesses Adapt, Compete, And Thrive In A Dynamic Marketplace. Additionally, Trackpi Is Focused On Nurturing Talent By Fostering Kerala’s Largest Freelance Community, Providing Aspiring Freelancers With The Skills And Opportunities To Succeed In The Digital Economy.
-                </p>
+                  <p className="px-4 sm:px-6 md:px-8 text-white text-[18px] md:text-[24px] font-roboto font-medium leading-[32px] md:leading-[40px] text-justify capitalize mb-0">
+                    Trackpi Private Limited Is Dedicated To Empowering Businesses By Providing Strategic Insights, Innovative Solutions, And Hands-On Support To Drive Sustainable Growth And Operational Excellence. Through Services Such As Market Research, Digital Strategy, And Sales Outsourcing, Trackpi Aims To Enhance Business Performance, Optimize Processes, And Build Long-Term Partnerships. The Company Is Committed To Delivering Tailored Strategies That Help Businesses Adapt, Compete, And Thrive In A Dynamic Marketplace. Additionally, Trackpi Is Focused On Nurturing Talent By Fostering Kerala’s Largest Freelance Community, Providing Aspiring Freelancers With The Skills And Opportunities To Succeed In The Digital Economy.
+                  </p>
+                </div>
+                <div className="w-full lg:w-[550px] h-[300px] md:h-[500px]">
+                  <img src="/chess img1.png" alt="Our Mission" className="w-full h-full object-cover rounded-md mb-0" />
+                </div>
               </div>
-              <div className="w-full lg:w-[550px] h-[300px] md:h-[500px]">
-                <img src="/chess img1.png" alt="Our Mission" className="w-full h-full object-cover rounded-md" />
+
+              {/* Our Aspiration Section */}
+              <div className="w-full flex flex-col-reverse lg:flex-row justify-between gap-[60px]">
+                <div className="w-full lg:w-[550px] h-[300px] md:h-[500px] rounded-[15px] overflow-hidden">
+                  <img src="/brick img.png" alt="Vision Visual" className="w-full h-full object-cover mb-0" />
+                </div>
+                <div className="w-full lg:w-[762px] flex flex-col gap-[28px] items-center lg:items-start">
+                  <h2 className="text-[24px] sm:text-[28px] md:text-[38px] lg:text-[48px] font-bold font-roboto text-white flex justify-center lg:justify-start items-center text-center lg:text-left whitespace-nowrap overflow-hidden text-ellipsis">
+                    <span>Our Aspiration</span>
+                    <span className="ml-1 sm:ml-2 font-raleway font-semibold text-orange-400">– Our Vision</span>
+                  </h2>
+                  <p className="px-4 sm:px-6 md:px-8 text-white text-[18px] md:text-[24px] font-roboto font-medium leading-[32px] md:leading-[40px] text-justify capitalize mb-0">
+                    Trackpi Envisions Itself As A Leading Strategic Growth Partner, Helping Businesses Navigate Challenges And Achieve Long-Term Success Through Innovation, Expertise, And Client-Focused Solutions. The Company Strives To Be At The Forefront Of Business Transformation, Continuously Evolving To Meet Market Demands And Create Impactful Solutions. By Fostering A Collaborative And Knowledge-Driven Ecosystem, Trackpi Aims To Empower Businesses And Individuals Alike, Positioning Itself As A Key Player In Driving Economic Growth And Professional Development Across Industries.
+                  </p>
+                </div>
+              </div>
+
+              {/* Our Standards Section */}
+              <div className="w-full flex flex-col lg:flex-row justify-between gap-[60px]">
+                <div className="w-full lg:w-[742px] flex flex-col justify-start gap-[28px]">
+                  <h2 className="text-[24px] sm:text-[28px] md:text-[38px] lg:text-[48px] font-bold font-roboto text-white flex justify-center lg:justify-start items-center text-center lg:text-left capitalize whitespace-nowrap overflow-hidden text-ellipsis">
+                    <span className="mr-1 sm:mr-2">Our Standards</span>
+                    <span className="font-raleway font-semibold text-orange-400">– Our Values</span>
+                  </h2>
+                  <ul className="list-disc pl-6 text-white font-roboto text-[18px] md:text-[24px] leading-[32px] md:leading-[36px] capitalize text-justify space-y-2 mb-0">
+                    <li><strong>Empowerment</strong> – Helping businesses grow with strategic insights and support.</li>
+                    <li><strong>Innovation</strong> – Encouraging new technologies and creative solutions.</li>
+                    <li><strong>Sustainability</strong> – Promoting responsible growth that benefits both people and the planet.</li>
+                    <li><strong>Client-Centric Excellence</strong> – Delivering tailored solutions with a focus on long-term success.</li>
+                    <li><strong>Community Development</strong> – Building Kerala’s largest freelance community and fostering talent.</li>
+                  </ul>
+                </div>
+                <div className="w-full lg:w-[570px] h-[300px] md:h-[500px]">
+                  <img src="/values img.png" alt="Our Values" className="w-full h-full object-cover rounded-[15px] mb-0" />
+                </div>
               </div>
             </div>
-
-            {/* Our Aspiration Section */}
-            <div className="w-full flex flex-col-reverse lg:flex-row justify-between gap-[60px]">
-              <div className="w-full lg:w-[550px] h-[300px] md:h-[500px] rounded-[15px] overflow-hidden">
-                <img src="/brick img.png" alt="Vision Visual" className="w-full h-full object-cover" />
-              </div>
-              <div className="w-full lg:w-[762px] flex flex-col gap-[28px] items-center lg:items-start">
-  <h2 className="text-[24px] sm:text-[28px] md:text-[38px] lg:text-[48px] font-bold font-roboto text-white flex justify-center lg:justify-start items-center text-center lg:text-left whitespace-nowrap overflow-hidden text-ellipsis">
-    <span>Our Aspiration</span>
-    <span className="ml-1 sm:ml-2 font-raleway font-semibold text-orange-400">– Our Vision</span>
-  </h2>
-                <p className="text-white text-[18px] md:text-[24px] font-roboto font-medium leading-[32px] md:leading-[40px] text-justify capitalize">
-                  Trackpi Envisions Itself As A Leading Strategic Growth Partner, Helping Businesses Navigate Challenges And Achieve Long-Term Success Through Innovation, Expertise, And Client-Focused Solutions. The Company Strives To Be At The Forefront Of Business Transformation, Continuously Evolving To Meet Market Demands And Create Impactful Solutions. By Fostering A Collaborative And Knowledge-Driven Ecosystem, Trackpi Aims To Empower Businesses And Individuals Alike, Positioning Itself As A Key Player In Driving Economic Growth And Professional Development Across Industries.
-                </p>
-              </div>
-            </div>
-
-
-            {/* Our Standards Section */}
-            <div className="w-full flex flex-col lg:flex-row justify-between gap-[60px]">
-              <div className="w-full lg:w-[742px] flex flex-col justify-start gap-[28px]">
-              <h2 className="text-[24px] sm:text-[28px] md:text-[38px] lg:text-[48px] font-bold font-roboto text-white flex justify-center lg:justify-start items-center text-center lg:text-left capitalize whitespace-nowrap overflow-hidden text-ellipsis">
-  <span className="mr-1 sm:mr-2">Our Standards</span>
-  <span className="font-raleway font-semibold text-orange-400">– Our Values</span>
-</h2>
-                <ul className="list-disc pl-6 text-white font-roboto text-[18px] md:text-[24px] leading-[32px] md:leading-[36px] capitalize text-justify space-y-2">
-                  <li><strong>Empowerment</strong> – Helping businesses grow with strategic insights and support.</li>
-                  <li><strong>Innovation</strong> – Encouraging new technologies and creative solutions.</li>
-                  <li><strong>Sustainability</strong> – Promoting responsible growth that benefits both people and the planet.</li>
-                  <li><strong>Client-Centric Excellence</strong> – Delivering tailored solutions with a focus on long-term success.</li>
-                  <li><strong>Community Development</strong> – Building Kerala’s largest freelance community and fostering talent.</li>
-                </ul>
-              </div>
-              <div className="w-full lg:w-[570px] h-[300px] md:h-[500px]">
-                <img src="/values img.png" alt="Our Values" className="w-full h-full object-cover rounded-[15px]" />
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
+
 
       <div
         className="w-auto  sm:w-[1512px] h-[50.28px] sm:h-[120px] overflow-x-auto whitespace-nowrap scroll-smooth flex items-center gap-[20px] px-4 snap-x snap-mandatory mt-0 md:mt-[90px]"
@@ -1044,10 +1049,6 @@ function Discoverus() {
 
 
     </div>
-
-
-    
-
 
 
   );
