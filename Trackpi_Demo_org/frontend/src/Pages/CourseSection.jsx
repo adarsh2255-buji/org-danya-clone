@@ -38,6 +38,7 @@ const CourseSection = () => {
     };
     getCourseLIst()
   }, []);
+ 
 
 
 
@@ -169,7 +170,7 @@ const CourseSection = () => {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 px-4 py-6">
           {courseList.map((course, i) => (
             <div
-            onClick={() => navigate(`/new/${course._id}`)}
+            onClick={() => navigate(`/video/${course._id}`)}
              key={course._id}
               className="relative w-full h-[90px] bg-black rounded-[50px] sm:h-[150px] sm:mb-5 sm:w-[260px] sm:rounded-[100px] overflow-hidden text-white font-roboto flex items-center justify-center cursor-pointer"
             >
