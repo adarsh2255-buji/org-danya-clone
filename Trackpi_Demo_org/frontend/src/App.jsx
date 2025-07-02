@@ -29,7 +29,7 @@ import CourseSection from './Pages/CourseSection';
 
 import StartCourse from './Pages/StartCourse';
 import ContactUsPage from './Pages/ContactUsPage';
-
+import About from './Pages/Aboutpage'
 function Layout() {
   const location = useLocation();
   const isHome = location.pathname === '/';
@@ -45,11 +45,13 @@ function Layout() {
       <Routes>
         {/* public route */}
         <Route path="/" element={<Home />} />
-        <Route path="/contactUs" element={<ContactUsPage />} />
+        <Route path="/connectUs" element={<ContactUsPage />} />
+        <Route path="/about" element={<About />} />
 
         {/* protected route */}
         <Route element={<PrivateRoute />}>
             <Route path="/discoverUs" element={<Discoverus />} />
+            
             <Route path="/startCourse" element={<StartCourse />} />
             <Route path="/courseSection" element={<CourseSection />} />
             <Route path="/viewCourse" element ={<ViewCourses/>}/> {/** admin course view route for temporary use*/}
