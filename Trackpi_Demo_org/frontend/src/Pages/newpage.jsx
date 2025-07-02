@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
@@ -12,7 +11,6 @@ export default function NewPage() {
   const { user } = useContext(AuthContext);
   
   const [activeIndex, setActiveIndex] = useState(0);
-  const [selectedVideo, setSelectedVideo] = useState(null);
   const [course, setCourse] = useState(null);
   const [unlockedIndex, setUnlockedIndex] = useState(0);
   const [userProgress, setUserProgress] = useState([]);
@@ -95,17 +93,17 @@ export default function NewPage() {
   const handleVideoSelect = (video, index) => {
     // Only allow selection if video is unlocked
     if (index <= unlockedIndex) {
-      setSelectedVideo(video);
       setActiveIndex(index);
     }
   };
 
   // Handle next video navigation
-  const handleNextVideo = () => {
+  const handleNextVideo = async () => {
     const nextIndex = activeIndex + 1;
-    if (course && nextIndex < course.videoDetails.length && nextIndex <= unlockedIndex) {
+    if (course && nextIndex < course.videoDetails.length) {
+      setUnlockedIndex((prev) => Math.max(prev, nextIndex));
       setActiveIndex(nextIndex);
-      setSelectedVideo(course.videoDetails[nextIndex]);
+      // Do NOT call fetchProgress() here; let optimistic UI handle unlocking
     }
   };
 
@@ -121,17 +119,21 @@ export default function NewPage() {
     }
   }, [course, user?.userId]);
 
-  // Set initial selected video when course loads
+  // Set initial activeIndex when course loads
   useEffect(() => {
-    if (course?.videoDetails?.length > 0 && !selectedVideo) {
-      setSelectedVideo(course.videoDetails[0]);
+    if (course?.videoDetails?.length > 0) {
       setActiveIndex(0);
     }
-  }, [course, selectedVideo]);
+  }, [course]);
 
   if (!course) {
     return <div className="text-white p-10">No course data available.</div>;
   }
+
+  const selectedVideo = course?.videoDetails?.[activeIndex];
+
+  // Debug: log the selected video object
+  console.log("Selected video:", selectedVideo);
 
   return (
     <>

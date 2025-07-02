@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import squreLock from '../assets/square-lock-02.png'
 import CourseDetailsPopUp from './CourseDetailsPopUp';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import axios from 'axios';
-
-
+import { AuthContext } from '../context/AuthContext';
 
 const CourseSection = () => {
   const scrollRef = useRef(null);
@@ -13,34 +12,31 @@ const CourseSection = () => {
   const [selectedCourse, setSelectedCourse] = useState(null)
   const [isOpen, setIsOpen] = useState(false);
   const [courseList, setCourseList] = useState([])
+  const [userProgress, setUserProgress] = useState([]);
+  const { user } = useContext(AuthContext);
 
   const navigate = useNavigate()
 
-
- const videoList =  [
-                    { _id: "1", courseName: "HTML", completed: true },
-                    { _id: "2", courseName: "CSS", completed: true },
-                    { _id: "3", courseName: "JS", completed: true },
-                  ]
-
-
-
-  // get course list details
+  // get course list and user progress
   useEffect(() => {
-    const getCourseLIst = async () => {
+    const getCourseListAndProgress = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/getCourse")
-        setCourseList(res.data)
+        const res = await axios.get("http://localhost:5000/getCourse");
+        setCourseList(res.data);
 
+        // Fetch user progress if user is logged in
+        if (user?.userId) {
+          const progressRes = await axios.get(`http://localhost:5000/progress/${user.userId}`);
+          if (progressRes.data.success) {
+            setUserProgress(progressRes.data.progress);
+          }
+        }
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
     };
-    getCourseLIst()
-  }, []);
- 
-
-
+    getCourseListAndProgress();
+  }, [user]);
 
   // scroll left and right
   const scroll = (direction) => {
@@ -51,7 +47,7 @@ const CourseSection = () => {
   };
 
   //swipe left and right
-    const handleTouchStart = (e) => {
+  const handleTouchStart = (e) => {
     setTouchStartX(e.touches[0].clientX);
   };
 
@@ -70,7 +66,6 @@ const CourseSection = () => {
     setTouchStartX(null)
   }
 
-  
   return (
     <>
     <section className='container-search px-5 '>
@@ -105,10 +100,20 @@ const CourseSection = () => {
             className="courseList  h-[122px] mt-8 flex gap-5 overflow-x-auto no-scrollbar scroll-smooth"
             >
             {courseList.map((course, index) => {
-              //determine of the course should be locked
+              // Find progress for this course
+              const courseProgress = userProgress.find(
+                p => (p.courseId?._id || p.courseId) === course._id
+              );
+              const isCompleted = courseProgress?.isCompleted;
+
+              // The first course is always unlocked, others are unlocked if the previous is completed
               const isFirst = index === 0;
-              const PrevCompleted = index > 0 && courseList[index -1]?.completed;
-              const isLocked = !isFirst && !PrevCompleted;
+              const prevCourse = courseList[index - 1];
+              const prevProgress = userProgress.find(
+                p => (p.courseId?._id || p.courseId) === prevCourse?._id
+              );
+              const prevCompleted = prevProgress?.isCompleted;
+              const isLocked = !isFirst && !prevCompleted;
 
               return(
                 <div
@@ -129,18 +134,18 @@ const CourseSection = () => {
                           className="absolute inset-0 m-auto w-6 h-6 z-10"
                               />
                       )}
-                      
-
-                              {/* Content */}
+                      {/* Completed checkmark (optional) */}
+                      {isCompleted && !isLocked && (
+                        <span className="absolute top-2 right-2 text-green-400 font-bold text-lg z-10">✓</span>
+                      )}
+                      {/* Content */}
                       <div className="flex justify-between items-end h-full px-3 pb-1 z-20">
                           <p className="text-white text-base font-semibold roboto" >{course.courseName}</p>
                           <p className="text-white roboto text-[10px] font-medium roboto">2 hours</p>
                       </div>
               </div>
               )
-            
-
-})}
+            })}
           </section>
           {/* Right Button */}
             <button
@@ -220,12 +225,7 @@ const CourseSection = () => {
             </div>
           ))}
         </div>
-
-
-
     </section>
-
-    
     </>
   )
 }
