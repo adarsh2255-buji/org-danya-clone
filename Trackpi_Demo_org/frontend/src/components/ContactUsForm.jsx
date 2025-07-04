@@ -12,10 +12,10 @@ const ContactUsForm = () => {
     { src: facebookLogo, alt: "Facebook", padding: "p-[4px]" },
     { src: youtubeLogo, alt: "YouTube" },
     { src: instagramLogo, alt: "Instagram" },
-    { src: MLogo, alt: "Medium"},
-    { src: linkedinLogo, alt: "LinkedIn"},
+    { src: MLogo, alt: "Medium" },
+    { src: linkedinLogo, alt: "LinkedIn" },
     { src: searchLogo, alt: "Search" },
-    { src: blogLogo, alt: "Blog", },
+    { src: blogLogo, alt: "Blog" },
   ];
 
   return (
@@ -25,9 +25,10 @@ const ContactUsForm = () => {
         <div className="w-[660px] md:w-[50%] ml-0 flex flex-col justify-between gap-10 md:pl-[100px] overflow-hidden">
           {/* Description */}
           <div className="max-w-[442px]">
-            <p className="font-urbanist font-semibold text-[12px] md:text-[24px] leading-[100%] text-left ">
+            <p className="font-urbanist font-semibold text-[12px] md:text-[24px] leading-[100%] text-left">
               For inquiries about our services,
-              <br />
+            </p>
+            <p className="font-urbanist font-semibold text-[12px] md:text-[24px] leading-[100%] text-left">
               Please fill your details or email us directly.
             </p>
           </div>
@@ -71,10 +72,10 @@ const ContactUsForm = () => {
         </div>
 
         {/* RIGHT COLUMN */}
-        <div className="w-full md:w-[802px] flex flex-col justify-center items-center gap-[20px] md:gap-[40px] px-4  md:pr-[100px]">
+        <div className="w-full md:w-[802px] flex flex-col justify-center items-center gap-[20px] md:gap-[40px] px-4 md:pr-[100px]">
           {/* Heading + Description */}
           <div className="max-w-[802px] text-center flex flex-col gap-[10px] md:gap-[20px]">
-            <h2 className=" font-libre font-bold text-[#FFC100] text-[18px] md:text-[50px] leading-[100%] tracking-[0.02em] text-center w-full md:w-auto whitespace-nowrap">
+            <h2 className="font-libre font-bold text-[#FFC100] text-[18px] md:text-[50px] leading-[100%] tracking-[0.02em] text-center w-full md:w-auto whitespace-nowrap">
               You’re ready to take the next step
             </h2>
             <p className="font-urbanist font-semibold text-[12px] md:text-[24px] leading-[16px] md:leading-[32px]">
@@ -102,7 +103,7 @@ const ContactUsForm = () => {
               ))}
 
               <select className="w-full h-[32px] md:h-[52px] px-[20px] py-[4px] text-[#0A0A0ACC] rounded-[8.9px] text-[10px] md:text-[18px] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]">
-                <option >How Did You Hear About Us?</option>
+                <option>How Did You Hear About Us?</option>
                 <option>Google</option>
                 <option>Social Media</option>
                 <option>Referral</option>
