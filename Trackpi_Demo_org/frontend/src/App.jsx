@@ -1,46 +1,52 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+const path = location.pathname;
 
-import Header from './components/Header';
-import Background from './components/Background';
-import Background2 from './components/Background2';
-import AddCourseForm from './Pages/AddCourseForm';
-import CourseDetailsPopUp from './Pages/CourseDetailsPopUp';
-import MainAssessment from './Pages/MainAssessment';
-import HelpCenter from './Pages/HelpCenter';
-import AssessmentFirstPopup from './Pages/AssessmentFirstPopup';
-import AssessmentPassedPopup from './Pages/AssessmentPassedPopup';
-import AssessmentFailedPopup from './Pages/AssessmentFailedPopup';
-import AssesmentTimeUpPopup from './Pages/AssesmentTimeUpPopup';
-import Discoverus from './Pages/Discoverus';
+import Header from "./components/Header";
+import Background from "./components/Background";
+import Background2 from "./components/Background2";
+import AddCourseForm from "./Pages/AddCourseForm";
+import CourseDetailsPopUp from "./Pages/CourseDetailsPopUp";
+import MainAssessment from "./Pages/MainAssessment";
+import HelpCenter from "./Pages/HelpCenter";
+import AssessmentFirstPopup from "./Pages/AssessmentFirstPopup";
+import AssessmentPassedPopup from "./Pages/AssessmentPassedPopup";
+import AssessmentFailedPopup from "./Pages/AssessmentFailedPopup";
+import AssesmentTimeUpPopup from "./Pages/AssesmentTimeUpPopup";
+import Discoverus from "./Pages/Discoverus";
 
-import AssessmentTimupCongrats from './Pages/AssessmentTimupCongrats';
+import AssessmentTimupCongrats from "./Pages/AssessmentTimupCongrats";
 
-import AssessmentFeedback from './Pages/AssessmentFeedback';
-import AssessmentFeedbackEnter from './Pages/AssessmentFeedbackEnter';
+import AssessmentFeedback from "./Pages/AssessmentFeedback";
+import AssessmentFeedbackEnter from "./Pages/AssessmentFeedbackEnter";
 
+import ViewCourses from "./Pages/ViewCourse";
+import NewPage from "./Pages/newpage";
+import Home from "./Pages/Homepage";
+import Faq2 from "./Pages/Faq2";
+import PrivateRoute from "./routes/PrivateRoutes";
+import CourseSection from "./Pages/CourseSection";
 
-import ViewCourses from './Pages/ViewCourse';
-import NewPage from './Pages/newpage';
-import Home from './Pages/Homepage';
-import Faq2 from './Pages/Faq2';
-import PrivateRoute from './routes/PrivateRoutes';
-import CourseSection from './Pages/CourseSection';
-
-import StartCourse from './Pages/StartCourse';
-import ContactUsPage from './Pages/ContactUsPage';
+import StartCourse from "./Pages/StartCourse";
+import ContactUsPage from "./Pages/ContactUsPage";
 
 function Layout() {
   const location = useLocation();
-  const isHome = location.pathname === '/';
+  const isHome = path === "/";
+  const isContact = path === "/contactUs";
 
   return (
     <div className="relative min-h-screen min-w-full">
       {/* Conditionally render background */}
-      {isHome ? <Background2 /> : <Background />}
+      {!isContact && (isHome ? <Background2 /> : <Background />)}
 
       {/* Conditionally render header */}
-      {!isHome && <Header />}
+      {!isHome && !isContact && <Header />}
 
       <Routes>
         {/* public route */}
@@ -49,32 +55,50 @@ function Layout() {
 
         {/* protected route */}
         <Route element={<PrivateRoute />}>
-            <Route path="/discoverUs" element={<Discoverus />} />
-            <Route path="/startCourse" element={<StartCourse />} />
-            <Route path="/courseSection" element={<CourseSection />} />
-            <Route path="/viewCourse" element ={<ViewCourses/>}/> {/** admin course view route for temporary use*/}
-            <Route path="/addCourse" element={<AddCourseForm />} />  {/** admin course adding route for temporary use*/}
-            <Route path="/courseDetailsPopUp" element={<CourseDetailsPopUp />} />
-            <Route path="/MainAssessment" element={<MainAssessment />} />
-            <Route path="/Assessmententer-popup" element={<AssessmentFirstPopup />} />
-            <Route path="/AssessmentPassedPopup" element={<AssessmentPassedPopup />} />
-            <Route path="/AssessmentFailedPopup" element={<AssessmentFailedPopup />} />
-            <Route path="/AssessmentTimupPopup" element={<AssesmentTimeUpPopup />} />
-            <Route path="/AssessmentTimupCongrats" element={<AssessmentTimupCongrats />} />
-            <Route path="/HelpCenter" element={<HelpCenter />} />
-            <Route path="/AssessmentfeedbackEnter" element={<AssessmentFeedbackEnter />} />
-             <Route path="/Assessmentfeedbackpopup" element={<AssessmentFeedback />} />
-            <Route path="/faq" element={<Faq2 />} />
-            <Route path="/video/:courseId" element={<NewPage />} />
+          <Route path="/discoverUs" element={<Discoverus />} />
+          <Route path="/startCourse" element={<StartCourse />} />
+          <Route path="/courseSection" element={<CourseSection />} />
+          <Route path="/viewCourse" element={<ViewCourses />} />{" "}
+          {/** admin course view route for temporary use*/}
+          <Route path="/addCourse" element={<AddCourseForm />} />{" "}
+          {/** admin course adding route for temporary use*/}
+          <Route path="/courseDetailsPopUp" element={<CourseDetailsPopUp />} />
+          <Route path="/MainAssessment" element={<MainAssessment />} />
+          <Route
+            path="/Assessmententer-popup"
+            element={<AssessmentFirstPopup />}
+          />
+          <Route
+            path="/AssessmentPassedPopup"
+            element={<AssessmentPassedPopup />}
+          />
+          <Route
+            path="/AssessmentFailedPopup"
+            element={<AssessmentFailedPopup />}
+          />
+          <Route
+            path="/AssessmentTimupPopup"
+            element={<AssesmentTimeUpPopup />}
+          />
+          <Route
+            path="/AssessmentTimupCongrats"
+            element={<AssessmentTimupCongrats />}
+          />
+          <Route path="/HelpCenter" element={<HelpCenter />} />
+          <Route
+            path="/AssessmentfeedbackEnter"
+            element={<AssessmentFeedbackEnter />}
+          />
+          <Route
+            path="/Assessmentfeedbackpopup"
+            element={<AssessmentFeedback />}
+          />
+          <Route path="/faq" element={<Faq2 />} />
+          <Route path="/video/:courseId" element={<NewPage />} />
         </Route>
-
-
-        
       </Routes>
     </div>
   );
 }
-
-
 
 export default Layout;
