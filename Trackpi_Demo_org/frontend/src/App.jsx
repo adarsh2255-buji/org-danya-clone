@@ -26,10 +26,15 @@ import Home from './Pages/Homepage';
 import Faq2 from './Pages/Faq2';
 import PrivateRoute from './routes/PrivateRoutes';
 import CourseSection from './Pages/CourseSection';
+import CourseSectionForm from './Pages/CourseSectionForm';
+import CourseSectionList from './Pages/CourseSectionList';
+import CloudinaryTest from './Pages/CloudinaryTest';
+import SimpleTest from './Pages/SimpleTest';
 
 import StartCourse from './Pages/StartCourse';
 import ContactUsPage from './Pages/ContactUsPage';
 import About from './Pages/Aboutpage'
+import UpdateCourseSection from './Pages/UpdateCourseSection';
 function Layout() {
   const location = useLocation();
   const isHome = location.pathname === '/';
@@ -54,6 +59,11 @@ function Layout() {
             
             <Route path="/startCourse" element={<StartCourse />} />
             <Route path="/courseSection" element={<CourseSection />} />
+            <Route path="/courseSectionForm" element={<CourseSectionForm />} />
+            <Route path="/courseSectionList" element={<CourseSectionList />} />
+            <Route path="/updateCourse" element={<UpdateCourseSection />} />
+            <Route path="/cloudinaryTest" element={<CloudinaryTest />} />
+            <Route path="/simpleTest" element={<SimpleTest />} />
             <Route path="/viewCourse" element ={<ViewCourses/>}/> {/** admin course view route for temporary use*/}
             <Route path="/addCourse" element={<AddCourseForm />} />  {/** admin course adding route for temporary use*/}
             <Route path="/courseDetailsPopUp" element={<CourseDetailsPopUp />} />

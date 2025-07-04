@@ -3,6 +3,9 @@ import Signup from "../models/usermodel/signup.js"
 import UserCourseProgress from '../models/usermodel/userCourseProgress.js';
 import Course from "../models/adminmodel/course.js"
 import UserAssessment from '../models/usermodel/userAssessment.js';
+import User from '../models/usermodel/User.js';
+import CourseSection from '../models/adminmodel/CourseSection.js';
+
 
 // to generate a token
 export const generateToken = (user) => {
@@ -319,5 +322,67 @@ export const submitAssessment = async (req, res) => {
     res.status(200).json({ success: true, passed, correctCount });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
+  }
+};
+
+
+
+// Adarsh
+
+
+//get watched videos
+export const getWatchedVideos = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.user.email });
+    if(!user) return res.status(404).json({ success: false, message: 'User not found' });
+    const entry = user.watchedVideos.find(wv => wv.courseId.toString() === req.params.courseId);
+    res.json({ videoIndex: entry ? entry.videoIndex : -1 });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error fetching watched videos', error: error.message });
+  }
+}
+
+// update watched videos
+export const updateWatchedVideos = async (req, res) => {
+  try {
+    const { courseId, videoIndex } = req.body;
+    const user = await User.findOne({ email: req.user.email });
+    if(!user) return res.status(404).json({ success: false, message: 'User not found' });
+    const entry = user.watchedVideos.find(wv => wv.courseId.toString() === courseId);
+    if(entry) {
+      if (videoIndex > entry.videoIndex) entry.videoIndex = videoIndex;
+    } else {
+      user.watchedVideos.push({ courseId, videoIndex });
+    }
+    await user.save();
+    console.log('req.body:', req.body);
+   
+    res.json({ success: true, message: 'Watched videos updated' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error updating watched videos', error: error.message });
+  }
+}
+
+// get all course sections for user
+export const getAllCourseSectionsForUser = async (req, res) => {
+  try {
+    const courseSections = await CourseSection.find();
+    res.status(200).json({ courseSections }); // Return as object
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Failed to fetch course sections', error: error.message });
+  }
+};
+
+// get course section by id
+export const getCourseSectionByIdForUser  = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const courseSection = await CourseSection.findById(id);
+    if (!courseSection) {
+      return res.status(404).json({ success: false, message: 'Course section not found' });
+    }
+    res.status(200).json(courseSection);
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Failed to fetch course section', error: error.message });
   }
 };

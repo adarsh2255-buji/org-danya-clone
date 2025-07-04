@@ -6,6 +6,8 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 
+
+
 const CourseSection = () => {
   const scrollRef = useRef(null);
   const [touchStartX, setTouchStartX] = useState(null)
@@ -13,30 +15,39 @@ const CourseSection = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [courseList, setCourseList] = useState([])
   const [userProgress, setUserProgress] = useState([]);
+
+
   const { user } = useContext(AuthContext);
+
+ 
 
   const navigate = useNavigate()
 
-  // get course list and user progress
-  useEffect(() => {
-    const getCourseListAndProgress = async () => {
-      try {
-        const res = await axios.get("http://localhost:5000/getCourse");
-        setCourseList(res.data);
-
-        // Fetch user progress if user is logged in
-        if (user?.userId) {
-          const progressRes = await axios.get(`http://localhost:5000/progress/${user.userId}`);
-          if (progressRes.data.success) {
-            setUserProgress(progressRes.data.progress);
+      // adarsh
+      useEffect(() => {
+        const fetchCourses = async () => {
+          try {
+          
+            const res = await axios.get('http://localhost:5000/api/user/get-all-course-sections', {
+              headers: {
+                Authorization: `Bearer ${user?.token}` 
+              }
+            });
+            console.log("Response data:", res.data.courseSections);
+            setCourseList(res.data.courseSections); 
+            
+          } catch (error) {
+            console.error("Failed to fetch course sections:", error.response?.data || error.message);
           }
+        };
+      
+        
+        if (user?.token) {
+          fetchCourses();
         }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getCourseListAndProgress();
-  }, [user]);
+      }, [user]);
+
+ 
 
   // scroll left and right
   const scroll = (direction) => {
@@ -64,6 +75,10 @@ const CourseSection = () => {
       }
     }
     setTouchStartX(null)
+
+
+
+
   }
 
   return (
@@ -140,8 +155,8 @@ const CourseSection = () => {
                       )}
                       {/* Content */}
                       <div className="flex justify-between items-end h-full px-3 pb-1 z-20">
-                          <p className="text-white text-base font-semibold roboto" >{course.courseName}</p>
-                          <p className="text-white roboto text-[10px] font-medium roboto">2 hours</p>
+                          <p className="text-white text-base font-semibold roboto" >{course.courseTitle}</p>
+                          <p className="text-white roboto text-[10px] font-medium roboto">{course.courseDuration} hours</p>
                       </div>
               </div>
               )
@@ -215,9 +230,9 @@ const CourseSection = () => {
 
               {/* Center content */}
               <div className="relative z-10 text-center flex flex-col  justify-center">
-                <p className="text-sm font-semibold sm:text-[20px] montserrat">{course.courseName}</p>
+                <p className="text-sm font-semibold sm:text-[20px] montserrat">{course.courseTitle}</p>
                 <div className="flex justify-center items-center gap-3 text-[10px] font-normal opacity-70">
-                  <span className='sm:text-sm sm:font-medium montserrat'>{course.videoDetails.length} Videos</span>
+                  <span className='sm:text-sm sm:font-medium montserrat'>{courseList.length} Videos</span>
                   <span className="text-white sm:text-sm sm:font-medium ">|</span>
                   <span className='sm:text-sm sm:font-medium montserrat'>30 Min</span>
                 </div>
