@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
             try {
                 const decoded = jwtDecode(finalToken);
                 localStorage.setItem("token", finalToken);
-                setUser(decoded);
+                setUser({ ...decoded, token: finalToken });
                 // Clean token from URL so it doesn't re-apply on refresh
         if (tokenFromURL) {
                 window.history.replaceState({}, document.title, window.location.pathname);

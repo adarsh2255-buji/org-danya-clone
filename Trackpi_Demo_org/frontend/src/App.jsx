@@ -32,9 +32,27 @@ import Faq2 from "./Pages/Faq2";
 import PrivateRoute from "./routes/PrivateRoutes";
 import CourseSection from "./Pages/CourseSection";
 
+<<<<<<< HEAD
 import StartCourse from "./Pages/StartCourse";
 import ContactUsPage from "./Pages/ContactUsPage";
 
+=======
+import ViewCourses from './Pages/ViewCourse';
+import NewPage from './Pages/newpage';
+import Home from './Pages/Homepage';
+import Faq2 from './Pages/Faq2';
+import PrivateRoute from './routes/PrivateRoutes';
+import CourseSection from './Pages/CourseSection';
+import CourseSectionForm from './Pages/CourseSectionForm';
+import CourseSectionList from './Pages/CourseSectionList';
+import CloudinaryTest from './Pages/CloudinaryTest';
+import SimpleTest from './Pages/SimpleTest';
+
+import StartCourse from './Pages/StartCourse';
+import ContactUsPage from './Pages/ContactUsPage';
+import About from './Pages/Aboutpage'
+import UpdateCourseSection from './Pages/UpdateCourseSection';
+>>>>>>> de1ee9dd658aa7fd2bc90fad7672d3403b0fb6b5
 function Layout() {
   const location = useLocation();
   const isHome = path === "/";
@@ -51,10 +69,12 @@ function Layout() {
       <Routes>
         {/* public route */}
         <Route path="/" element={<Home />} />
-        <Route path="/contactUs" element={<ContactUsPage />} />
+        <Route path="/connectUs" element={<ContactUsPage />} />
+        <Route path="/about" element={<About />} />
 
         {/* protected route */}
         <Route element={<PrivateRoute />}>
+<<<<<<< HEAD
           <Route path="/discoverUs" element={<Discoverus />} />
           <Route path="/startCourse" element={<StartCourse />} />
           <Route path="/courseSection" element={<CourseSection />} />
@@ -95,6 +115,31 @@ function Layout() {
           />
           <Route path="/faq" element={<Faq2 />} />
           <Route path="/video/:courseId" element={<NewPage />} />
+=======
+            <Route path="/discoverUs" element={<Discoverus />} />
+            
+            <Route path="/startCourse" element={<StartCourse />} />
+            <Route path="/courseSection" element={<CourseSection />} />
+            <Route path="/courseSectionForm" element={<CourseSectionForm />} />
+            <Route path="/courseSectionList" element={<CourseSectionList />} />
+            <Route path="/updateCourse" element={<UpdateCourseSection />} />
+            <Route path="/cloudinaryTest" element={<CloudinaryTest />} />
+            <Route path="/simpleTest" element={<SimpleTest />} />
+            <Route path="/viewCourse" element ={<ViewCourses/>}/> {/** admin course view route for temporary use*/}
+            <Route path="/addCourse" element={<AddCourseForm />} />  {/** admin course adding route for temporary use*/}
+            <Route path="/courseDetailsPopUp" element={<CourseDetailsPopUp />} />
+            <Route path="/MainAssessment" element={<MainAssessment />} />
+            <Route path="/Assessmententer-popup" element={<AssessmentFirstPopup />} />
+            <Route path="/AssessmentPassedPopup" element={<AssessmentPassedPopup />} />
+            <Route path="/AssessmentFailedPopup" element={<AssessmentFailedPopup />} />
+            <Route path="/AssessmentTimupPopup" element={<AssesmentTimeUpPopup />} />
+            <Route path="/AssessmentTimupCongrats" element={<AssessmentTimupCongrats />} />
+            <Route path="/HelpCenter" element={<HelpCenter />} />
+            <Route path="/AssessmentfeedbackEnter" element={<AssessmentFeedbackEnter />} />
+             <Route path="/Assessmentfeedbackpopup" element={<AssessmentFeedback />} />
+            <Route path="/faq" element={<Faq2 />} />
+            <Route path="/video/:courseId" element={<NewPage />} />
+>>>>>>> de1ee9dd658aa7fd2bc90fad7672d3403b0fb6b5
         </Route>
       </Routes>
     </div>

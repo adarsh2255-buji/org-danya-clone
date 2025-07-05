@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import facebookLogo from "../assets/contactfb.png";
 import youtubeLogo from "../assets/contactyoutube.png";
 import instagramLogo from "../assets/contactinsta.png";
@@ -8,6 +9,39 @@ import searchLogo from "../assets/contactsearch.png";
 import blogLogo from "../assets/contactblog.png";
 
 const ContactUsForm = () => {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    contactNumber: '',
+    email: '',
+    location: '',
+    hearAboutUs: '',
+    message: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/api/contact', formData);
+      alert(response.data.message);
+      setFormData({
+        fullName: '',
+        contactNumber: '',
+        email: '',
+        location: '',
+        hearAboutUs: '',
+        message: '',
+      });
+    } catch (error) {
+      console.error(error);
+      alert('Something went wrong. Please try again.');
+    }
+  };
+
   const socialIcons = [
     { src: facebookLogo, alt: "Facebook", padding: "p-[4px]" },
     { src: youtubeLogo, alt: "YouTube" },
@@ -40,11 +74,8 @@ const ContactUsForm = () => {
               { label: "Phone Number", value: "+91 8078179646" },
               { label: "E-Mail ID", value: "operations@trackpi.in" },
             ].map((item, i) => (
-              <div
-                key={i}
-                className="border-b border-white/50 pb-[10px] md:pb-[50px]"
-              >
-                <h3 className="font-urbanist font-extrabold text-[16px] md:text-[42px] leading-[36px] text-left">
+              <div key={i} className="border-b border-white/50 pb-[10px] md:pb-[50px]">
+                <h3 className="font-urbanist font-extrabold text-[24px] md:text-[42px] leading-[36px] text-left">
                   {item.label}
                 </h3>
                 <p className="font-urbanist font-semibold text-[18px] md:text-[36px] leading-[36px] text-left pt-4">
@@ -57,15 +88,8 @@ const ContactUsForm = () => {
           {/* Social Icons */}
           <div className="flex gap-[15px] md:gap-[17.5px] mb-8">
             {socialIcons.map((icon, i) => (
-              <div
-                key={i}
-                className={`w-[35px] h-[35px] md:w-[70px] md:h-[70px] rounded-[17.5px] flex items-center justify-center ${icon.padding || ""}`}
-              >
-                <img
-                  src={icon.src}
-                  alt={icon.alt}
-                  className="w-full h-full object-contain"
-                />
+              <div key={i} className={`w-[32px] h-[32px] md:w-[70px] md:h-[70px] rounded-[17.5px] flex items-center justify-center ${icon.padding || ""}`}>
+                <img src={icon.src} alt={icon.alt} className="w-full h-full object-contain" />
               </div>
             ))}
           </div>
@@ -87,41 +111,28 @@ const ContactUsForm = () => {
 
           {/* Form */}
           <div className="w-full max-w-[712px] flex flex-col items-center gap-[15px]">
-            <form className="w-full flex flex-col gap-[8.9px] font-urbanist">
-              {[
-                "Full Name",
-                "Contact Number",
-                "Email Address",
-                "Where Are You Located",
-              ].map((placeholder, index) => (
-                <input
-                  key={index}
-                  type="text"
-                  placeholder={placeholder}
-                  className="w-full h-[32px] md:h-[52px] px-[20px] py-[10px] text-[#0A0A0ACC] rounded-[8.9px] text-[10px] md:text-[18px] placeholder:text-[#0A0A0ACC] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]"
-                />
-              ))}
+            <form onSubmit={handleSubmit} className="w-full flex flex-col gap-[8.9px] font-urbanist">
+              <input name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Full Name" type="text" className="w-full h-[32px] md:h-[52px] px-[20px] py-[10px] text-black rounded-[8.9px] text-[10px] md:text-[18px] placeholder:text-[#0A0A0ACC] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]" />
+              <input name="contactNumber" value={formData.contactNumber} onChange={handleChange} placeholder="Contact Number" type="text" className="w-full h-[32px] md:h-[52px] px-[20px] py-[10px] text-black rounded-[8.9px] text-[10px] md:text-[18px] placeholder:text-[#0A0A0ACC] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]" />
+              <input name="email" value={formData.email} onChange={handleChange} placeholder="Email Address" type="email" className="w-full h-[32px] md:h-[52px] px-[20px] py-[10px] text-black rounded-[8.9px] text-[10px] md:text-[18px] placeholder:text-[#0A0A0ACC] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]" />
+              <input name="location" value={formData.location} onChange={handleChange} placeholder="Where Are You Located" type="text" className="w-full h-[32px] md:h-[52px] px-[20px] py-[10px] text-black rounded-[8.9px] text-[10px] md:text-[18px] placeholder:text-[#0A0A0ACC] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]" />
 
-              <select className="w-full h-[32px] md:h-[52px] px-[20px] py-[4px] text-[#0A0A0ACC] rounded-[8.9px] text-[10px] md:text-[18px] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]">
-                <option>How Did You Hear About Us?</option>
-                <option>Google</option>
-                <option>Social Media</option>
-                <option>Referral</option>
+              <select name="hearAboutUs" value={formData.hearAboutUs} onChange={handleChange} className="w-full h-[32px] md:h-[52px] px-[20px] py-[10px] text-black rounded-[8.9px] text-[10px] md:text-[18px] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]">
+                <option value="">How Did You Hear About Us?</option>
+                <option value="Google">Google</option>
+                <option value="Social Media">Social Media</option>
+                <option value="Referral">Referral</option>
               </select>
 
-              <textarea
-                placeholder="Message"
-                className="w-full h-[107px] md:h-[178px] px-[20px] py-[10px] text-[#0A0A0ACC] rounded-[8.9px] text-[10px] md:text-[18px] placeholder:text-[#0A0A0ACC] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]"
-              />
+              <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Message" className="w-full h-[107px] md:h-[178px] px-[20px] py-[10px] text-black rounded-[8.9px] text-[10px] md:text-[18px] placeholder:text-[#0A0A0ACC] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]" />
+
+              <button type="submit" className="mt-2 w-[139px] h-[38px] md:w-[200px] md:h-[48px] bg-yellow-400 text-black font-urbanist text-[12px] md:text-[20px] font-semibold px-[50px] py-[12px] rounded-[10px] border-[2px] border-transparent hover:bg-yellow-300">
+                Submit
+              </button>
             </form>
 
-            <button className="mt-2 w-[139px] h-[38px] md:w-[200px] md:h-[48px] bg-yellow-400 text-[#0A0A0ACC] font-urbanist text-[12px] md:text-[20px] font-semibold px-[50px] py-[12px] rounded-[10px] border-[2px] border-transparent hover:bg-yellow-300">
-              Submit
-            </button>
-
-            <p className="w-full max-w-[322px] md:max-w-[800px] text-[12px] md:text-[20px] font-urbanist font-medium text-center mb-8">
-              Or email <span className="text-yellow-400">hello@trackpi.com</span>{" "}
-              to get in touch with our team.
+            <p className="w-full max-w-[322px] md:max-w-[800px] text-[12px] md:text-[20px] font-urbanist font-medium text-center">
+              Or email <span className="text-yellow-400">hello@trackpi.com</span> to get in touch with our team.
             </p>
           </div>
         </div>

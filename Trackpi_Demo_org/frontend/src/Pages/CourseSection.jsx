@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import squreLock from '../assets/square-lock-02.png'
 import CourseDetailsPopUp from './CourseDetailsPopUp';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import axios from 'axios';
+import { AuthContext } from '../context/AuthContext';
 
 
 
@@ -13,33 +14,40 @@ const CourseSection = () => {
   const [selectedCourse, setSelectedCourse] = useState(null)
   const [isOpen, setIsOpen] = useState(false);
   const [courseList, setCourseList] = useState([])
+  const [userProgress, setUserProgress] = useState([]);
+
+
+  const { user } = useContext(AuthContext);
+
+ 
 
   const navigate = useNavigate()
 
+      // adarsh
+      useEffect(() => {
+        const fetchCourses = async () => {
+          try {
+          
+            const res = await axios.get('http://localhost:5000/api/user/get-all-course-sections', {
+              headers: {
+                Authorization: `Bearer ${user?.token}` 
+              }
+            });
+            console.log("Response data:", res.data.courseSections);
+            setCourseList(res.data.courseSections); 
+            
+          } catch (error) {
+            console.error("Failed to fetch course sections:", error.response?.data || error.message);
+          }
+        };
+      
+        
+        if (user?.token) {
+          fetchCourses();
+        }
+      }, [user]);
 
- const videoList =  [
-                    { _id: "1", courseName: "HTML", completed: true },
-                    { _id: "2", courseName: "CSS", completed: true },
-                    { _id: "3", courseName: "JS", completed: true },
-                  ]
-
-
-
-  // get course list details
-  useEffect(() => {
-    const getCourseLIst = async () => {
-      try {
-        const res = await axios.get("http://localhost:5000/getCourse")
-        setCourseList(res.data)
-
-      } catch (error) {
-        console.error(error)
-      }
-    };
-    getCourseLIst()
-  }, []);
-
-
+ 
 
   // scroll left and right
   const scroll = (direction) => {
@@ -50,7 +58,7 @@ const CourseSection = () => {
   };
 
   //swipe left and right
-    const handleTouchStart = (e) => {
+  const handleTouchStart = (e) => {
     setTouchStartX(e.touches[0].clientX);
   };
 
@@ -67,9 +75,12 @@ const CourseSection = () => {
       }
     }
     setTouchStartX(null)
+
+
+
+
   }
 
-  
   return (
     <>
     <section className='container-search px-5 '>
@@ -104,10 +115,20 @@ const CourseSection = () => {
             className="courseList  h-[122px] mt-8 flex gap-5 overflow-x-auto no-scrollbar scroll-smooth"
             >
             {courseList.map((course, index) => {
-              //determine of the course should be locked
+              // Find progress for this course
+              const courseProgress = userProgress.find(
+                p => (p.courseId?._id || p.courseId) === course._id
+              );
+              const isCompleted = courseProgress?.isCompleted;
+
+              // The first course is always unlocked, others are unlocked if the previous is completed
               const isFirst = index === 0;
-              const PrevCompleted = index > 0 && courseList[index -1]?.completed;
-              const isLocked = !isFirst && !PrevCompleted;
+              const prevCourse = courseList[index - 1];
+              const prevProgress = userProgress.find(
+                p => (p.courseId?._id || p.courseId) === prevCourse?._id
+              );
+              const prevCompleted = prevProgress?.isCompleted;
+              const isLocked = !isFirst && !prevCompleted;
 
               return(
                 <div
@@ -128,18 +149,18 @@ const CourseSection = () => {
                           className="absolute inset-0 m-auto w-6 h-6 z-10"
                               />
                       )}
-                      
-
-                              {/* Content */}
+                      {/* Completed checkmark (optional) */}
+                      {isCompleted && !isLocked && (
+                        <span className="absolute top-2 right-2 text-green-400 font-bold text-lg z-10">✓</span>
+                      )}
+                      {/* Content */}
                       <div className="flex justify-between items-end h-full px-3 pb-1 z-20">
-                          <p className="text-white text-base font-semibold roboto" >{course.courseName}</p>
-                          <p className="text-white roboto text-[10px] font-medium roboto">2 hours</p>
+                          <p className="text-white text-base font-semibold roboto" >{course.courseTitle}</p>
+                          <p className="text-white roboto text-[10px] font-medium roboto">{course.courseDuration} hours</p>
                       </div>
               </div>
               )
-            
-
-})}
+            })}
           </section>
           {/* Right Button */}
             <button
@@ -209,9 +230,9 @@ const CourseSection = () => {
 
               {/* Center content */}
               <div className="relative z-10 text-center flex flex-col  justify-center">
-                <p className="text-sm font-semibold sm:text-[20px] montserrat">{course.courseName}</p>
+                <p className="text-sm font-semibold sm:text-[20px] montserrat">{course.courseTitle}</p>
                 <div className="flex justify-center items-center gap-3 text-[10px] font-normal opacity-70">
-                  <span className='sm:text-sm sm:font-medium montserrat'>{course.videoDetails.length} Videos</span>
+                  <span className='sm:text-sm sm:font-medium montserrat'>{courseList.length} Videos</span>
                   <span className="text-white sm:text-sm sm:font-medium ">|</span>
                   <span className='sm:text-sm sm:font-medium montserrat'>30 Min</span>
                 </div>
@@ -219,12 +240,7 @@ const CourseSection = () => {
             </div>
           ))}
         </div>
-
-
-
     </section>
-
-    
     </>
   )
 }

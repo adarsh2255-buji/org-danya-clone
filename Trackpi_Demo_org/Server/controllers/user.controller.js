@@ -3,6 +3,9 @@ import Signup from "../models/usermodel/signup.js"
 import UserCourseProgress from '../models/usermodel/userCourseProgress.js';
 import Course from "../models/adminmodel/course.js"
 import UserAssessment from '../models/usermodel/userAssessment.js';
+import User from '../models/usermodel/User.js';
+import CourseSection from '../models/adminmodel/CourseSection.js';
+
 
 // to generate a token
 export const generateToken = (user) => {
@@ -82,55 +85,191 @@ export const getCourseById = async (req, res) => {
 export const updateUserCourseProgress = async (req, res) => {
   try {
     const { userId, courseId, videoId, watchedDuration } = req.body;
+     console.log("Incoming data:", { userId, courseId, videoId, watchedDuration });
 
+    // Validate required fields
+    if (!userId || !courseId || !videoId || watchedDuration === undefined) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'Missing required fields: userId, courseId, videoId, watchedDuration' 
+      });
+    }
+
+    // Fetch course to get video details and total duration
+    const course = await Course.findById(courseId);
+    if (!course) {
+      return res.status(404).json({ success: false, message: 'Course not found' });
+    }
+
+    // Find the specific video in the course
+    const videoDetails = course.videoDetails.find(v => v._id.toString() === videoId);
+    if (!videoDetails) {
+      return res.status(404).json({ success: false, message: 'Video not found in course' });
+    }
+
+    // Find or create user progress
     let progress = await UserCourseProgress.findOne({ userId, courseId });
 
     if (!progress) {
       progress = new UserCourseProgress({
         userId,
         courseId,
-        videos: [{ videoId, watchedDuration }],
+        videos: [],
         unlocked: true,
+        totalWatched: 0,
+        isCompleted: false
       });
-    } else {
-      const video = progress.videos.find(v => v.videoId === videoId);
-      if (video) {
-        video.watchedDuration = watchedDuration;
-        video.isCompleted = true;
-      } else {
-        progress.videos.push({ videoId, watchedDuration, isCompleted: true });
-      }
     }
 
-    // Recalculate total watched
+    // Find or create video progress
+    let videoProgress = progress.videos.find(v => v.videoId.toString() === videoId);
+    
+    if (!videoProgress) {
+      // Create new video progress
+      videoProgress = {
+        videoId,
+        watchedDuration: 0,
+        isCompleted: false
+      };
+      progress.videos.push(videoProgress);
+    }
+
+    // Update video progress
+    const previousWatchedDuration = videoProgress.watchedDuration;
+    videoProgress.watchedDuration = Math.max(videoProgress.watchedDuration, watchedDuration);
+    
+    // Mark as completed if watched duration is significant portion of video
+    const completionThreshold = videoDetails.duration * 0.9; // 90% of video duration
+    videoProgress.isCompleted = videoProgress.watchedDuration >= completionThreshold;
+
+    // Recalculate total watched time
     progress.totalWatched = progress.videos.reduce((sum, v) => sum + v.watchedDuration, 0);
 
-    // Check if course is completed
-    const course = await Course.findById(courseId);
-    if (progress.totalWatched >= course.CourseDuration) {
-      progress.isCompleted = true;
-    }
+    // Check if entire course is completed
+    const totalCourseVideos = course.videoDetails.length;
+    const completedVideos = progress.videos.filter(v => v.isCompleted).length;
+    progress.isCompleted = completedVideos === totalCourseVideos;
 
+    // Save progress
     await progress.save();
-    res.status(200).json({ success: true, progress });
+
+    // Return success with updated progress
+    res.status(200).json({ 
+      success: true, 
+      progress: {
+        ...progress.toObject(),
+        completedVideos,
+        totalVideos: totalCourseVideos,
+        nextUnlockedVideoIndex: completedVideos // Next video index that should be unlocked
+      }
+    });
+
   } catch (err) {
-    res.status(500).json({ success: false, message: 'Failed to update progress', error: err.message });
+    console.error("Error updating progress:", err);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Failed to update progress', 
+      error: err.message 
+    });
   }
 };
 
-//Get All Progress + Unlock Status
 // GET /api/progress/:userId
 export const getUserCourseProgress = async (req, res) => {
   try {
     const { userId } = req.params;
-    const progress = await UserCourseProgress.find({ userId }).populate('courseId');
-    res.status(200).json({ success: true, progress });
+    
+    if (!userId) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'User ID is required' 
+      });
+    }
+
+    // Get all progress for user with populated course data
+    const progressData = await UserCourseProgress.find({ userId }).populate({
+      path: 'courseId',
+      select: 'courseName videoDetails CourseDuration'
+    });
+
+    // Format response with additional metadata
+    const formattedProgress = progressData.map(prog => {
+      const completedVideos = prog.videos.filter(v => v.isCompleted).length;
+      const totalVideos = prog.courseId?.videoDetails?.length || 0;
+      
+      return {
+        ...prog.toObject(),
+        completedVideos,
+        totalVideos,
+        nextUnlockedVideoIndex: completedVideos, // Next video that should be unlocked
+        progressPercentage: totalVideos > 0 ? Math.round((completedVideos / totalVideos) * 100) : 0
+      };
+    });
+
+    res.status(200).json({ 
+      success: true, 
+      progress: formattedProgress 
+    });
+
   } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
+    console.error("Error fetching progress:", err);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Failed to fetch progress',
+      error: err.message 
+    });
   }
 };
 
+// GET /api/progress/:userId/:courseId - Get progress for specific course
+export const getUserCourseSpecificProgress = async (req, res) => {
+  try {
+    const { userId, courseId } = req.params;
+    
+    if (!userId || !courseId) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'User ID and Course ID are required' 
+      });
+    }
 
+    const progress = await UserCourseProgress.findOne({ userId, courseId }).populate({
+      path: 'courseId',
+      select: 'courseName videoDetails CourseDuration'
+    });
+
+    if (!progress) {
+      return res.status(404).json({ 
+        success: false, 
+        message: 'No progress found for this course' 
+      });
+    }
+
+    const completedVideos = progress.videos.filter(v => v.isCompleted).length;
+    const totalVideos = progress.courseId?.videoDetails?.length || 0;
+
+    const formattedProgress = {
+      ...progress.toObject(),
+      completedVideos,
+      totalVideos,
+      nextUnlockedVideoIndex: completedVideos,
+      progressPercentage: totalVideos > 0 ? Math.round((completedVideos / totalVideos) * 100) : 0
+    };
+
+    res.status(200).json({ 
+      success: true, 
+      progress: formattedProgress 
+    });
+
+  } catch (err) {
+    console.error("Error fetching course progress:", err);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Failed to fetch course progress',
+      error: err.message 
+    });
+  }
+};
 
 //-----------------------------------------------------------------------------------------------
 //get video assessment
@@ -183,5 +322,67 @@ export const submitAssessment = async (req, res) => {
     res.status(200).json({ success: true, passed, correctCount });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
+  }
+};
+
+
+
+// Adarsh
+
+
+//get watched videos
+export const getWatchedVideos = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.user.email });
+    if(!user) return res.status(404).json({ success: false, message: 'User not found' });
+    const entry = user.watchedVideos.find(wv => wv.courseId.toString() === req.params.courseId);
+    res.json({ videoIndex: entry ? entry.videoIndex : -1 });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error fetching watched videos', error: error.message });
+  }
+}
+
+// update watched videos
+export const updateWatchedVideos = async (req, res) => {
+  try {
+    const { courseId, videoIndex } = req.body;
+    const user = await User.findOne({ email: req.user.email });
+    if(!user) return res.status(404).json({ success: false, message: 'User not found' });
+    const entry = user.watchedVideos.find(wv => wv.courseId.toString() === courseId);
+    if(entry) {
+      if (videoIndex > entry.videoIndex) entry.videoIndex = videoIndex;
+    } else {
+      user.watchedVideos.push({ courseId, videoIndex });
+    }
+    await user.save();
+    console.log('req.body:', req.body);
+   
+    res.json({ success: true, message: 'Watched videos updated' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error updating watched videos', error: error.message });
+  }
+}
+
+// get all course sections for user
+export const getAllCourseSectionsForUser = async (req, res) => {
+  try {
+    const courseSections = await CourseSection.find();
+    res.status(200).json({ courseSections }); // Return as object
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Failed to fetch course sections', error: error.message });
+  }
+};
+
+// get course section by id
+export const getCourseSectionByIdForUser  = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const courseSection = await CourseSection.findById(id);
+    if (!courseSection) {
+      return res.status(404).json({ success: false, message: 'Course section not found' });
+    }
+    res.status(200).json(courseSection);
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Failed to fetch course section', error: error.message });
   }
 };

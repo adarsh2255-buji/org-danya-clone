@@ -1,10 +1,21 @@
+
 import React, { useState, useRef, useEffect } from "react";
 import Player from "@vimeo/player";
 import { FaPlay, FaSyncAlt, FaExpand } from 'react-icons/fa';
 import VideoEndPopUp from "../Pages/VideoEndPopUp";
 import StartAssessmentPopUp from "../Pages/StartAssessmentPopUp";
 
-const VideoBox = ({ videoUrl = "", title = "", description = "", onNextVideo, isLastVideo = false }) => {
+const VideoBox = ({ 
+  videoUrl = "", 
+  title = "",
+  description = "",
+  videoId = "",
+  courseId = "",
+  onNextVideo,
+  isLastVideo = false,
+  onProgressUpdate,
+  duration: videoDuration = 0
+}) => {
   const containerRef = useRef(null);
   const playerRef = useRef(null);
   const [currentTime, setCurrentTime] = useState(0);
@@ -13,24 +24,43 @@ const VideoBox = ({ videoUrl = "", title = "", description = "", onNextVideo, is
   const [isWider, setIsWider] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  // Save progress to backend
+  const saveProgress = async (watchedDuration) => {
+    if (!videoId || !courseId || !onProgressUpdate) return;
+    
+    try {
+      await onProgressUpdate(videoId, watchedDuration);
+    } catch (err) {
+      console.error(" Error saving progress:", err);
+    }
+  };
+
+  // Setup Vimeo player
   useEffect(() => {
     const setupPlayer = async () => {
       if (videoUrl && containerRef.current) {
+        // Reset states for new video
+        setCurrentTime(0);
+        setDuration(0);
+        setShowEndPopup(false);
+        setIsPlaying(false);
+        
         containerRef.current.innerHTML = "";
         const match = videoUrl.match(/vimeo\.com\/(?:video\/)?(\d+)/);
-        const videoId = match?.[1];
+        const vimeoVideoId = match?.[1];
 
-        if (!videoId) {
+        if (!vimeoVideoId) {
           console.error("Invalid Vimeo URL or ID not found");
           return;
         }
 
         const player = new Player(containerRef.current, {
-          id: videoId,
+          id: vimeoVideoId,
           responsive: true,
         });
 
         playerRef.current = player;
+        
         try {
           await player.ready();
           const dur = await player.getDuration();
@@ -39,8 +69,9 @@ const VideoBox = ({ videoUrl = "", title = "", description = "", onNextVideo, is
           player.on("timeupdate", (data) => setCurrentTime(data.seconds));
           player.on("play", () => setIsPlaying(true));
           player.on("pause", () => setIsPlaying(false));
-          player.on("ended", () => {
+          player.on("ended", async () => {
             setIsPlaying(false);
+            await saveProgress(dur); // Save full duration when video ends
             setShowEndPopup(true);
           });
           player.on("error", (e) => console.error("Vimeo Player Error:", e));
@@ -51,12 +82,13 @@ const VideoBox = ({ videoUrl = "", title = "", description = "", onNextVideo, is
     };
 
     setupPlayer();
+    
     return () => {
       if (playerRef.current) {
         playerRef.current.unload().catch(console.error);
       }
     };
-  }, [videoUrl]);
+  }, [videoUrl, videoId]); // Re-setup when video changes
 
   const handlePlay = () => {
     playerRef.current?.play();

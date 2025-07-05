@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 import logo from '../assets/logo2.png'; 
+import { Link } from 'react-router-dom';
 
 const Navbar = ({ onLoginClick }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,9 +19,9 @@ const Navbar = ({ onLoginClick }) => {
 
       {/* Desktop Nav */}
       <ul className="hidden md:flex gap-16 text-base font-medium text-white font-['Libre_Franklin']">
-        <li className="cursor-pointer hover:text-[#FF9D00] transition-colors">HOME</li>
-        <li className="cursor-pointer hover:text-[#FF9D00] transition-colors">ABOUT</li>
-        <li className="cursor-pointer hover:text-[#FF9D00] transition-colors">CONNECT US</li>
+        <Link to="/" className="cursor-pointer hover:text-[#FF9D00] transition-colors">HOME</Link>
+        <Link to="/about" className="cursor-pointer hover:text-[#FF9D00] transition-colors">ABOUT</Link>
+        <Link to="/connectUs" className="cursor-pointer hover:text-[#FF9D00] transition-colors">CONNECT US</Link>
       </ul>
 
       {/* Login/Signup Button */}
