@@ -10,12 +10,12 @@ const ContactUsPage = () => {
   }
  
   return (
-    <>
+    <div className="overflow-hidden">
       <Navbar onLoginClick = {scrollToLogin}/>
       <ContactusHeader />
       <ContactUsForm />
       <HomeFoot />
-    </>
+    </div>
   );
 };
 
