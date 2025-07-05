@@ -5,11 +5,11 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-const path = location.pathname;
 
 import Header from "./components/Header";
 import Background from "./components/Background";
 import Background2 from "./components/Background2";
+
 import AddCourseForm from "./Pages/AddCourseForm";
 import CourseDetailsPopUp from "./Pages/CourseDetailsPopUp";
 import MainAssessment from "./Pages/MainAssessment";
@@ -19,9 +19,7 @@ import AssessmentPassedPopup from "./Pages/AssessmentPassedPopup";
 import AssessmentFailedPopup from "./Pages/AssessmentFailedPopup";
 import AssesmentTimeUpPopup from "./Pages/AssesmentTimeUpPopup";
 import Discoverus from "./Pages/Discoverus";
-
 import AssessmentTimupCongrats from "./Pages/AssessmentTimupCongrats";
-
 import AssessmentFeedback from "./Pages/AssessmentFeedback";
 import AssessmentFeedbackEnter from "./Pages/AssessmentFeedbackEnter";
 
@@ -31,24 +29,18 @@ import Home from "./Pages/Homepage";
 import Faq2 from "./Pages/Faq2";
 import PrivateRoute from "./routes/PrivateRoutes";
 import CourseSection from "./Pages/CourseSection";
+import CourseSectionForm from "./Pages/CourseSectionForm";
+import CourseSectionList from "./Pages/CourseSectionList";
+import CloudinaryTest from "./Pages/CloudinaryTest";
+import SimpleTest from "./Pages/SimpleTest";
+import StartCourse from "./Pages/StartCourse";
+import ContactUsPage from "./Pages/ContactUsPage";
+import About from "./Pages/Aboutpage";
+import UpdateCourseSection from "./Pages/UpdateCourseSection";
 
-import ViewCourses from './Pages/ViewCourse';
-import NewPage from './Pages/newpage';
-import Home from './Pages/Homepage';
-import Faq2 from './Pages/Faq2';
-import PrivateRoute from './routes/PrivateRoutes';
-import CourseSection from './Pages/CourseSection';
-import CourseSectionForm from './Pages/CourseSectionForm';
-import CourseSectionList from './Pages/CourseSectionList';
-import CloudinaryTest from './Pages/CloudinaryTest';
-import SimpleTest from './Pages/SimpleTest';
-
-import StartCourse from './Pages/StartCourse';
-import ContactUsPage from './Pages/ContactUsPage';
-import About from './Pages/Aboutpage'
-import UpdateCourseSection from './Pages/UpdateCourseSection';
 function Layout() {
-  const location = useLocation();
+const location = useLocation();
+const path = location.pathname;
   const isHome = path === "/";
   const isContact = path === "/contactUs";
 
