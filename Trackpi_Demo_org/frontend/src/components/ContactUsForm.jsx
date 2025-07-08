@@ -53,10 +53,10 @@ const ContactUsForm = () => {
   ];
 
   return (
-    <div className="w-full overflow-hidden min-h-screen bg-gradient-to-r from-[#141021] to-[#5e3d1f] text-white py-10 md:pt- px-4">
-      <div className="w-full max-w-[1728px] mx-auto flex flex-col md:flex-row pb-10 gap-[30px] md:gap-[60px]">
+    <div className="w-full overflow-hidden min-h-screen bg-gradient-to-r from-[#141021] to-[#5e3d1f] text-white pt-15 px-4">
+      <div className="w-full max-w-[1728px] mx-auto flex flex-col lg:flex-row pb-10 gap-[30px] lg:gap-[60px]">
         {/* LEFT COLUMN */}
-        <div className="w-[660px] md:w-[50%] flex flex-col justify-between gap-10 pl-[31px] md:pl-[100px] overflow-hidden">
+        <div className="w-full md:w-[660px] lg:min-w-[620px] lg:w-[50%] mx-auto lg:mx-0 flex flex-col justify-between gap-10 pl-[15px] md:pl-[31px] lg:pl-[100px] overflow-hidden">
           {/* Description */}
           <div className="max-w-[442px]">
             <p className="font-urbanist font-semibold text-[12px] md:text-[24px] leading-[100%] text-left">
@@ -89,7 +89,7 @@ const ContactUsForm = () => {
           </div>
 
           {/* Social Icons */}
-          <div className="flex gap-[15px] md:gap-[17.5px]">
+          <div className="flex gap-[15px] md:gap-[17.5px] md:pb-0">
             {socialIcons.map((icon, i) => (
               <div
                 key={i}
@@ -108,10 +108,10 @@ const ContactUsForm = () => {
         </div>
 
         {/* RIGHT COLUMN */}
-        <div className="w-full md:w-[802px] flex flex-col justify-center items-center gap-[20px] md:gap-[40px] px-4 md:pr-[100px]">
+        <div className="w-full lg:w-[802px] flex flex-col justify-center items-center mx-auto lg:mx-0 gap-[20px] md:gap-[40px] px-4 lg:pr-[100px]">
           {/* Heading + Description */}
           <div className="max-w-[802px] text-center flex flex-col gap-[10px] md:gap-[20px]">
-            <h2 className="font-libre font-bold text-[#FFC100] text-[18px] md:text-[50px] leading-[100%] tracking-[0.02em] text-center w-full md:w-auto whitespace-nowrap">
+            <h2 className="font-libre font-bold text-[#FFC100] text-[18px] md:text-[45px] lg:text-[50px] leading-[100%] tracking-[0.02em] text-center w-full md:w-auto whitespace-nowrap">
               You’re ready to take the next step
             </h2>
             <p className="font-urbanist font-semibold text-[12px] md:text-[24px] leading-[16px] md:leading-[32px]">
@@ -133,7 +133,7 @@ const ContactUsForm = () => {
                 onChange={handleChange}
                 placeholder="Full Name"
                 type="text"
-                className="w-full h-[32px] md:h-[52px] px-[20px] py-[10px] text-black rounded-[8.9px] text-[10px] md:text-[18px] placeholder:text-[#0A0A0ACC] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]"
+                className="w-full h-[32px] md:h-[52px] px-[20px] py-[10px] rounded-[8.9px] text-[10px] md:text-[18px] placeholder:text-[#0A0A0ACC] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]"
               />
               <input
                 name="contactNumber"
@@ -141,7 +141,7 @@ const ContactUsForm = () => {
                 onChange={handleChange}
                 placeholder="Contact Number"
                 type="text"
-                className="w-full h-[32px] md:h-[52px] px-[20px] py-[10px] text-black rounded-[8.9px] text-[10px] md:text-[18px] placeholder:text-[#0A0A0ACC] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]"
+                className="w-full h-[32px] md:h-[52px] px-[20px] py-[10px] rounded-[8.9px] text-[10px] md:text-[18px] placeholder:text-[#0A0A0ACC] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]"
               />
               <input
                 name="email"
@@ -149,7 +149,7 @@ const ContactUsForm = () => {
                 onChange={handleChange}
                 placeholder="Email Address"
                 type="email"
-                className="w-full h-[32px] md:h-[52px] px-[20px] py-[10px] text-black rounded-[8.9px] text-[10px] md:text-[18px] placeholder:text-[#0A0A0ACC] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]"
+                className="w-full h-[32px] md:h-[52px] px-[20px] py-[10px] rounded-[8.9px] text-[10px] md:text-[18px] placeholder:text-[#0A0A0ACC] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]"
               />
               <input
                 name="location"
@@ -157,14 +157,14 @@ const ContactUsForm = () => {
                 onChange={handleChange}
                 placeholder="Where Are You Located"
                 type="text"
-                className="w-full h-[32px] md:h-[52px] px-[20px] py-[10px] text-black rounded-[8.9px] text-[10px] md:text-[18px] placeholder:text-[#0A0A0ACC] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]"
+                className="w-full h-[32px] md:h-[52px] px-[20px] py-[10px] rounded-[8.9px] text-[10px] md:text-[18px] placeholder:text-[#0A0A0ACC] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]"
               />
 
               <select
                 name="hearAboutUs"
                 value={formData.hearAboutUs}
                 onChange={handleChange}
-                className="w-full h-[32px] md:h-[52px] px-[20px] py-[10px] text-black rounded-[8.9px] text-[10px] md:text-[18px] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]"
+                className="w-full h-[32px] md:h-[52px] px-[20px] py-[10px] text-[#0A0A0ACC] rounded-[8.9px] text-[10px] md:text-[18px] shadow-[2px_2px_4px_0px_#0A0A0A33,_-2px_1px_4px_0px_#0A0A0A33,_0px_-2px_4px_0px_#0A0A0A33]"
               >
                 <option value="">How Did You Hear About Us?</option>
                 <option value="Google">Google</option>

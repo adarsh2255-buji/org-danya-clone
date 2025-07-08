@@ -4,7 +4,7 @@ import muteIcon from "../assets/muteiconcontactus.png";
 
 const ContactusHeader = () => {
   return (
-    <div className="w-full h-[223px] md:h-[720px] relative">
+    <div className="w-full h-[223px] md:h-[720px] top-[56px] mb-6 relative">
       {/* Background image */}
       <div
         className="absolute inset-0 z-0"
